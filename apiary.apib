@@ -1,38 +1,54 @@
 FORMAT: 1A
-HOST: http://www.google.com
+HOST: http://api.wcp.vps321.xiag.ch/
 
-# swisscomwcpmortgage
-Notes API is a *short texts saving* service similar to its physical paper presence on your table.
+# Swisscom web customer portal, mortgage component
+API documentation for **Swisscom WCP Mortgage** application.
 
-# Group Notes
-Notes related resources of the **Notes API**
+# Group Mortgages
+Managing **Mortgage** objects
 
-## Notes Collection [/notes]
-### List all Notes [GET]
+## Mortgages Collection [/financing/mortgage]
+### List all Mortgages [GET]
 + Response 200 (application/json)
 
-        [{
-          "id": 1, "title": "Jogging in park"
-        }, {
-          "id": 2, "title": "Pick-up posters from post-office"
-        }]
+        [
+            {
+                "id": 1,
+                "portfolio_id": 301,
+                "links": [
+                    {
+                        "rel": "self",
+                        "$ref": "http://swisscomwcpmortgage.apiary-mock.com/financing/mortgage/1"
+                    },
+                    {
+                        "rel": "portfolio",
+                        "$ref": "http://swisscomwcpmortgage.apiary-mock.com/financing/portfolio/301"
+                    }
+                ]
+            },
+            {
+                "id": 2,
+                "portfolio_id": 301,
+                "links": [
+                    {
+                        "rel": "self",
+                        "$ref": "http://swisscomwcpmortgage.apiary-mock.com/financing/mortgage/2"
+                    },
+                    {
+                        "rel": "portfolio",
+                        "$ref": "http://swisscomwcpmortgage.apiary-mock.com/financing/portfolio/301"
+                    }
+                ]
+            }
+        ]
 
-### Create a Note [POST]
-+ Request (application/json)
-
-        { "title": "Buy cheese and bread for breakfast." }
-
-+ Response 201 (application/json)
-
-        { "id": 3, "title": "Buy cheese and bread for breakfast." }
-
-## Note [/notes/{id}]
-A single Note object with all its details
+## Mortgage [/financing/mortgage/{id}]
+A single Mortgage object with all its details
 
 + Parameters
-    + id (required, number, `1`) ... Numeric `id` of the Note to perform action with. Has example value.
+    + id (required, number, `1`) ... Numeric `id` of the Mortgage to perform action with. Has example value.
 
-### Retrieve a Note [GET]
+### Retrieve a Mortgage [GET]
 + Response 200 (application/json)
 
     + Header
@@ -41,7 +57,39 @@ A single Note object with all its details
 
     + Body
 
-            { "id": 2, "title": "Pick-up posters from post-office" }
-
-### Remove a Note [DELETE]
-+ Response 204
+            {
+                "id": 1,
+                "account_id": 101,
+                "customer_id": 201,
+                "portfolio_id": 301,
+                "product_id": 401,
+                "current_interest_rate": 7,
+                "valid_from": "2014-08-01",
+                "valid_to": "2014-08-31",
+                "total_max_amount": 1000000,
+                "amount": 900000,
+                "pricing_offer_id": 501,
+                "online_flag": true,
+                "links": [
+                    {
+                        "rel": "self",
+                        "$ref": "http://swisscomwcpmortgage.apiary-mock.com/financing/mortgage/1"
+                    },
+                    {
+                        "rel": "account",
+                        "$ref": "http://swisscomwcpmortgage.apiary-mock.com/financing/account/101"
+                    },
+                    {
+                        "rel": "customer",
+                        "$ref": "http://swisscomwcpmortgage.apiary-mock.com/financing/customer/201"
+                    },
+                    {
+                        "rel": "portfolio",
+                        "$ref": "http://swisscomwcpmortgage.apiary-mock.com/financing/portfolio/301"
+                    },
+                    {
+                        "rel": "product",
+                        "$ref": "http://swisscomwcpmortgage.apiary-mock.com/financing/product/401"
+                    }
+                ]
+            }
