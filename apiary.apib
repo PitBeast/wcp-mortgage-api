@@ -34,6 +34,11 @@ Managing **Mortgage** objects
                             "title": "Id",
                             "description": "Mortgage identifier"
                         },
+                        "creditProductId": {
+                            "type": "string",
+                            "title": "Credit product id",
+                            "description": "Credit product identifier"
+                        },
                         "currency": {
                             "type": "string",
                             "title": "ISO 4217 Currency Code",
@@ -44,7 +49,7 @@ Managing **Mortgage** objects
                         "limit": {
                             "type": "number",
                             "minimum": 0,
-                            "exclusiveMinimum": true
+                            "exclusiveMinimum": true,
                             "title": "Mortgage limit"
                         },
                         "balance": {
@@ -161,6 +166,7 @@ Managing **Mortgage** objects
                     },
                     "required": [
                         "id",
+                        "creditProductId",
                         "currency",
                         "limit",
                         "balance",
@@ -190,6 +196,7 @@ Return mortgage collection available for current customer
             [
                 {
                     "id": "17145",
+                    "creditProductId": "100",
                     "currency": "CHF",
                     "limit": 590000,
                     "balance": -590000,
@@ -216,6 +223,7 @@ Return mortgage collection available for current customer
                 },
                 {
                     "id": "17146",
+                    "creditProductId": "100",
                     "currency": "CHF",
                     "limit": 490000,
                     "balance": -490000,
@@ -257,7 +265,7 @@ Return mortgage collection available for current customer
 
     + id (mandatory, string, `21973`) ... Id of offer to return.
 
-### Get product collection schema [OPTIONS]
+### Get offer product collection schema [OPTIONS]
 
 + Response 200 (application/schema+json)
 
@@ -327,55 +335,55 @@ Product collection
 
             [
                 {
-                    "id": "1",
+                    "id": "9010390041",
                     "duration": 2,
                     "actualMargin": "2.9996",
                     "minimalAmount": 100000
                 },
                 {
-                    "id": "1",
+                    "id": "9010390041",
                     "duration": 3,
                     "actualMargin": "2.8996",
                     "minimalAmount": 150000
                 },
                 {
-                    "id": "1",
+                    "id": "9010390041",
                     "duration": 4,
                     "actualMargin": "2.7996",
                     "minimalAmount": 200000
                 },
                 {
-                    "id": "1",
+                    "id": "9010390041",
                     "duration": 5,
                     "actualMargin": "2.6996",
                     "minimalAmount": 250000
                 },
                 {
-                    "id": "1",
+                    "id": "9010390041",
                     "duration": 6,
                     "actualMargin": "2.5996",
                     "minimalAmount": 300000
                 },
                 {
-                    "id": "1",
+                    "id": "9010390041",
                     "duration": 7,
                     "actualMargin": "2.4996",
                     "minimalAmount": 350000
                 },
                 {
-                    "id": "1",
+                    "id": "9010390041",
                     "duration": 8,
                     "actualMargin": "2.3996",
                     "minimalAmount": 400000
                 },
                 {
-                    "id": "1",
+                    "id": "9010390041",
                     "duration": 9,
                     "actualMargin": "2.2996",
                     "minimalAmount": 450000
                 },
                 {
-                    "id": "1",
+                    "id": "9010390041",
                     "duration": 10,
                     "actualMargin": "2.1996",
                     "minimalAmount": 500000
