@@ -21,10 +21,9 @@ Managing **Mortgage** objects
 
             {
                 "$schema": "http://json-schema.org/draft-04/schema#",
-                "description": "Mortgage collection schema",
                 "type": "array",
                 "title": "Array of mortgage objects",
-                "description": "Mortgage object list available for customer",
+                "description": "Mortgage object collection available for customer",
                 "items": {
                     "type": "object",
                     "title": "Mortgage",
@@ -45,6 +44,7 @@ Managing **Mortgage** objects
                         "limit": {
                             "type": "number",
                             "minimum": 0,
+                            "exclusiveMinimum": true
                             "title": "Mortgage limit"
                         },
                         "balance": {
@@ -109,7 +109,7 @@ Managing **Mortgage** objects
                                     },
                                     "rate": {
                                         "type": "string",
-                                        "pattern": "^\\d+\\.\\d{2}$",
+                                        "minLength": 1,
                                         "title": "Rate",
                                         "description": "Product rate"
                                     },
@@ -175,123 +175,205 @@ Managing **Mortgage** objects
 
 ### List all Mortgages [GET]
 
-It describes how a record looks and returns contents
-that may be used to build human readable interfaces.
+Return mortgage collection available for current customer
 
-+ Response 200 (application/json)
 
-        [
-            {
-                "id": "17145",
-                "currency": "CHF",
-                "limit": 590000,
-                "balance": -590000,
-                "owner": {
-                    "id": "131841-3006",
-                    "name": "Hans Muster"
-                },
-                "object": {
-                    "name": "Haus 1",
-                    "additional": "Kurzstrasse 22 7770 St.Gallen"
-                },
-                "products": [
-                    {
-                        "id": "9010390041",
-                        "rate": "2.45",
-                        "amount": 590000,
-                        "valid": {
-                            "from": "2010-04-01",
-                            "to": "2015-03-31"
-                        },
-                        "offerId": "21137"
-                    }
-                ]
-            },
-            {
-                "id": "17146",
-                "currency": "CHF",
-                "limit": 490000,
-                "balance": -490000,
-                "owner": {
-                    "id": "131841-4982",
-                    "name": "Hans Muster"
-                },
-                "object": {
-                    "name": "Object 2",
-                    "additional": "Kurzstrasse 2 1770 St.Gallen"
-                },
-                "products": [
-                    {
-                        "id": "9010390041",
-                        "rate": "2.45",
-                        "amount": 190000,
-                        "valid": {
-                            "from": "2010-06-01",
-                            "to": "2015-05-31"
-                        },
-                        "offerId": "21973"
-                    },
-                    {
-                        "id": "9010390041",
-                        "rate": "2.05",
-                        "amount": 300000,
-                        "valid": {
-                            "from": "2011-07-01",
-                            "to": "2016-06-30"
-                        }
-                    }
-                ]
-            }
-        ]
-
-## Mortgage [/financing/mortgage/{id}]
-A single Mortgage object with all its details
-
-+ Parameters
-    + id (required, number, `1`) ... Numeric `id` of the Mortgage to perform action with. Has example value.
-
-### Retrieve a Mortgage [GET]
-+ Response 200 (application/json)
++ Response 200 (application/json; charset=UTF-8; profile=http://api.wcp.vps321.xiag.ch/schema/financing/mortgage/collection)
 
     + Header
 
-            X-My-Header: The Value
+            Content-Language: en
+            Link: <http://api.wcp.vps321.xiag.ch/financing/mortgage>; rel="self"
+
+    + Body
+
+            [
+                {
+                    "id": "17145",
+                    "currency": "CHF",
+                    "limit": 590000,
+                    "balance": -590000,
+                    "owner": {
+                        "id": "131841-3006",
+                        "name": "Hans Muster"
+                    },
+                    "object": {
+                        "name": "Haus 1",
+                        "additional": "Kurzstrasse 22 7770 St.Gallen"
+                    },
+                    "products": [
+                        {
+                            "id": "9010390041",
+                            "rate": "2.45",
+                            "amount": 590000,
+                            "valid": {
+                                "from": "2010-04-01",
+                                "to": "2015-03-31"
+                            },
+                            "offerId": "21137"
+                        }
+                    ]
+                },
+                {
+                    "id": "17146",
+                    "currency": "CHF",
+                    "limit": 490000,
+                    "balance": -490000,
+                    "owner": {
+                        "id": "131841-4982",
+                        "name": "Hans Muster"
+                    },
+                    "object": {
+                        "name": "Object 2",
+                        "additional": "Kurzstrasse 2 1770 St.Gallen"
+                    },
+                    "products": [
+                        {
+                            "id": "9010390041",
+                            "rate": "2.45",
+                            "amount": 190000,
+                            "valid": {
+                                "from": "2010-06-01",
+                                "to": "2015-05-31"
+                            },
+                            "offerId": "21973"
+                        },
+                        {
+                            "id": "9010390041",
+                            "rate": "2.05",
+                            "amount": 300000,
+                            "valid": {
+                                "from": "2011-07-01",
+                                "to": "2016-06-30"
+                            }
+                        }
+                    ]
+                }
+            ]
+
+## Offer Collection [/financing/offer/{id}]
+
+### Get product collection schema [OPTIONS]
+
++ Response 200 (application/schema+json)
+
+    + Header
+
+            Link: <http://api.wcp.vps321.xiag.ch/schema/financing/offer/item>; rel="canonical", <http://api.wcp.vps321.xiag.ch/financing/offer/21973>; rel="self"
 
     + Body
 
             {
-                "id": 1,
-                "account_id": 101,
-                "customer_id": 201,
-                "portfolio_id": 301,
-                "product_id": 401,
-                "current_interest_rate": 7,
-                "valid_from": "2014-08-01",
-                "valid_to": "2014-08-31",
-                "total_max_amount": 1000000,
-                "amount": 900000,
-                "pricing_offer_id": 501,
-                "online_flag": true,
-                "links": [
-                    {
-                        "rel": "self",
-                        "$ref": "http://swisscomwcpmortgage.apiary-mock.com/financing/mortgage/1"
+                "$schema": "http://json-schema.org/draft-04/schema#",
+                "type": "array",
+                "title": "Array of offer product objects",
+                "description": "Offer product object collection",
+                "items": {
+                    "type": "object",
+                    "title": "Product",
+                    "description": "Offer product",
+                    "properties": {
+                        "id": {
+                            "type": "string",
+                            "title": "Id",
+                            "description": "Offered product identifier"
+                        },
+                        "duration": {
+                            "type": "integer",
+                            "minimum": 2,
+                            "maximum": 10,
+                            "title": "Duration",
+                            "description": "Offered product duration in years"
+                        },
+                        "actualMargin": {
+                            "type": "string",
+                            "minLength": 1,
+                            "title": "Rate",
+                            "description": "Actual product rate"
+                        },
+                        "minimalAmount": {
+                            "type": "number",
+                            "minimum": 0,
+                            "exclusiveMinimum": true
+                        }
                     },
-                    {
-                        "rel": "account",
-                        "$ref": "http://swisscomwcpmortgage.apiary-mock.com/financing/account/101"
-                    },
-                    {
-                        "rel": "customer",
-                        "$ref": "http://swisscomwcpmortgage.apiary-mock.com/financing/customer/201"
-                    },
-                    {
-                        "rel": "portfolio",
-                        "$ref": "http://swisscomwcpmortgage.apiary-mock.com/financing/portfolio/301"
-                    },
-                    {
-                        "rel": "product",
-                        "$ref": "http://swisscomwcpmortgage.apiary-mock.com/financing/product/401"
-                    }
-                ]
+                    "required": [
+                        "id",
+                        "duration",
+                        "actualMargin",
+                        "minimalAmount"
+                    ]
+                },
+                "minItems": 1,
+                "uniqueItems": true
             }
+
+### Get single offer as product collection [GET]
+
+Product collection
+
++ Response 200 (application/json; charset=UTF-8; profile=http://api.wcp.vps321.xiag.ch/schema/financing/offer/item)
+
+    + Header
+
+            Content-Language: en
+            Link: <http://api.wcp.vps321.xiag.ch/financing/offer/21973>; rel="self"
+
+    + Body
+
+            [
+                {
+                    "id": "1",
+                    "duration": 2,
+                    "actualMargin": "2.9996",
+                    "minimalAmount": 100000
+                },
+                {
+                    "id": "1",
+                    "duration": 3,
+                    "actualMargin": "2.8996",
+                    "minimalAmount": 150000
+                },
+                {
+                    "id": "1",
+                    "duration": 4,
+                    "actualMargin": "2.7996",
+                    "minimalAmount": 200000
+                },
+                {
+                    "id": "1",
+                    "duration": 5,
+                    "actualMargin": "2.6996",
+                    "minimalAmount": 250000
+                },
+                {
+                    "id": "1",
+                    "duration": 6,
+                    "actualMargin": "2.5996",
+                    "minimalAmount": 300000
+                },
+                {
+                    "id": "1",
+                    "duration": 7,
+                    "actualMargin": "2.4996",
+                    "minimalAmount": 350000
+                },
+                {
+                    "id": "1",
+                    "duration": 8,
+                    "actualMargin": "2.3996",
+                    "minimalAmount": 400000
+                },
+                {
+                    "id": "1",
+                    "duration": 9,
+                    "actualMargin": "2.2996",
+                    "minimalAmount": 450000
+                },
+                {
+                    "id": "1",
+                    "duration": 10,
+                    "actualMargin": "2.1996",
+                    "minimalAmount": 500000
+                }
+            ]
