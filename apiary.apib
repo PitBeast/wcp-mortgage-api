@@ -15,101 +15,162 @@ Managing **Mortgage** objects
 
     + Header
 
-            Content-Language: en
             Link: <http://api.wcp.vps321.xiag.ch/schema/financing/mortgage/collection>; rel="canonical", <http://api.wcp.vps321.xiag.ch/financing/mortgage>; rel="self"
 
     + Body
 
             {
-              "type": "array",
-              "title": {
-                "en": "Array of mortgage objects"
-              },
-              "description": {
-                "en": "Mortgage object list available for customer"
-              },
-              "items": {
-                "type": "object",
-                "title": {
-                  "en": "Mortgage"
-                },
-                "description": {
-                  "en": "Mortgage object available for customer"
-                },
-                "properties": {
-                  "id": {
-                    "type": "string",
-                    "title": {
-                      "en": "Id"
-                    },
-                    "description": {
-                      "en": "Mortgage identifier"
-                    }
-                  },
-                  "currency": {
-                    "type": "string",
-                    "title": {
-                      "en": "ISO 4217 Currency Code",
-                    },
-                    "format": "iso4217",
-                    "pattern": "^[A-Z]{3}$",
-                    "description": {
-                      "en": "Mortgage currency"
-                    }
-                  },
-                  "limit": {
-                    "type": "number",
-                    "minimum": 0
-                    #TODO title, description
-                  },
-                  "balance": {
-                    "type": "number",
-                    "maximum": 0
-                    #TODO title, description
-                  }
-
-
-                  "accountId": {
-                    "type": "string",
-                    "title": {
-                      "en": "Account id"
-                    },
-                    "description": {
-                      "en": "Mortgage owner account identifier"
-                    }
-                  },
-                  "product": {
+                "$schema": "http://json-schema.org/draft-04/schema#",
+                "description": "Mortgage collection schema",
+                "type": "array",
+                "title": "Array of mortgage objects",
+                "description": "Mortgage object list available for customer",
+                "items": {
                     "type": "object",
-                    "title": {
-                      "en": "Product"
-                    },
-                    "description": {
-                      "en": "Mortgage product information"
-                    },
+                    "title": "Mortgage",
+                    "description": "Mortgage object available for customer",
                     "properties": {
-                      "productId": {
-                        "type": "string",
-                        "title": {
-                          "en": "Product Id"
+                        "id": {
+                            "type": "string",
+                            "title": "Id",
+                            "description": "Mortgage identifier"
                         },
-                        "description": {
-                          "en": "Mortgage product identifier"
-                        }
-                      },
-                      "accountOwner": {
-                        "type": "string",
-                        "title": {
-                          "en": "Owner name"
+                        "currency": {
+                            "type": "string",
+                            "title": "ISO 4217 Currency Code",
+                            "format": "iso4217",
+                            "pattern": "^[A-Z]{3}$",
+                            "description": "Mortgage currency"
                         },
-                        "description": {
-                          "en": "Account owner name"
+                        "limit": {
+                            "type": "number",
+                            "minimum": 0,
+                            "title": "Mortgage limit"
+                        },
+                        "balance": {
+                            "type": "number",
+                            "maximum": 0,
+                            "title": "Mortgage balance"
+                        },
+                        "owner": {
+                            "type": "object",
+                            "title": "Owner",
+                            "description": "Mortgage owner information",
+                            "properties": {
+                                "id": {
+                                    "type": "string",
+                                    "title": "Id",
+                                    "description": "Mortgage owner identifier"
+                                },
+                                "name": {
+                                    "type": "string",
+                                    "title": "Name",
+                                    "description": "Mortgage owner name"
+                                }
+                            },
+                            "required": [
+                                "id",
+                                "name"
+                            ]
+                        },
+                        "object": {
+                            "type": "object",
+                            "title": "Mortgage object",
+                            "description": "Mortgage object information",
+                            "properties": {
+                                "name": {
+                                    "type": "string",
+                                    "title": "Name",
+                                    "description": "Mortgage object name"
+                                },
+                                "additional": {
+                                    "type": "string",
+                                    "title": "Additional data",
+                                    "description": "Mortgage object additional data"
+                                }
+                            },
+                            "required": [
+                                "name"
+                            ]
+                        },
+                        "products": {
+                            "type": "array",
+                            "title": "Array of mortgage product",
+                            "description": "Current mortgage products configuration",
+                            "items": {
+                                "type": "object",
+                                "title": "Product",
+                                "description": "Mortgage product",
+                                "properties": {
+                                    "id": {
+                                        "type": "string",
+                                        "title": "Id",
+                                        "description": "Product identifier"
+                                    },
+                                    "rate": {
+                                        "type": "string",
+                                        "pattern": "^\\d+\\.\\d{2}$",
+                                        "title": "Rate",
+                                        "description": "Product rate"
+                                    },
+                                    "amount": {
+                                        "type": "number",
+                                        "minimum": 0,
+                                        "exclusiveMinimum": true,
+                                        "title": "Product amount"
+                                    },
+                                    "valid": {
+                                        "type": "object",
+                                        "title": "Valid",
+                                        "description": "Product validation interval",
+                                        "properties": {
+                                            "from": {
+                                                "type": "string",
+                                                "format": "date",
+                                                "title": "From",
+                                                "description": "Start interval value"
+                                            },
+                                            "to": {
+                                                "type": "string",
+                                                "format": "date",
+                                                "title": "To",
+                                                "description": "End interval value"
+                                            }
+                                        },
+                                        "required": [
+                                            "from",
+                                            "to"
+                                        ]
+                                    },
+                                    "offerId": {
+                                        "type": "string",
+                                        "title": "Offer Id",
+                                        "description": "Product configuration offer identifier"
+                                    }
+                                },
+                                "required": [
+                                    "id",
+                                    "rate",
+                                    "amount",
+                                    "valid"
+                                ]
+                            },
+                            "minItems": 1,
+                            "uniqueItems": true
                         }
-                      }
-                    }
-                  }
-
-                }
-              }
+                    },
+                    "required": [
+                        "id",
+                        "currency",
+                        "limit",
+                        "balance",
+                        "owner",
+                        "object",
+                        "products"
+                    ]
+                },
+                "minItems": 1,
+                "uniqueItems": true
             }
 
 It describes how a record looks and returns contents
@@ -120,30 +181,63 @@ that may be used to build human readable interfaces.
 
         [
             {
-                "id": 1,
-                "portfolio_id": 301,
-                "links": [
+                "id": "17145",
+                "currency": "CHF",
+                "limit": 590000,
+                "balance": -590000,
+                "owner": {
+                    "id": "131841-3006",
+                    "name": "Hans Muster"
+                },
+                "object": {
+                    "name": "Haus 1",
+                    "additional": "Kurzstrasse 22 7770 St.Gallen"
+                },
+                "products": [
                     {
-                        "rel": "self",
-                        "$ref": "http://swisscomwcpmortgage.apiary-mock.com/financing/mortgage/1"
-                    },
-                    {
-                        "rel": "portfolio",
-                        "$ref": "http://swisscomwcpmortgage.apiary-mock.com/financing/portfolio/301"
+                        "id": "9010390041",
+                        "rate": "2.45",
+                        "amount": 590000,
+                        "valid": {
+                            "from": "2010-04-01",
+                            "to": "2015-03-31"
+                        },
+                        "offerId": "21137"
                     }
                 ]
             },
             {
-                "id": 2,
-                "portfolio_id": 301,
-                "links": [
+                "id": "17146",
+                "currency": "CHF",
+                "limit": 490000,
+                "balance": -490000,
+                "owner": {
+                    "id": "131841-4982",
+                    "name": "Hans Muster"
+                },
+                "object": {
+                    "name": "Object 2",
+                    "additional": "Kurzstrasse 2 1770 St.Gallen"
+                },
+                "products": [
                     {
-                        "rel": "self",
-                        "$ref": "http://swisscomwcpmortgage.apiary-mock.com/financing/mortgage/2"
+                        "id": "9010390041",
+                        "rate": "2.45",
+                        "amount": 190000,
+                        "valid": {
+                            "from": "2010-06-01",
+                            "to": "2015-05-31"
+                        },
+                        "offerId": "21973"
                     },
                     {
-                        "rel": "portfolio",
-                        "$ref": "http://swisscomwcpmortgage.apiary-mock.com/financing/portfolio/301"
+                        "id": "9010390041",
+                        "rate": "2.05",
+                        "amount": 300000,
+                        "valid": {
+                            "from": "2011-07-01",
+                            "to": "2016-06-30"
+                        }
                     }
                 ]
             }
