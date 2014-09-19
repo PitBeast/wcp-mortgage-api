@@ -259,11 +259,14 @@ Return mortgage collection available for current customer
                 }
             ]
 
-## Offer [/financing/offer/{id}]
+# Group Offer
+Offer as a products collection for mortgage part extension
+
+## Offer a product collection [/financing/offer/{id}]
 
 + Parameters
 
-    + id (mandatory, string, `21973`) ... Id of offer to return.
+    + id (required, string, `21973`) ... Id of offer to return.
 
 ### Get offer product collection schema [OPTIONS]
 
@@ -322,7 +325,7 @@ Return mortgage collection available for current customer
 
 ### Get single offer as product collection [GET]
 
-Product collection
+Return product collection
 
 + Response 200 (application/json; charset=UTF-8; profile=http://api.wcp.vps321.xiag.ch/schema/financing/offer/item)
 
@@ -389,3 +392,7 @@ Product collection
                     "minimalAmount": 500000
                 }
             ]
+
+# Group Changelog
+
+This is the first revision of the API.
