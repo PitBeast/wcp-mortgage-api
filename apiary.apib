@@ -25,7 +25,155 @@ Managing **Mortgage** objects
                 "title": "Array of mortgage objects",
                 "description": "Mortgage object collection available for customer",
                 "items": {
-                    $ref: "http://api.wcp.vps321.xiag.ch/output_schema/getMortgages"
+                    "type": "object",
+                    "title": "Mortgage",
+                    "description": "Mortgage object available for customer",
+                    "properties": {
+                        "id": {
+                            "type": "string",
+                            "title": "Id",
+                            "description": "Mortgage identifier"
+                        },
+                        "creditProductId": {
+                            "type": "string",
+                            "title": "Credit product id",
+                            "description": "Credit product identifier"
+                        },
+                        "currency": {
+                            "type": "string",
+                            "title": "ISO 4217 Currency Code",
+                            "format": "iso4217",
+                            "pattern": "^[A-Z]{3}$",
+                            "description": "Mortgage currency"
+                        },
+                        "limit": {
+                            "type": "number",
+                            "minimum": 0,
+                            "exclusiveMinimum": true,
+                            "title": "Mortgage limit"
+                        },
+                        "balance": {
+                            "type": "number",
+                            "maximum": 0,
+                            "title": "Mortgage balance"
+                        },
+                        "owner": {
+                            "type": "object",
+                            "title": "Owner",
+                            "description": "Mortgage owner information",
+                            "properties": {
+                                "id": {
+                                    "type": "string",
+                                    "title": "Id",
+                                    "description": "Mortgage owner identifier"
+                                },
+                                "name": {
+                                    "type": "string",
+                                    "title": "Name",
+                                    "description": "Mortgage owner name"
+                                }
+                            },
+                            "required": [
+                                "id",
+                                "name"
+                            ]
+                        },
+                        "object": {
+                            "type": "object",
+                            "title": "Mortgage object",
+                            "description": "Mortgage object information",
+                            "properties": {
+                                "name": {
+                                    "type": "string",
+                                    "title": "Name",
+                                    "description": "Mortgage object name"
+                                },
+                                "additional": {
+                                    "type": "string",
+                                    "title": "Additional data",
+                                    "description": "Mortgage object additional data"
+                                }
+                            },
+                            "required": [
+                                "name"
+                            ]
+                        },
+                        "products": {
+                            "type": "array",
+                            "title": "Array of mortgage product",
+                            "description": "Current mortgage products configuration",
+                            "items": {
+                                "type": "object",
+                                "title": "Product",
+                                "description": "Mortgage product",
+                                "properties": {
+                                    "id": {
+                                        "type": "string",
+                                        "title": "Id",
+                                        "description": "Product identifier"
+                                    },
+                                    "rate": {
+                                        "type": "string",
+                                        "minLength": 1,
+                                        "title": "Rate",
+                                        "description": "Product rate"
+                                    },
+                                    "amount": {
+                                        "type": "number",
+                                        "minimum": 0,
+                                        "exclusiveMinimum": true,
+                                        "title": "Product amount"
+                                    },
+                                    "valid": {
+                                        "type": "object",
+                                        "title": "Valid",
+                                        "description": "Product validation interval",
+                                        "properties": {
+                                            "from": {
+                                                "type": "string",
+                                                "format": "date",
+                                                "title": "From",
+                                                "description": "Start interval value"
+                                            },
+                                            "to": {
+                                                "type": "string",
+                                                "format": "date",
+                                                "title": "To",
+                                                "description": "End interval value"
+                                            }
+                                        },
+                                        "required": [
+                                            "from",
+                                            "to"
+                                        ]
+                                    },
+                                    "offerId": {
+                                        "type": "string",
+                                        "title": "Offer Id",
+                                        "description": "Product configuration offer identifier"
+                                    }
+                                },
+                                "required": [
+                                    "id",
+                                    "rate",
+                                    "amount",
+                                    "valid"
+                                ]
+                            },
+                            "minItems": 1,
+                            "uniqueItems": true
+                        }
+                    },
+                    "required": [
+                        "id",
+                        "creditProductId",
+                        "currency",
+                        "limit",
+                        "balance",
+                        "owner",
+                        "object",
+                        "products"
+                    ]
                 },
                 "minItems": 1,
                 "uniqueItems": true
@@ -111,7 +259,7 @@ Return mortgage collection available for current customer
                 }
             ]
 
-# Group Offer
+# Group offer products
 Offer as a products collection for mortgage part extension
 
 ## Offer a product collection [/financing/offer/{id}]
@@ -126,7 +274,7 @@ Offer as a products collection for mortgage part extension
 
     + Header
 
-            Link: <http://api.wcp.vps321.xiag.ch/schema/financing/offer/item>; rel="canonical", <http://api.wcp.vps321.xiag.ch/financing/offer/21973>; rel="self"
+            Link: <http://api.wcp.vps321.xiag.ch/schema/financing/getReplacementProductsByOfferId/item>; rel="canonical", <http://api.wcp.vps321.xiag.ch/financing/getReplacementProductsByOfferId/21973>; rel="self"
 
     + Body
 
@@ -135,8 +283,41 @@ Offer as a products collection for mortgage part extension
                 "type": "array",
                 "title": "Array of offer product objects",
                 "description": "Offer product object collection",
-                "items":{
-                    $ref: "http://api.wcp.vps321.xiag.ch/output_schema/getReplacementProducts"
+                "items": {
+                    "type": "object",
+                    "title": "Product",
+                    "description": "Offer product",
+                    "properties": {
+                        "id": {
+                            "type": "string",
+                            "title": "Id",
+                            "description": "Offered product identifier"
+                        },
+                        "duration": {
+                            "type": "integer",
+                            "minimum": 2,
+                            "maximum": 10,
+                            "title": "Duration",
+                            "description": "Offered product duration in years"
+                        },
+                        "actualMargin": {
+                            "type": "string",
+                            "minLength": 1,
+                            "title": "Rate",
+                            "description": "Actual product rate"
+                        },
+                        "minimalAmount": {
+                            "type": "number",
+                            "minimum": 0,
+                            "exclusiveMinimum": true
+                        }
+                    },
+                    "required": [
+                        "id",
+                        "duration",
+                        "actualMargin",
+                        "minimalAmount"
+                    ]
                 },
                 "minItems": 1,
                 "uniqueItems": true
@@ -146,12 +327,12 @@ Offer as a products collection for mortgage part extension
 
 Return product collection
 
-+ Response 200 (application/json; charset=UTF-8; profile=http://api.wcp.vps321.xiag.ch/schema/financing/offer/item)
++ Response 200 (application/json; charset=UTF-8; profile=http://api.wcp.vps321.xiag.ch/schema/financing/getReplacementProductsByOfferId/item)
 
     + Header
 
             Content-Language: en
-            Link: <http://api.wcp.vps321.xiag.ch/financing/offer/21973>; rel="self"
+            Link: <http://api.wcp.vps321.xiag.ch/financing/getReplacementProductsByOfferId/21973>; rel="self"
 
     + Body
 
@@ -213,13 +394,13 @@ Return product collection
             ]
 
 # Group CSR
-Offer as a products collection for mortgage part extension
+Customer Support Representative
 
-## Offer a product collection [/financing/offer/{id}]
+## Customer Support Representative of Portfolio [/financing/csr/[portfolioId]]
 
 + Parameters
 
-    + id (required, string, `21973`) ... Id of offer to return.
+    + id (optional, string, `21973`) ... Id of offer to return.
 
 ### Get offer product collection schema [OPTIONS]
 
@@ -227,25 +408,61 @@ Offer as a products collection for mortgage part extension
 
     + Header
 
-            Link: <http://api.wcp.vps321.xiag.ch/schema/financing/offer/item>; rel="canonical", <http://api.wcp.vps321.xiag.ch/financing/offer/21973>; rel="self"
+            Link: <http://api.wcp.vps321.xiag.ch/schema/financing/getReplacementProductsByOfferId/item>; rel="canonical", <http://api.wcp.vps321.xiag.ch/financing/getReplacementProductsByOfferId/21973>; rel="self"
 
     + Body
 
             {
                 "$schema": "http://json-schema.org/draft-04/schema#",
-                $ref:
+                title: 'CSR',
+                description: 'Customer Support Representative object',
+                type: 'object',
+                properties: {
+                    id: {
+                        title: 'Id',
+                        description: '',
+                        type: ['number', 'string']
+                    },
+                    firstName: {
+                        title: 'First name',
+                        description: '',
+                        type: 'string'
+                    },
+                    lastName: {
+                        title: 'Last name',
+                        description: '',
+                        type: 'string'
+                    },
+                    phoneNumber: {
+                        title: 'Phone number',
+                        description: '',
+                        type: 'string'
+                    },
+                    faxNumber: {
+                        title: 'Fax number',
+                        description: '',
+                        type: 'string'
+                    },
+                    imageURI: {
+                        title: 'Image URI',
+                        description: '',
+                        type: 'string'
+                    }
+                },
+                required: [],
+                additionalProperties: false
             }
 
 ### Get single offer as product collection [GET]
 
 Return product collection
 
-+ Response 200 (application/json; charset=UTF-8; profile=http://api.wcp.vps321.xiag.ch/schema/financing/offer/item)
++ Response 200 (application/json; charset=UTF-8; profile=http://api.wcp.vps321.xiag.ch/schema/financing/getReplacementProductsByOfferId/item)
 
     + Header
 
             Content-Language: en
-            Link: <http://api.wcp.vps321.xiag.ch/financing/offer/21973>; rel="self"
+            Link: <http://api.wcp.vps321.xiag.ch/financing/getReplacementProductsByOfferId/21973>; rel="self"
 
     + Body
 
