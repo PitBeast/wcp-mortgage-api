@@ -1,89 +1,910 @@
-var _ = require('lodash');
+FORMAT: 1A
+HOST: http://api.wcp.vps321.xiag.ch/
 
-var async = require('async');
+# Swisscom web customer portal, mortgage component
+API documentation for **Swisscom WCP Mortgage** application.
 
-var client = require('restify').createJsonClient('http://localhost:8080');
+# Group getCsrByPortfolioID
 
-var http = require('http');
+undefined
 
-var fs = require('fs');
+## getCsrByPortfolioID [/financing/getCsrByPortfolioID]
 
-var server = require('./server.js');
+### Get schema [OPTIONS]
 
-var services = require('./services.js');
++ Response 200 (application/schema+json)
 
-var doc = 'FORMAT: 1A'
-    + '\n' + 'HOST: http://api.wcp.vps321.xiag.ch/'
+    + Header
 
-    + '\n\n' + '# Swisscom web customer portal, mortgage component'
-    + '\n' + 'API documentation for **Swisscom WCP Mortgage** application.';
+            Link: <http://api.wcp.vps321.xiag.ch/schema/financing/getCsrByPortfolioID>; rel="self"
 
-async.eachSeries(Object.keys(services), function(serviceName, cb){
-    var service = services[serviceName];
+    + Body
 
-    doc += '\n\n' + '# Group ' + serviceName
-        + '\n\n' + service.description
+{
+        "type": "object",
+        "properties": {
+                "csr": {
+                        "title": "CSR",
+                        "description": "Customer Support Representative object",
+                        "type": "object",
+                        "properties": {
+                                "id": {
+                                        "title": "Id",
+                                        "description": "CSR identifier",
+                                        "type": [
+                                                "number",
+                                                "string"
+                                        ]
+                                },
+                                "firstName": {
+                                        "title": "First name",
+                                        "description": "Customer first name",
+                                        "type": "string"
+                                },
+                                "lastName": {
+                                        "title": "Last name",
+                                        "description": "Customer last name",
+                                        "type": "string"
+                                },
+                                "phoneNumber": {
+                                        "title": "Phone number",
+                                        "description": "Customer phone number",
+                                        "type": "string"
+                                },
+                                "faxNumber": {
+                                        "title": "Fax number",
+                                        "description": "Customer fax number",
+                                        "type": "string"
+                                },
+                                "imageURI": {
+                                        "title": "Image URI",
+                                        "description": "Customer photo",
+                                        "type": "string"
+                                }
+                        },
+                        "required": [
+                                "id",
+                                "firstName",
+                                "lastName",
+                                "phoneNumber",
+                                "faxNumber",
+                                "imageURI"
+                        ],
+                        "additionalProperties": false
+                }
+        },
+        "required": [],
+        "additionalProperties": false
+}
 
-        + '\n\n' + '## ' + serviceName + ' [/financing/' + serviceName + ']';
+### Call service [GET]
 
-    async.waterfall([function(cb){
-        var req = http.request({
-            host: 'localhost',
-            port: 8080,
-            path: '/financing/' + serviceName,
-            method: 'OPTIONS'
-        }, function(res){
-            var data = '';
+Return mortgage collection available for current customer
 
-            res.setEncoding('utf8');
++ Response 200 (application/json; charset=UTF-8; profile=http://api.wcp.vps321.xiag.ch/schema/financing/getCsrByPortfolioID)
 
-            res.on('data', function(chunk){
-                data += chunk;
-            });
+    + Header
 
-            res.on('end', function(){
-                data = JSON.parse(data);
+            Content-Language: en
+            Link: <http://api.wcp.vps321.xiag.ch/financing/getCsrByPortfolioID>; rel="self"
 
-                doc += '\n\n' + '### Get schema [OPTIONS]'
+    + Body
 
-                + '\n\n' + '+ Response 200 (application/schema+json)'
+{
+        "response": {
+                "csr": {
+                        "id": "1",
+                        "firstName": "Thomas",
+                        "lastName": "Schibler",
+                        "phoneNumber": "058 800 67 02",
+                        "faxNumber": "058 800 67 01",
+                        "imageURI": "//www.szkb.ch/images/default-source/mitarbeiterfotos/48864678216909.jpg"
+                }
+        }
+}
 
-                    + '\n\n' + '    + Header'
+# Group sendCsrRequest
 
-                            + '\n\n' + '            Link: <http://api.wcp.vps321.xiag.ch/schema/financing/' + serviceName + '>; rel="self"'
+undefined
 
-                    + '\n\n' + '    + Body'
+## sendCsrRequest [/financing/sendCsrRequest]
 
-                + '\n\n' + JSON.stringify(data, null, 8);
+### Get schema [OPTIONS]
 
-                cb();
-            });
-        });
-        req.end();
-    }, function(cb){
-        client.get('/financing/' + serviceName, function(err, req, res, obj) {
-            doc += '\n\n' + '### Call service [GET]'
++ Response 200 (application/schema+json)
 
-                + '\n\n' + 'Return mortgage collection available for current customer'
+    + Header
 
-                + '\n\n' + '+ Response 200 (application/json; charset=UTF-8; profile=http://api.wcp.vps321.xiag.ch/schema/financing/' + serviceName + ')'
+            Link: <http://api.wcp.vps321.xiag.ch/schema/financing/sendCsrRequest>; rel="self"
 
-                    + '\n\n' + '    + Header'
+    + Body
 
-                            + '\n\n' + '            Content-Language: en'
-                            + '\n' + '            Link: <http://api.wcp.vps321.xiag.ch/financing/' + serviceName + '>; rel="self"'
+{
+        "type": "object",
+        "properties": {
+                "success": {
+                        "title": "Success",
+                        "description": "",
+                        "type": "boolean"
+                }
+        },
+        "required": [],
+        "additionalProperties": false
+}
 
-                    + '\n\n' + '    + Body'
+### Call service [GET]
 
-                + '\n\n' + JSON.stringify(obj, null, 8);
+Return mortgage collection available for current customer
 
-            cb();
-        });
-    }], cb);
-}, function(){
-    fs.writeFileSync('generated.apib', doc, 'utf8');
-    console.log('Documentation generated to generated.apib');
++ Response 200 (application/json; charset=UTF-8; profile=http://api.wcp.vps321.xiag.ch/schema/financing/sendCsrRequest)
 
-    server.close();
-    process.exit();
-});
+    + Header
+
+            Content-Language: en
+            Link: <http://api.wcp.vps321.xiag.ch/financing/sendCsrRequest>; rel="self"
+
+    + Body
+
+{
+        "response": {
+                "success": true
+        }
+}
+
+# Group getPortfolio
+
+undefined
+
+## getPortfolio [/financing/getPortfolio]
+
+### Get schema [OPTIONS]
+
++ Response 200 (application/schema+json)
+
+    + Header
+
+            Link: <http://api.wcp.vps321.xiag.ch/schema/financing/getPortfolio>; rel="self"
+
+    + Body
+
+{
+        "type": "object",
+        "properties": {
+                "portfolio": {
+                        "title": "Portfolio",
+                        "description": "Portfolio object",
+                        "type": "object",
+                        "properties": {
+                                "customerId": {
+                                        "title": "Customer id",
+                                        "description": "Customer identifier",
+                                        "type": [
+                                                "number",
+                                                "string"
+                                        ]
+                                },
+                                "creditAccount": {
+                                        "title": "Credit account",
+                                        "description": "Credit account",
+                                        "type": "string"
+                                },
+                                "owner": {
+                                        "title": "Owner",
+                                        "description": "Owner name",
+                                        "type": "string"
+                                },
+                                "productId": {
+                                        "title": "Product id",
+                                        "description": "Product identifier",
+                                        "type": [
+                                                "number",
+                                                "string"
+                                        ]
+                                },
+                                "rate": {
+                                        "title": "Rate",
+                                        "description": "Portfolio rate",
+                                        "type": [
+                                                "number",
+                                                "string"
+                                        ]
+                                },
+                                "currency": {
+                                        "title": "Currency",
+                                        "description": "",
+                                        "type": "string"
+                                },
+                                "limit": {
+                                        "title": "Limit",
+                                        "description": "Credit limit",
+                                        "type": "number"
+                                },
+                                "balance": {
+                                        "title": "Balance",
+                                        "description": "Current balance",
+                                        "type": "number"
+                                }
+                        },
+                        "required": [
+                                "customerId",
+                                "creditAccount",
+                                "owner",
+                                "productId",
+                                "rate",
+                                "currency",
+                                "limit",
+                                "balance"
+                        ],
+                        "additionalProperties": false
+                }
+        },
+        "required": [],
+        "additionalProperties": false
+}
+
+### Call service [GET]
+
+Return mortgage collection available for current customer
+
++ Response 200 (application/json; charset=UTF-8; profile=http://api.wcp.vps321.xiag.ch/schema/financing/getPortfolio)
+
+    + Header
+
+            Content-Language: en
+            Link: <http://api.wcp.vps321.xiag.ch/financing/getPortfolio>; rel="self"
+
+    + Body
+
+{
+        "response": {
+                "portfolio": {
+                        "customerId": "1318410-27",
+                        "creditAccount": "456373-3042",
+                        "owner": "Grätzer-Inderbitzin M. und S.",
+                        "productId": "100",
+                        "rate": "multiple",
+                        "currency": "CHF",
+                        "limit": 746000,
+                        "balance": -576000
+                }
+        }
+}
+
+# Group getMortgages
+
+undefined
+
+## getMortgages [/financing/getMortgages]
+
+### Get schema [OPTIONS]
+
++ Response 200 (application/schema+json)
+
+    + Header
+
+            Link: <http://api.wcp.vps321.xiag.ch/schema/financing/getMortgages>; rel="self"
+
+    + Body
+
+{
+        "type": "object",
+        "properties": {
+                "mortgages": {
+                        "title": "Mortgages",
+                        "description": "Array of mortgages",
+                        "type": "array",
+                        "items": {
+                                "title": "Mortgage",
+                                "description": "Mortgage object available for customer",
+                                "type": "object",
+                                "properties": {
+                                        "id": {
+                                                "title": "Id",
+                                                "description": "Mortgage identifier",
+                                                "type": [
+                                                        "number",
+                                                        "string"
+                                                ]
+                                        },
+                                        "productId": {
+                                                "title": "Product id",
+                                                "description": "Product identifier",
+                                                "type": [
+                                                        "number",
+                                                        "string"
+                                                ]
+                                        },
+                                        "currency": {
+                                                "title": "Currency",
+                                                "description": "ISO 4217 Currency Code",
+                                                "type": "string",
+                                                "format": "iso4217",
+                                                "pattern": "^[A-Z]{3}$"
+                                        },
+                                        "limit": {
+                                                "title": "Limit",
+                                                "description": "Total limit",
+                                                "type": "number"
+                                        },
+                                        "balance": {
+                                                "title": "Balance",
+                                                "description": "Current balance",
+                                                "type": "number"
+                                        },
+                                        "owner": {
+                                                "title": "Owner",
+                                                "description": "Owner info",
+                                                "type": "object",
+                                                "properties": {
+                                                        "id": {
+                                                                "title": "Id",
+                                                                "description": "Owner id",
+                                                                "type": "string"
+                                                        },
+                                                        "name": {
+                                                                "title": "Name",
+                                                                "description": "Owner name",
+                                                                "type": "string"
+                                                        }
+                                                },
+                                                "required": [
+                                                        "id",
+                                                        "name"
+                                                ]
+                                        },
+                                        "object": {
+                                                "title": "Object",
+                                                "description": "Object info",
+                                                "type": "object",
+                                                "properties": {
+                                                        "name": {
+                                                                "title": "Name",
+                                                                "description": "Object name",
+                                                                "type": "string"
+                                                        },
+                                                        "additional": {
+                                                                "title": "Additional",
+                                                                "description": "Additional info",
+                                                                "type": "string"
+                                                        }
+                                                },
+                                                "required": [
+                                                        "name"
+                                                ],
+                                                "additionalProperties": false
+                                        },
+                                        "products": {
+                                                "title": "Products",
+                                                "description": "Products array",
+                                                "type": "array",
+                                                "items": {
+                                                        "title": "Product",
+                                                        "description": "",
+                                                        "type": "object",
+                                                        "properties": {
+                                                                "id": {
+                                                                        "title": "Id",
+                                                                        "description": "Product identifier",
+                                                                        "type": [
+                                                                                "number",
+                                                                                "string"
+                                                                        ]
+                                                                },
+                                                                "rate": {
+                                                                        "title": "Rate",
+                                                                        "description": "Product rate",
+                                                                        "type": "string"
+                                                                },
+                                                                "amount": {
+                                                                        "title": "Amount",
+                                                                        "description": "Credit amount",
+                                                                        "type": "number"
+                                                                },
+                                                                "valid": {
+                                                                        "title": "Valid",
+                                                                        "description": "Credit period",
+                                                                        "type": "object",
+                                                                        "properties": {
+                                                                                "from": {
+                                                                                        "title": "From",
+                                                                                        "description": "Credit period start",
+                                                                                        "type": "string"
+                                                                                },
+                                                                                "to": {
+                                                                                        "title": "To",
+                                                                                        "description": "Credit period end",
+                                                                                        "type": "string"
+                                                                                }
+                                                                        },
+                                                                        "required": [
+                                                                                "from",
+                                                                                "to"
+                                                                        ],
+                                                                        "additionalProperties": false
+                                                                },
+                                                                "offerId": {
+                                                                        "type": [
+                                                                                "number",
+                                                                                "string"
+                                                                        ]
+                                                                }
+                                                        },
+                                                        "required": [
+                                                                "id",
+                                                                "rate",
+                                                                "amount",
+                                                                "valid"
+                                                        ],
+                                                        "additionalProperties": false
+                                                },
+                                                "minItems": 1,
+                                                "uniqueItems": true
+                                        }
+                                },
+                                "required": [
+                                        "id",
+                                        "productId",
+                                        "currency",
+                                        "limit",
+                                        "balance",
+                                        "owner",
+                                        "object",
+                                        "products"
+                                ],
+                                "additionalProperties": false
+                        }
+                }
+        },
+        "required": [],
+        "additionalProperties": false
+}
+
+### Call service [GET]
+
+Return mortgage collection available for current customer
+
++ Response 200 (application/json; charset=UTF-8; profile=http://api.wcp.vps321.xiag.ch/schema/financing/getMortgages)
+
+    + Header
+
+            Content-Language: en
+            Link: <http://api.wcp.vps321.xiag.ch/financing/getMortgages>; rel="self"
+
+    + Body
+
+{
+        "response": {
+                "mortgages": [
+                        {
+                                "id": "17145",
+                                "productId": "100",
+                                "currency": "CHF",
+                                "limit": 590000,
+                                "balance": -590000,
+                                "owner": {
+                                        "id": "131841-3006",
+                                        "name": "Hans Muster"
+                                },
+                                "object": {
+                                        "name": "Haus 1",
+                                        "additional": "Kurzstrasse 22 7770 St.Gallen"
+                                },
+                                "products": [
+                                        {
+                                                "id": "9010390041",
+                                                "rate": "2.45",
+                                                "amount": 590000,
+                                                "valid": {
+                                                        "from": "2010-04-01",
+                                                        "to": "2015-03-31"
+                                                },
+                                                "offerId": "21137"
+                                        }
+                                ]
+                        },
+                        {
+                                "id": "17146",
+                                "productId": "100",
+                                "currency": "CHF",
+                                "limit": 990000,
+                                "balance": -990000,
+                                "owner": {
+                                        "id": "131841-4982",
+                                        "name": "Hans Muster"
+                                },
+                                "object": {
+                                        "name": "Object 2",
+                                        "additional": "Kurzstrasse 2 1770 St.Gallen"
+                                },
+                                "products": [
+                                        {
+                                                "id": "9010390041",
+                                                "rate": "2.45",
+                                                "amount": 390000,
+                                                "valid": {
+                                                        "from": "2010-06-02",
+                                                        "to": "2014-01-01"
+                                                },
+                                                "offerId": "21973"
+                                        },
+                                        {
+                                                "id": "9010390041",
+                                                "rate": "2.05",
+                                                "amount": 300000,
+                                                "valid": {
+                                                        "from": "2011-07-01",
+                                                        "to": "2015-06-30"
+                                                },
+                                                "offerId": "21973"
+                                        },
+                                        {
+                                                "id": "9010390041",
+                                                "rate": "2.15",
+                                                "amount": 300000,
+                                                "valid": {
+                                                        "from": "2011-07-01",
+                                                        "to": "2037-06-30"
+                                                }
+                                        }
+                                ]
+                        }
+                ]
+        }
+}
+
+# Group getReplacementProductsByOfferId
+
+undefined
+
+## getReplacementProductsByOfferId [/financing/getReplacementProductsByOfferId]
+
+### Get schema [OPTIONS]
+
++ Response 200 (application/schema+json)
+
+    + Header
+
+            Link: <http://api.wcp.vps321.xiag.ch/schema/financing/getReplacementProductsByOfferId>; rel="self"
+
+    + Body
+
+{
+        "type": "object",
+        "properties": {
+                "replacementProducts": {
+                        "title": "Replacement products",
+                        "description": "Replacement products by offer id",
+                        "type": "array",
+                        "items": {
+                                "title": "Offer",
+                                "description": "Offer object",
+                                "type": "object",
+                                "properties": {
+                                        "id": {
+                                                "title": "Id",
+                                                "description": "Offer idintifier",
+                                                "type": [
+                                                        "number",
+                                                        "string"
+                                                ]
+                                        },
+                                        "duration": {
+                                                "title": "Duration",
+                                                "description": "Credit duration",
+                                                "type": "number"
+                                        },
+                                        "actualMargin": {
+                                                "title": "Actual margin",
+                                                "description": "Actual margin",
+                                                "type": "string"
+                                        },
+                                        "minimalAmount": {
+                                                "title": "Minimal amount",
+                                                "description": "Minimal amount",
+                                                "type": "number"
+                                        }
+                                },
+                                "required": [
+                                        "id",
+                                        "duration",
+                                        "actualMargin",
+                                        "minimalAmount"
+                                ],
+                                "additionalProperties": false
+                        }
+                }
+        },
+        "required": [],
+        "additionalProperties": false
+}
+
+### Call service [GET]
+
+Return mortgage collection available for current customer
+
++ Response 200 (application/json; charset=UTF-8; profile=http://api.wcp.vps321.xiag.ch/schema/financing/getReplacementProductsByOfferId)
+
+    + Header
+
+            Content-Language: en
+            Link: <http://api.wcp.vps321.xiag.ch/financing/getReplacementProductsByOfferId>; rel="self"
+
+    + Body
+
+{
+        "error": "schema mismatch: Missing required property: offerId"
+}
+
+# Group getProductsData
+
+undefined
+
+## getProductsData [/financing/getProductsData]
+
+### Get schema [OPTIONS]
+
++ Response 200 (application/schema+json)
+
+    + Header
+
+            Link: <http://api.wcp.vps321.xiag.ch/schema/financing/getProductsData>; rel="self"
+
+    + Body
+
+{
+        "type": "array",
+        "items": {
+                "title": "Product title",
+                "description": "Product title object",
+                "type": "object",
+                "properties": {
+                        "id": {
+                                "title": "Id",
+                                "description": "Product identifier",
+                                "type": [
+                                        "number",
+                                        "string"
+                                ]
+                        },
+                        "title": {
+                                "title": "Title",
+                                "description": "Product title",
+                                "type": "string"
+                        }
+                },
+                "required": [
+                        "id",
+                        "title"
+                ],
+                "additionalProperties": false
+        }
+}
+
+### Call service [GET]
+
+Return mortgage collection available for current customer
+
++ Response 200 (application/json; charset=UTF-8; profile=http://api.wcp.vps321.xiag.ch/schema/financing/getProductsData)
+
+    + Header
+
+            Content-Language: en
+            Link: <http://api.wcp.vps321.xiag.ch/financing/getProductsData>; rel="self"
+
+    + Body
+
+{
+        "error": "schema mismatch: Missing required property: productIds"
+}
+
+# Group getMortgageConfiguration
+
+undefined
+
+## getMortgageConfiguration [/financing/getMortgageConfiguration]
+
+### Get schema [OPTIONS]
+
++ Response 200 (application/schema+json)
+
+    + Header
+
+            Link: <http://api.wcp.vps321.xiag.ch/schema/financing/getMortgageConfiguration>; rel="self"
+
+    + Body
+
+{
+        "type": "object",
+        "properties": {
+                "mortgage": {
+                        "type": "object",
+                        "properties": {
+                                "initial": {
+                                        "title": "Initial",
+                                        "description": "Initial configurations array",
+                                        "type": "array",
+                                        "items": {
+                                                "title": "Product",
+                                                "description": "",
+                                                "type": "object",
+                                                "properties": {
+                                                        "id": {
+                                                                "title": "Id",
+                                                                "description": "Product identifier",
+                                                                "type": [
+                                                                        "number",
+                                                                        "string"
+                                                                ]
+                                                        },
+                                                        "rate": {
+                                                                "title": "Rate",
+                                                                "description": "Product rate",
+                                                                "type": "string"
+                                                        },
+                                                        "amount": {
+                                                                "title": "Amount",
+                                                                "description": "Credit amount",
+                                                                "type": "number"
+                                                        },
+                                                        "valid": {
+                                                                "title": "Valid",
+                                                                "description": "Credit period",
+                                                                "type": "object",
+                                                                "properties": {
+                                                                        "from": {
+                                                                                "title": "From",
+                                                                                "description": "Credit period start",
+                                                                                "type": "string"
+                                                                        },
+                                                                        "to": {
+                                                                                "title": "To",
+                                                                                "description": "Credit period end",
+                                                                                "type": "string"
+                                                                        }
+                                                                },
+                                                                "required": [
+                                                                        "from",
+                                                                        "to"
+                                                                ],
+                                                                "additionalProperties": false
+                                                        },
+                                                        "offerId": {
+                                                                "type": [
+                                                                        "number",
+                                                                        "string"
+                                                                ]
+                                                        }
+                                                },
+                                                "required": [
+                                                        "id",
+                                                        "rate",
+                                                        "amount",
+                                                        "valid"
+                                                ],
+                                                "additionalProperties": false
+                                        }
+                                }
+                        },
+                        "required": [
+                                "initial"
+                        ]
+                }
+        }
+}
+
+### Call service [GET]
+
+Return mortgage collection available for current customer
+
++ Response 200 (application/json; charset=UTF-8; profile=http://api.wcp.vps321.xiag.ch/schema/financing/getMortgageConfiguration)
+
+    + Header
+
+            Content-Language: en
+            Link: <http://api.wcp.vps321.xiag.ch/financing/getMortgageConfiguration>; rel="self"
+
+    + Body
+
+{
+        "error": "schema mismatch: Missing required property: mortgageId"
+}
+
+# Group setMortgageConfiguration
+
+undefined
+
+## setMortgageConfiguration [/financing/setMortgageConfiguration]
+
+### Get schema [OPTIONS]
+
++ Response 200 (application/schema+json)
+
+    + Header
+
+            Link: <http://api.wcp.vps321.xiag.ch/schema/financing/setMortgageConfiguration>; rel="self"
+
+    + Body
+
+{
+        "type": "object",
+        "properties": {
+                "success": {
+                        "title": "Success",
+                        "description": "Success save flag",
+                        "type": [
+                                "boolean"
+                        ]
+                }
+        },
+        "required": [
+                "success"
+        ],
+        "additionalProperties": false
+}
+
+### Call service [GET]
+
+Return mortgage collection available for current customer
+
++ Response 200 (application/json; charset=UTF-8; profile=http://api.wcp.vps321.xiag.ch/schema/financing/setMortgageConfiguration)
+
+    + Header
+
+            Content-Language: en
+            Link: <http://api.wcp.vps321.xiag.ch/financing/setMortgageConfiguration>; rel="self"
+
+    + Body
+
+{}
+
+# Group getCurrentYear
+
+undefined
+
+## getCurrentYear [/financing/getCurrentYear]
+
+### Get schema [OPTIONS]
+
++ Response 200 (application/schema+json)
+
+    + Header
+
+            Link: <http://api.wcp.vps321.xiag.ch/schema/financing/getCurrentYear>; rel="self"
+
+    + Body
+
+{
+        "type": "object",
+        "properties": {
+                "year": {
+                        "title": "Year",
+                        "description": "Current year",
+                        "type": [
+                                "number"
+                        ]
+                }
+        },
+        "required": [
+                "year"
+        ],
+        "additionalProperties": false
+}
+
+### Call service [GET]
+
+Return mortgage collection available for current customer
+
++ Response 200 (application/json; charset=UTF-8; profile=http://api.wcp.vps321.xiag.ch/schema/financing/getCurrentYear)
+
+    + Header
+
+            Content-Language: en
+            Link: <http://api.wcp.vps321.xiag.ch/financing/getCurrentYear>; rel="self"
+
+    + Body
+
+{
+        "response": {
+                "year": 2014
+        }
+}
