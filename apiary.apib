@@ -8,13 +8,7 @@ API documentation for **Swisscom WCP Mortgage** application.
 
 undefined
 
-## getCsrByPortfolioID [/financing/getCsrByPortfolioID/{portfolioId}]
-
-+ Parameters
-
-    + portfolioId (optional, string) ... Portfolio identifier
-
-### Get schema [OPTIONS]
+## Get schema [OPTIONS]
 
 + Response 200 (application/schema+json)
 
@@ -81,7 +75,13 @@ undefined
         "additionalProperties": false
 }
 
-### Call service [GET]
+## Call service [GET]
+
+## getCsrByPortfolioID [/financing/getCsrByPortfolioID/{portfolioId}]
+
++ Parameters
+
+    + portfolioId (optional, string) ... Portfolio identifier
 
 Return mortgage collection available for current customer
 
@@ -111,9 +111,7 @@ Return mortgage collection available for current customer
 
 undefined
 
-## sendCsrRequest [/financing/sendCsrRequest]
-
-### Get schema [OPTIONS]
+## Get schema [OPTIONS]
 
 + Response 200 (application/schema+json)
 
@@ -136,7 +134,9 @@ undefined
         "additionalProperties": false
 }
 
-### Call service [GET]
+## Call service [GET]
+
+## sendCsrRequest [/financing/sendCsrRequest]
 
 Return mortgage collection available for current customer
 
@@ -159,9 +159,7 @@ Return mortgage collection available for current customer
 
 undefined
 
-## getPortfolio [/financing/getPortfolio]
-
-### Get schema [OPTIONS]
+## Get schema [OPTIONS]
 
 + Response 200 (application/schema+json)
 
@@ -246,7 +244,9 @@ undefined
         "additionalProperties": false
 }
 
-### Call service [GET]
+## Call service [GET]
+
+## getPortfolio [/financing/getPortfolio]
 
 Return mortgage collection available for current customer
 
@@ -278,9 +278,7 @@ Return mortgage collection available for current customer
 
 undefined
 
-## getMortgages [/financing/getMortgages]
-
-### Get schema [OPTIONS]
+## Get schema [OPTIONS]
 
 + Response 200 (application/schema+json)
 
@@ -463,7 +461,9 @@ undefined
         "additionalProperties": false
 }
 
-### Call service [GET]
+## Call service [GET]
+
+## getMortgages [/financing/getMortgages]
 
 Return mortgage collection available for current customer
 
@@ -560,13 +560,7 @@ Return mortgage collection available for current customer
 
 undefined
 
-## getReplacementProductsByOfferId [/financing/getReplacementProductsByOfferId/{offerId}]
-
-+ Parameters
-
-    + offerId (required, string) ... 
-
-### Get schema [OPTIONS]
+## Get schema [OPTIONS]
 
 + Response 200 (application/schema+json)
 
@@ -626,7 +620,13 @@ undefined
         "additionalProperties": false
 }
 
-### Call service [GET]
+## Call service [GET]
+
+## getReplacementProductsByOfferId [/financing/getReplacementProductsByOfferId/{offerId}]
+
++ Parameters
+
+    + offerId (required, string) ... 
 
 Return mortgage collection available for current customer
 
@@ -647,13 +647,7 @@ Return mortgage collection available for current customer
 
 undefined
 
-## getProductsData [/financing/getProductsData/{productsIds}]
-
-+ Parameters
-
-    + productIds (required, array) ... Products ids
-
-### Get schema [OPTIONS]
+## Get schema [OPTIONS]
 
 + Response 200 (application/schema+json)
 
@@ -692,7 +686,13 @@ undefined
         }
 }
 
-### Call service [GET]
+## Call service [GET]
+
+## getProductsData [/financing/getProductsData/{productsIds}]
+
++ Parameters
+
+    + productIds (required, array) ... Products ids
 
 Return mortgage collection available for current customer
 
@@ -713,13 +713,7 @@ Return mortgage collection available for current customer
 
 undefined
 
-## getMortgageConfiguration [/financing/getMortgageConfiguration/{mortgageId}]
-
-+ Parameters
-
-    + mortgageId (required, string) ... Mortgage identifier
-
-### Get schema [OPTIONS]
+## Get schema [OPTIONS]
 
 + Response 200 (application/schema+json)
 
@@ -808,7 +802,13 @@ undefined
         }
 }
 
-### Call service [GET]
+## Call service [GET]
+
+## getMortgageConfiguration [/financing/getMortgageConfiguration/{mortgageId}]
+
++ Parameters
+
+    + mortgageId (required, string) ... Mortgage identifier
 
 Return mortgage collection available for current customer
 
@@ -829,14 +829,7 @@ Return mortgage collection available for current customer
 
 undefined
 
-## setMortgageConfiguration [/financing/setMortgageConfiguration]
-
-+ Parameters
-
-    + mortgageId (required, string) ... Mortgage
-    + configuration (required, object) ... 
-
-### Get schema [OPTIONS]
+## Get schema [OPTIONS]
 
 + Response 200 (application/schema+json)
 
@@ -863,7 +856,14 @@ undefined
         "additionalProperties": false
 }
 
-### Call service [POST]
+## Call service [POST]
+
+## setMortgageConfiguration [/financing/setMortgageConfiguration]
+
++ Parameters
+
+    + mortgageId (required, string) ... Mortgage
+    + configuration (required, object) ... 
 
 Return mortgage collection available for current customer
 
@@ -882,9 +882,7 @@ Return mortgage collection available for current customer
 
 undefined
 
-## getCurrentYear [/financing/getCurrentYear]
-
-### Get schema [OPTIONS]
+## Get schema [OPTIONS]
 
 + Response 200 (application/schema+json)
 
@@ -911,7 +909,9 @@ undefined
         "additionalProperties": false
 }
 
-### Call service [GET]
+## Call service [GET]
+
+## getCurrentYear [/financing/getCurrentYear]
 
 Return mortgage collection available for current customer
 
