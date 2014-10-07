@@ -8,7 +8,11 @@ API documentation for **Swisscom WCP Mortgage** application.
 
 undefined
 
-## getCsrByPortfolioID [/financing/getCsrByPortfolioID]
+## getCsrByPortfolioID [/financing/getCsrByPortfolioID/{portfolioId}]
+
++ Parameters
+
+    + portfolioId (optional, string) ... Portfolio identifier
 
 ### Get schema [OPTIONS]
 
@@ -32,8 +36,8 @@ undefined
                                         "title": "Id",
                                         "description": "CSR identifier",
                                         "type": [
-                                                "number",
-                                                "string"
+                                                "string",
+                                                "number"
                                         ]
                                 },
                                 "firstName": {
@@ -179,8 +183,8 @@ undefined
                                         "title": "Customer id",
                                         "description": "Customer identifier",
                                         "type": [
-                                                "number",
-                                                "string"
+                                                "string",
+                                                "number"
                                         ]
                                 },
                                 "creditAccount": {
@@ -197,16 +201,16 @@ undefined
                                         "title": "Product id",
                                         "description": "Product identifier",
                                         "type": [
-                                                "number",
-                                                "string"
+                                                "string",
+                                                "number"
                                         ]
                                 },
                                 "rate": {
                                         "title": "Rate",
                                         "description": "Portfolio rate",
                                         "type": [
-                                                "number",
-                                                "string"
+                                                "string",
+                                                "number"
                                         ]
                                 },
                                 "currency": {
@@ -302,16 +306,16 @@ undefined
                                                 "title": "Id",
                                                 "description": "Mortgage identifier",
                                                 "type": [
-                                                        "number",
-                                                        "string"
+                                                        "string",
+                                                        "number"
                                                 ]
                                         },
                                         "productId": {
                                                 "title": "Product id",
                                                 "description": "Product identifier",
                                                 "type": [
-                                                        "number",
-                                                        "string"
+                                                        "string",
+                                                        "number"
                                                 ]
                                         },
                                         "currency": {
@@ -386,8 +390,8 @@ undefined
                                                                         "title": "Id",
                                                                         "description": "Product identifier",
                                                                         "type": [
-                                                                                "number",
-                                                                                "string"
+                                                                                "string",
+                                                                                "number"
                                                                         ]
                                                                 },
                                                                 "rate": {
@@ -424,8 +428,8 @@ undefined
                                                                 },
                                                                 "offerId": {
                                                                         "type": [
-                                                                                "number",
-                                                                                "string"
+                                                                                "string",
+                                                                                "number"
                                                                         ]
                                                                 }
                                                         },
@@ -556,7 +560,11 @@ Return mortgage collection available for current customer
 
 undefined
 
-## getReplacementProductsByOfferId [/financing/getReplacementProductsByOfferId]
+## getReplacementProductsByOfferId [/financing/getReplacementProductsByOfferId/{offerId}]
+
++ Parameters
+
+    + offerId (required, string) ... 
 
 ### Get schema [OPTIONS]
 
@@ -584,8 +592,8 @@ undefined
                                                 "title": "Id",
                                                 "description": "Offer idintifier",
                                                 "type": [
-                                                        "number",
-                                                        "string"
+                                                        "string",
+                                                        "number"
                                                 ]
                                         },
                                         "duration": {
@@ -639,7 +647,11 @@ Return mortgage collection available for current customer
 
 undefined
 
-## getProductsData [/financing/getProductsData]
+## getProductsData [/financing/getProductsData/{productsIds}]
+
++ Parameters
+
+    + productIds (required, array) ... Products ids
 
 ### Get schema [OPTIONS]
 
@@ -662,8 +674,8 @@ undefined
                                 "title": "Id",
                                 "description": "Product identifier",
                                 "type": [
-                                        "number",
-                                        "string"
+                                        "string",
+                                        "number"
                                 ]
                         },
                         "title": {
@@ -701,7 +713,11 @@ Return mortgage collection available for current customer
 
 undefined
 
-## getMortgageConfiguration [/financing/getMortgageConfiguration]
+## getMortgageConfiguration [/financing/getMortgageConfiguration/{mortgageId}]
+
++ Parameters
+
+    + mortgageId (required, string) ... Mortgage identifier
 
 ### Get schema [OPTIONS]
 
@@ -732,8 +748,8 @@ undefined
                                                                 "title": "Id",
                                                                 "description": "Product identifier",
                                                                 "type": [
-                                                                        "number",
-                                                                        "string"
+                                                                        "string",
+                                                                        "number"
                                                                 ]
                                                         },
                                                         "rate": {
@@ -770,8 +786,8 @@ undefined
                                                         },
                                                         "offerId": {
                                                                 "type": [
-                                                                        "number",
-                                                                        "string"
+                                                                        "string",
+                                                                        "number"
                                                                 ]
                                                         }
                                                 },
@@ -815,6 +831,11 @@ undefined
 
 ## setMortgageConfiguration [/financing/setMortgageConfiguration]
 
++ Parameters
+
+    + mortgageId (required, string) ... Mortgage
+    + configuration (required, object) ... 
+
 ### Get schema [OPTIONS]
 
 + Response 200 (application/schema+json)
@@ -842,7 +863,7 @@ undefined
         "additionalProperties": false
 }
 
-### Call service [GET]
+### Call service [POST]
 
 Return mortgage collection available for current customer
 
