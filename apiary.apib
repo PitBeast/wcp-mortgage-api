@@ -10,10 +10,6 @@ undefined
 
 ## getCsrByPortfolioID [/financing/getCsrByPortfolioID/{portfolioId}]
 
-+ Parameters
-
-    + portfolioId (optional, string) ... Portfolio identifier
-
 ### Get schema [OPTIONS]
 
 + Response 200 (application/schema+json)
@@ -82,6 +78,10 @@ undefined
 }
 
 ### Call service [GET]
+
++ Parameters
+
+    + portfolioId (optional, string) ... Portfolio identifier
 
 Return mortgage collection available for current customer
 
@@ -562,10 +562,6 @@ undefined
 
 ## getReplacementProductsByOfferId [/financing/getReplacementProductsByOfferId/{offerId}]
 
-+ Parameters
-
-    + offerId (required, string) ... 
-
 ### Get schema [OPTIONS]
 
 + Response 200 (application/schema+json)
@@ -628,6 +624,10 @@ undefined
 
 ### Call service [GET]
 
++ Parameters
+
+    + offerId (required, string) ... 
+
 Return mortgage collection available for current customer
 
 + Response 200 (application/json; charset=UTF-8; profile=http://api.wcp.vps321.xiag.ch/schema/financing/getReplacementProductsByOfferId)
@@ -648,10 +648,6 @@ Return mortgage collection available for current customer
 undefined
 
 ## getProductsData [/financing/getProductsData/{productsIds}]
-
-+ Parameters
-
-    + productIds (required, array) ... Products ids
 
 ### Get schema [OPTIONS]
 
@@ -694,6 +690,10 @@ undefined
 
 ### Call service [GET]
 
++ Parameters
+
+    + productIds (required, array) ... Products ids
+
 Return mortgage collection available for current customer
 
 + Response 200 (application/json; charset=UTF-8; profile=http://api.wcp.vps321.xiag.ch/schema/financing/getProductsData)
@@ -714,10 +714,6 @@ Return mortgage collection available for current customer
 undefined
 
 ## getMortgageConfiguration [/financing/getMortgageConfiguration/{mortgageId}]
-
-+ Parameters
-
-    + mortgageId (required, string) ... Mortgage identifier
 
 ### Get schema [OPTIONS]
 
@@ -810,6 +806,10 @@ undefined
 
 ### Call service [GET]
 
++ Parameters
+
+    + mortgageId (required, string) ... Mortgage identifier
+
 Return mortgage collection available for current customer
 
 + Response 200 (application/json; charset=UTF-8; profile=http://api.wcp.vps321.xiag.ch/schema/financing/getMortgageConfiguration)
@@ -830,11 +830,6 @@ Return mortgage collection available for current customer
 undefined
 
 ## setMortgageConfiguration [/financing/setMortgageConfiguration]
-
-+ Parameters
-
-    + mortgageId (required, string) ... Mortgage
-    + configuration (required, object) ... 
 
 ### Get schema [OPTIONS]
 
@@ -864,6 +859,11 @@ undefined
 }
 
 ### Call service [POST]
+
++ Parameters
+
+    + mortgageId (required, string) ... Mortgage
+    + configuration (required, object) ... 
 
 Return mortgage collection available for current customer
 
