@@ -1,418 +1,89 @@
-FORMAT: 1A
-HOST: http://api.wcp.vps321.xiag.ch/
+var _ = require('lodash');
 
-# Swisscom web customer portal, mortgage component
-API documentation for **Swisscom WCP Mortgage** application.
+var async = require('async');
 
-# Group Mortgages
+var client = require('restify').createJsonClient('http://localhost:8080');
 
-Managing **Mortgage** objects
+var http = require('http');
 
-## Mortgages Collection [/financing/mortgage]
+var fs = require('fs');
 
-### Get Mortgage collection schema [OPTIONS]
+var server = require('./server.js');
 
-+ Response 200 (application/schema+json)
+var services = require('./services.js');
 
-    + Header
+var doc = 'FORMAT: 1A'
+    + '\n' + 'HOST: http://api.wcp.vps321.xiag.ch/'
 
-            Link: <http://api.wcp.vps321.xiag.ch/schema/financing/mortgage/collection>; rel="canonical", <http://api.wcp.vps321.xiag.ch/financing/mortgage>; rel="self"
+    + '\n\n' + '# Swisscom web customer portal, mortgage component'
+    + '\n' + 'API documentation for **Swisscom WCP Mortgage** application.';
 
-    + Body
+async.eachSeries(Object.keys(services), function(serviceName, cb){
+    var service = services[serviceName];
 
-undefined
+    doc += '\n\n' + '# Group ' + serviceName
+        + '\n\n' + service.description
 
-### List all Mortgages [GET]
+        + '\n\n' + '## ' + serviceName + ' [/financing/' + serviceName + ']';
 
-Return mortgage collection available for current customer
+    async.waterfall([function(cb){
+        var req = http.request({
+            host: 'localhost',
+            port: 8080,
+            path: '/financing/' + serviceName,
+            method: 'OPTIONS'
+        }, function(res){
+            var data = '';
 
-+ Response 200 (application/json; charset=UTF-8; profile=http://api.wcp.vps321.xiag.ch/schema/financing/mortgage/collection)
+            res.setEncoding('utf8');
 
-    + Header
+            res.on('data', function(chunk){
+                data += chunk;
+            });
 
-            Content-Language: en
-            Link: <http://api.wcp.vps321.xiag.ch/financing/mortgage>; rel="self"
+            res.on('end', function(){
+                data = JSON.parse(data);
 
-    + Body
+                doc += '\n\n' + '### Get schema [OPTIONS]'
 
-{
-        "response": {
-                "csr": {
-                        "id": "1",
-                        "firstName": "Thomas",
-                        "lastName": "Schibler",
-                        "phoneNumber": "058 800 67 02",
-                        "faxNumber": "058 800 67 01",
-                        "imageURI": "//www.szkb.ch/images/default-source/mitarbeiterfotos/48864678216909.jpg"
-                }
-        }
-}
+                + '\n\n' + '+ Response 200 (application/schema+json)'
 
-# Group Mortgages
+                    + '\n\n' + '    + Header'
 
-Managing **Mortgage** objects
+                            + '\n\n' + '            Link: <http://api.wcp.vps321.xiag.ch/schema/financing/' + serviceName + '>; rel="self"'
 
-## Mortgages Collection [/financing/mortgage]
+                    + '\n\n' + '    + Body'
 
-### Get Mortgage collection schema [OPTIONS]
+                + '\n\n' + JSON.stringify(data, null, 8);
 
-+ Response 200 (application/schema+json)
+                cb();
+            });
+        });
+        req.end();
+    }, function(cb){
+        client.get('/financing/' + serviceName, function(err, req, res, obj) {
+            doc += '\n\n' + '### Call service [GET]'
 
-    + Header
+                + '\n\n' + 'Return mortgage collection available for current customer'
 
-            Link: <http://api.wcp.vps321.xiag.ch/schema/financing/mortgage/collection>; rel="canonical", <http://api.wcp.vps321.xiag.ch/financing/mortgage>; rel="self"
+                + '\n\n' + '+ Response 200 (application/json; charset=UTF-8; profile=http://api.wcp.vps321.xiag.ch/schema/financing/' + serviceName + ')'
 
-    + Body
+                    + '\n\n' + '    + Header'
 
-undefined
+                            + '\n\n' + '            Content-Language: en'
+                            + '\n' + '            Link: <http://api.wcp.vps321.xiag.ch/financing/' + serviceName + '>; rel="self"'
 
-### List all Mortgages [GET]
+                    + '\n\n' + '    + Body'
 
-Return mortgage collection available for current customer
+                + '\n\n' + JSON.stringify(obj, null, 8);
 
-+ Response 200 (application/json; charset=UTF-8; profile=http://api.wcp.vps321.xiag.ch/schema/financing/mortgage/collection)
+            cb();
+        });
+    }], cb);
+}, function(){
+    fs.writeFileSync('generated.apib', doc, 'utf8');
+    console.log('Documentation generated to generated.apib');
 
-    + Header
-
-            Content-Language: en
-            Link: <http://api.wcp.vps321.xiag.ch/financing/mortgage>; rel="self"
-
-    + Body
-
-{
-        "response": {
-                "success": true
-        }
-}
-
-# Group Mortgages
-
-Managing **Mortgage** objects
-
-## Mortgages Collection [/financing/mortgage]
-
-### Get Mortgage collection schema [OPTIONS]
-
-+ Response 200 (application/schema+json)
-
-    + Header
-
-            Link: <http://api.wcp.vps321.xiag.ch/schema/financing/mortgage/collection>; rel="canonical", <http://api.wcp.vps321.xiag.ch/financing/mortgage>; rel="self"
-
-    + Body
-
-undefined
-
-### List all Mortgages [GET]
-
-Return mortgage collection available for current customer
-
-+ Response 200 (application/json; charset=UTF-8; profile=http://api.wcp.vps321.xiag.ch/schema/financing/mortgage/collection)
-
-    + Header
-
-            Content-Language: en
-            Link: <http://api.wcp.vps321.xiag.ch/financing/mortgage>; rel="self"
-
-    + Body
-
-{
-        "response": {
-                "portfolio": {
-                        "customerId": "1318410-27",
-                        "creditAccount": "456373-3042",
-                        "owner": "Grätzer-Inderbitzin M. und S.",
-                        "productId": "100",
-                        "rate": "multiple",
-                        "currency": "CHF",
-                        "limit": 746000,
-                        "balance": -576000
-                }
-        }
-}
-
-# Group Mortgages
-
-Managing **Mortgage** objects
-
-## Mortgages Collection [/financing/mortgage]
-
-### Get Mortgage collection schema [OPTIONS]
-
-+ Response 200 (application/schema+json)
-
-    + Header
-
-            Link: <http://api.wcp.vps321.xiag.ch/schema/financing/mortgage/collection>; rel="canonical", <http://api.wcp.vps321.xiag.ch/financing/mortgage>; rel="self"
-
-    + Body
-
-undefined
-
-### List all Mortgages [GET]
-
-Return mortgage collection available for current customer
-
-+ Response 200 (application/json; charset=UTF-8; profile=http://api.wcp.vps321.xiag.ch/schema/financing/mortgage/collection)
-
-    + Header
-
-            Content-Language: en
-            Link: <http://api.wcp.vps321.xiag.ch/financing/mortgage>; rel="self"
-
-    + Body
-
-{
-        "response": {
-                "mortgages": [
-                        {
-                                "id": "17145",
-                                "productId": "100",
-                                "currency": "CHF",
-                                "limit": 590000,
-                                "balance": -590000,
-                                "owner": {
-                                        "id": "131841-3006",
-                                        "name": "Hans Muster"
-                                },
-                                "object": {
-                                        "name": "Haus 1",
-                                        "additional": "Kurzstrasse 22 7770 St.Gallen"
-                                },
-                                "products": [
-                                        {
-                                                "id": "9010390041",
-                                                "rate": "2.45",
-                                                "amount": 590000,
-                                                "valid": {
-                                                        "from": "2010-04-01",
-                                                        "to": "2015-03-31"
-                                                },
-                                                "offerId": "21137"
-                                        }
-                                ]
-                        },
-                        {
-                                "id": "17146",
-                                "productId": "100",
-                                "currency": "CHF",
-                                "limit": 990000,
-                                "balance": -990000,
-                                "owner": {
-                                        "id": "131841-4982",
-                                        "name": "Hans Muster"
-                                },
-                                "object": {
-                                        "name": "Object 2",
-                                        "additional": "Kurzstrasse 2 1770 St.Gallen"
-                                },
-                                "products": [
-                                        {
-                                                "id": "9010390041",
-                                                "rate": "2.45",
-                                                "amount": 390000,
-                                                "valid": {
-                                                        "from": "2010-06-02",
-                                                        "to": "2014-01-01"
-                                                },
-                                                "offerId": "21973"
-                                        },
-                                        {
-                                                "id": "9010390041",
-                                                "rate": "2.05",
-                                                "amount": 300000,
-                                                "valid": {
-                                                        "from": "2011-07-01",
-                                                        "to": "2015-06-30"
-                                                },
-                                                "offerId": "21973"
-                                        },
-                                        {
-                                                "id": "9010390041",
-                                                "rate": "2.15",
-                                                "amount": 300000,
-                                                "valid": {
-                                                        "from": "2011-07-01",
-                                                        "to": "2037-06-30"
-                                                }
-                                        }
-                                ]
-                        }
-                ]
-        }
-}
-
-# Group Mortgages
-
-Managing **Mortgage** objects
-
-## Mortgages Collection [/financing/mortgage]
-
-### Get Mortgage collection schema [OPTIONS]
-
-+ Response 200 (application/schema+json)
-
-    + Header
-
-            Link: <http://api.wcp.vps321.xiag.ch/schema/financing/mortgage/collection>; rel="canonical", <http://api.wcp.vps321.xiag.ch/financing/mortgage>; rel="self"
-
-    + Body
-
-undefined
-
-### List all Mortgages [GET]
-
-Return mortgage collection available for current customer
-
-+ Response 200 (application/json; charset=UTF-8; profile=http://api.wcp.vps321.xiag.ch/schema/financing/mortgage/collection)
-
-    + Header
-
-            Content-Language: en
-            Link: <http://api.wcp.vps321.xiag.ch/financing/mortgage>; rel="self"
-
-    + Body
-
-{
-        "error": "schema mismatch: Missing required property: offerId"
-}
-
-# Group Mortgages
-
-Managing **Mortgage** objects
-
-## Mortgages Collection [/financing/mortgage]
-
-### Get Mortgage collection schema [OPTIONS]
-
-+ Response 200 (application/schema+json)
-
-    + Header
-
-            Link: <http://api.wcp.vps321.xiag.ch/schema/financing/mortgage/collection>; rel="canonical", <http://api.wcp.vps321.xiag.ch/financing/mortgage>; rel="self"
-
-    + Body
-
-undefined
-
-### List all Mortgages [GET]
-
-Return mortgage collection available for current customer
-
-+ Response 200 (application/json; charset=UTF-8; profile=http://api.wcp.vps321.xiag.ch/schema/financing/mortgage/collection)
-
-    + Header
-
-            Content-Language: en
-            Link: <http://api.wcp.vps321.xiag.ch/financing/mortgage>; rel="self"
-
-    + Body
-
-{
-        "error": "schema mismatch: Missing required property: productIds"
-}
-
-# Group Mortgages
-
-Managing **Mortgage** objects
-
-## Mortgages Collection [/financing/mortgage]
-
-### Get Mortgage collection schema [OPTIONS]
-
-+ Response 200 (application/schema+json)
-
-    + Header
-
-            Link: <http://api.wcp.vps321.xiag.ch/schema/financing/mortgage/collection>; rel="canonical", <http://api.wcp.vps321.xiag.ch/financing/mortgage>; rel="self"
-
-    + Body
-
-undefined
-
-### List all Mortgages [GET]
-
-Return mortgage collection available for current customer
-
-+ Response 200 (application/json; charset=UTF-8; profile=http://api.wcp.vps321.xiag.ch/schema/financing/mortgage/collection)
-
-    + Header
-
-            Content-Language: en
-            Link: <http://api.wcp.vps321.xiag.ch/financing/mortgage>; rel="self"
-
-    + Body
-
-{
-        "error": "schema mismatch: Missing required property: mortgageId"
-}
-
-# Group Mortgages
-
-Managing **Mortgage** objects
-
-## Mortgages Collection [/financing/mortgage]
-
-### Get Mortgage collection schema [OPTIONS]
-
-+ Response 200 (application/schema+json)
-
-    + Header
-
-            Link: <http://api.wcp.vps321.xiag.ch/schema/financing/mortgage/collection>; rel="canonical", <http://api.wcp.vps321.xiag.ch/financing/mortgage>; rel="self"
-
-    + Body
-
-undefined
-
-### List all Mortgages [GET]
-
-Return mortgage collection available for current customer
-
-+ Response 200 (application/json; charset=UTF-8; profile=http://api.wcp.vps321.xiag.ch/schema/financing/mortgage/collection)
-
-    + Header
-
-            Content-Language: en
-            Link: <http://api.wcp.vps321.xiag.ch/financing/mortgage>; rel="self"
-
-    + Body
-
-{}
-
-# Group Mortgages
-
-Managing **Mortgage** objects
-
-## Mortgages Collection [/financing/mortgage]
-
-### Get Mortgage collection schema [OPTIONS]
-
-+ Response 200 (application/schema+json)
-
-    + Header
-
-            Link: <http://api.wcp.vps321.xiag.ch/schema/financing/mortgage/collection>; rel="canonical", <http://api.wcp.vps321.xiag.ch/financing/mortgage>; rel="self"
-
-    + Body
-
-undefined
-
-### List all Mortgages [GET]
-
-Return mortgage collection available for current customer
-
-+ Response 200 (application/json; charset=UTF-8; profile=http://api.wcp.vps321.xiag.ch/schema/financing/mortgage/collection)
-
-    + Header
-
-            Content-Language: en
-            Link: <http://api.wcp.vps321.xiag.ch/financing/mortgage>; rel="self"
-
-    + Body
-
-{
-        "response": {
-                "year": 2014
-        }
-}
+    server.close();
+    process.exit();
+});
