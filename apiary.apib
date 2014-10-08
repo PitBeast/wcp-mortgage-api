@@ -755,7 +755,7 @@ getProductsData
 
 + Parameters
 
-    + productIds (required, array, ["873421","123412"]) ... Products ids
+    + productsIds (required, array, ["873421","123412"]) ... Products ids
 
 Return mortgage collection available for current customer
 
@@ -769,7 +769,9 @@ Return mortgage collection available for current customer
     + Body
 
 {
-    "error": "schema mismatch: Missing required property: productIds"
+    "response": [
+        null
+    ]
 }
 
 # Group getMortgageConfiguration
