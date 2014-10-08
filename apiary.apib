@@ -6,7 +6,7 @@ API documentation for **Swisscom WCP Mortgage** application.
 
 # Group getCsrByPortfolioID
 
-getCsrByPortfolioID
+Get customer support representatives by porfolio identifier
 
 ## getCsrByPortfolioID [/financing/getCsrByPortfolioID/{portfolioId}]
 
@@ -84,7 +84,7 @@ getCsrByPortfolioID
 
     + portfolioId (optional, string, `34231`) ... Portfolio identifier
 
-Return mortgage collection available for current customer
+Get customer support representatives by porfolio identifier
 
 + Response 200 (application/json; charset=UTF-8; profile=http://api.wcp.vps321.xiag.ch/schema/financing/getCsrByPortfolioID)
 
@@ -110,7 +110,7 @@ Return mortgage collection available for current customer
 
 # Group sendCsrRequest
 
-sendCsrRequest
+Send request for customer support representatives
 
 ## sendCsrRequest [/financing/sendCsrRequest]
 
@@ -140,7 +140,7 @@ sendCsrRequest
 
 ### Call service [GET]
 
-Return mortgage collection available for current customer
+Send request for customer support representatives
 
 + Response 200 (application/json; charset=UTF-8; profile=http://api.wcp.vps321.xiag.ch/schema/financing/sendCsrRequest)
 
@@ -159,7 +159,7 @@ Return mortgage collection available for current customer
 
 # Group getPortfolio
 
-getPortfolio
+Get portfolio of current customer
 
 ## getPortfolio [/financing/getPortfolio]
 
@@ -251,7 +251,7 @@ getPortfolio
 
 ### Call service [GET]
 
-Return mortgage collection available for current customer
+Get portfolio of current customer
 
 + Response 200 (application/json; charset=UTF-8; profile=http://api.wcp.vps321.xiag.ch/schema/financing/getPortfolio)
 
@@ -279,7 +279,7 @@ Return mortgage collection available for current customer
 
 # Group getMortgages
 
-getMortgages
+Get an array of mortgages available to the customer
 
 ## getMortgages [/financing/getMortgages]
 
@@ -469,7 +469,7 @@ getMortgages
 
 ### Call service [GET]
 
-Return mortgage collection available for current customer
+Get an array of mortgages available to the customer
 
 + Response 200 (application/json; charset=UTF-8; profile=http://api.wcp.vps321.xiag.ch/schema/financing/getMortgages)
 
@@ -562,7 +562,7 @@ Return mortgage collection available for current customer
 
 # Group getReplacementProductsByOfferId
 
-getReplacementProductsByOfferId
+Get replacement produts by offer identifier
 
 ## getReplacementProductsByOfferId [/financing/getReplacementProductsByOfferId/{offerId}]
 
@@ -581,7 +581,7 @@ getReplacementProductsByOfferId
         "properties": {
                 "replacementProducts": {
                         "title": "Replacement products",
-                        "description": "Replacement products by offer id",
+                        "description": "Array of replacement products",
                         "type": "array",
                         "items": {
                                 "title": "Offer",
@@ -631,9 +631,9 @@ getReplacementProductsByOfferId
 
 + Parameters
 
-    + offerId (required, string, `21137`) ... 
+    + offerId (required, string, `21137`) ... Offer identifier for replacement products
 
-Return mortgage collection available for current customer
+Get replacement produts by offer identifier
 
 + Response 200 (application/json; charset=UTF-8; profile=http://api.wcp.vps321.xiag.ch/schema/financing/getReplacementProductsByOfferId)
 
@@ -755,9 +755,9 @@ getProductsData
 
 + Parameters
 
-    + productsIds (required, array, `873421,123412`) ... Products ids
+    + productsIds (required, array, `873421,123412`) ... Products ids separated by comma
 
-Return mortgage collection available for current customer
+getProductsData
 
 + Response 200 (application/json; charset=UTF-8; profile=http://api.wcp.vps321.xiag.ch/schema/financing/getProductsData)
 
@@ -777,7 +777,7 @@ Return mortgage collection available for current customer
 
 # Group getMortgageConfiguration
 
-getMortgageConfiguration
+Get configuration object of mortgage
 
 ## getMortgageConfiguration [/financing/getMortgageConfiguration/{mortgageId}]
 
@@ -799,7 +799,7 @@ getMortgageConfiguration
                         "properties": {
                                 "initial": {
                                         "title": "Initial",
-                                        "description": "Initial configurations array",
+                                        "description": "Initial configuration array",
                                         "type": "array",
                                         "items": {
                                                 "title": "Product",
@@ -877,7 +877,7 @@ getMortgageConfiguration
 
     + mortgageId (required, string, `17146`) ... Mortgage identifier
 
-Return mortgage collection available for current customer
+Get configuration object of mortgage
 
 + Response 200 (application/json; charset=UTF-8; profile=http://api.wcp.vps321.xiag.ch/schema/financing/getMortgageConfiguration)
 
@@ -931,7 +931,7 @@ Return mortgage collection available for current customer
 
 # Group setMortgageConfiguration
 
-setMortgageConfiguration
+Set configuration object of mortgage
 
 ## setMortgageConfiguration [/financing/setMortgageConfiguration]
 
@@ -970,7 +970,7 @@ setMortgageConfiguration
     + mortgageId (required, string, `17146`) ... Mortgage identifier
     + configuration (required, object, {"test":123}) ... Mortgage configuration object
 
-Return mortgage collection available for current customer
+Set configuration object of mortgage
 
 + Request (application/json; charset=UTF-8; profile=http://api.wcp.vps321.xiag.ch/input_schema/financing/setMortgageConfiguration)
 
@@ -998,7 +998,7 @@ Return mortgage collection available for current customer
 
 # Group getCurrentYear
 
-getCurrentYear
+Get current year
 
 ## getCurrentYear [/financing/getCurrentYear]
 
@@ -1032,7 +1032,7 @@ getCurrentYear
 
 ### Call service [GET]
 
-Return mortgage collection available for current customer
+Get current year
 
 + Response 200 (application/json; charset=UTF-8; profile=http://api.wcp.vps321.xiag.ch/schema/financing/getCurrentYear)
 
