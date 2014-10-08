@@ -4,11 +4,11 @@ HOST: http://api.wcp.vps321.xiag.ch/
 # Swisscom web customer portal, mortgage component
 API documentation for **Swisscom WCP Mortgage** application.
 
-# Group getCsrByPortfolioID
+# Group CSR
 
-Get customer support representatives by porfolio identifier
+Customer Support Representatives
 
-## getCsrByPortfolioID [/financing/getCsrByPortfolioID/{portfolioId}]
+## getCsrByPortfolioId [/financing/getCsrByPortfolioId/{portfolioId}]
 
 ### Get schema [OPTIONS]
 
@@ -16,7 +16,7 @@ Get customer support representatives by porfolio identifier
 
     + Header
 
-            Link: <http://api.wcp.vps321.xiag.ch/schema/financing/getCsrByPortfolioID>; rel="self"
+            Link: <http://api.wcp.vps321.xiag.ch/schema/financing/getCsrByPortfolioId>; rel="self"
 
     + Body
 
@@ -82,16 +82,16 @@ Get customer support representatives by porfolio identifier
 
 + Parameters
 
-    + portfolioId (optional, string, `34231`) ... Portfolio identifier
+    + portfolioId (optional,string, `34231`) ... Portfolio identifier
 
-Get customer support representatives by porfolio identifier
+Return customer support representatives by porfolio identifier
 
-+ Response 200 (application/json; charset=UTF-8; profile=http://api.wcp.vps321.xiag.ch/schema/financing/getCsrByPortfolioID)
++ Response 200 (application/json; charset=UTF-8; profile=http://api.wcp.vps321.xiag.ch/schema/financing/getCsrByPortfolioId)
 
     + Header
 
             Content-Language: en
-            Link: <http://api.wcp.vps321.xiag.ch/financing/getCsrByPortfolioID>; rel="self"
+            Link: <http://api.wcp.vps321.xiag.ch/financing/getCsrByPortfolioId>; rel="self"
 
     + Body
 
@@ -107,10 +107,6 @@ Get customer support representatives by porfolio identifier
         }
     }
 }
-
-# Group sendCsrRequest
-
-Send request for customer support representatives
 
 ## sendCsrRequest [/financing/sendCsrRequest]
 
@@ -157,9 +153,9 @@ Send request for customer support representatives
     }
 }
 
-# Group getPortfolio
+# Group Portfolio
 
-Get portfolio of current customer
+Portfolios collection
 
 ## getPortfolio [/financing/getPortfolio]
 
@@ -217,8 +213,10 @@ Get portfolio of current customer
                                 },
                                 "currency": {
                                         "title": "Currency",
-                                        "description": "",
-                                        "type": "string"
+                                        "description": "ISO 4217 Currency Code",
+                                        "type": "string",
+                                        "format": "iso4217",
+                                        "pattern": "^[A-Z]{3}$"
                                 },
                                 "limit": {
                                         "title": "Limit",
@@ -251,7 +249,7 @@ Get portfolio of current customer
 
 ### Call service [GET]
 
-Get portfolio of current customer
+Return portfolio of current customer
 
 + Response 200 (application/json; charset=UTF-8; profile=http://api.wcp.vps321.xiag.ch/schema/financing/getPortfolio)
 
@@ -277,9 +275,9 @@ Get portfolio of current customer
     }
 }
 
-# Group getMortgages
+# Group Mortgage
 
-Get an array of mortgages available to the customer
+Managing **Mortgage** objects
 
 ## getMortgages [/financing/getMortgages]
 
@@ -469,7 +467,7 @@ Get an array of mortgages available to the customer
 
 ### Call service [GET]
 
-Get an array of mortgages available to the customer
+Return an array of mortgages available to the customer
 
 + Response 200 (application/json; charset=UTF-8; profile=http://api.wcp.vps321.xiag.ch/schema/financing/getMortgages)
 
@@ -559,225 +557,6 @@ Get an array of mortgages available to the customer
         ]
     }
 }
-
-# Group getReplacementProductsByOfferId
-
-Get replacement produts by offer identifier
-
-## getReplacementProductsByOfferId [/financing/getReplacementProductsByOfferId/{offerId}]
-
-### Get schema [OPTIONS]
-
-+ Response 200 (application/schema+json)
-
-    + Header
-
-            Link: <http://api.wcp.vps321.xiag.ch/schema/financing/getReplacementProductsByOfferId>; rel="self"
-
-    + Body
-
-{
-        "type": "object",
-        "properties": {
-                "replacementProducts": {
-                        "title": "Replacement products",
-                        "description": "Array of replacement products",
-                        "type": "array",
-                        "items": {
-                                "title": "Offer",
-                                "description": "Offer object",
-                                "type": "object",
-                                "properties": {
-                                        "id": {
-                                                "title": "Id",
-                                                "description": "Offer idintifier",
-                                                "type": [
-                                                        "string",
-                                                        "number"
-                                                ]
-                                        },
-                                        "duration": {
-                                                "title": "Duration",
-                                                "description": "Credit duration",
-                                                "type": "number"
-                                        },
-                                        "actualMargin": {
-                                                "title": "Actual margin",
-                                                "description": "Actual margin",
-                                                "type": "string"
-                                        },
-                                        "minimalAmount": {
-                                                "title": "Minimal amount",
-                                                "description": "Minimal amount",
-                                                "type": "number"
-                                        }
-                                },
-                                "required": [
-                                        "id",
-                                        "duration",
-                                        "actualMargin",
-                                        "minimalAmount"
-                                ],
-                                "additionalProperties": false
-                        }
-                }
-        },
-        "required": [],
-        "additionalProperties": false,
-        "$schema": "http://json-schema.org/draft-04/schema#"
-}
-
-### Call service [GET]
-
-+ Parameters
-
-    + offerId (required, string, `21137`) ... Offer identifier for replacement products
-
-Get replacement produts by offer identifier
-
-+ Response 200 (application/json; charset=UTF-8; profile=http://api.wcp.vps321.xiag.ch/schema/financing/getReplacementProductsByOfferId)
-
-    + Header
-
-            Content-Language: en
-            Link: <http://api.wcp.vps321.xiag.ch/financing/getReplacementProductsByOfferId>; rel="self"
-
-    + Body
-
-{
-    "response": {
-        "replacementProducts": [
-            {
-                "id": "9010390041",
-                "duration": 2,
-                "actualMargin": "3.9996",
-                "minimalAmount": 100000
-            },
-            {
-                "id": "9010390041",
-                "duration": 3,
-                "actualMargin": "3.8996",
-                "minimalAmount": 100000
-            },
-            {
-                "id": "9010390041",
-                "duration": 4,
-                "actualMargin": "3.7996",
-                "minimalAmount": 100000
-            },
-            {
-                "id": "9010390041",
-                "duration": 5,
-                "actualMargin": "3.6996",
-                "minimalAmount": 100000
-            },
-            {
-                "id": "9010390041",
-                "duration": 6,
-                "actualMargin": "3.5996",
-                "minimalAmount": 100000
-            },
-            {
-                "id": "9010390041",
-                "duration": 7,
-                "actualMargin": "3.4996",
-                "minimalAmount": 100000
-            },
-            {
-                "id": "9010390041",
-                "duration": 8,
-                "actualMargin": "3.3996",
-                "minimalAmount": 100000
-            },
-            {
-                "id": "9010390041",
-                "duration": 9,
-                "actualMargin": "3.2996",
-                "minimalAmount": 100000
-            },
-            {
-                "id": "9010390041",
-                "duration": 10,
-                "actualMargin": "3.1996",
-                "minimalAmount": 100000
-            }
-        ]
-    }
-}
-
-# Group getProductsData
-
-getProductsData
-
-## getProductsData [/financing/getProductsData/{productsIds}]
-
-### Get schema [OPTIONS]
-
-+ Response 200 (application/schema+json)
-
-    + Header
-
-            Link: <http://api.wcp.vps321.xiag.ch/schema/financing/getProductsData>; rel="self"
-
-    + Body
-
-{
-        "type": "array",
-        "items": {
-                "title": "Product title",
-                "description": "Product title object",
-                "type": "object",
-                "properties": {
-                        "id": {
-                                "title": "Id",
-                                "description": "Product identifier",
-                                "type": [
-                                        "string",
-                                        "number"
-                                ]
-                        },
-                        "title": {
-                                "title": "Title",
-                                "description": "Product title",
-                                "type": "string"
-                        }
-                },
-                "required": [
-                        "id",
-                        "title"
-                ],
-                "additionalProperties": false
-        },
-        "$schema": "http://json-schema.org/draft-04/schema#"
-}
-
-### Call service [GET]
-
-+ Parameters
-
-    + productsIds (required, array, `873421,123412`) ... Products ids separated by comma
-
-getProductsData
-
-+ Response 200 (application/json; charset=UTF-8; profile=http://api.wcp.vps321.xiag.ch/schema/financing/getProductsData)
-
-    + Header
-
-            Content-Language: en
-            Link: <http://api.wcp.vps321.xiag.ch/financing/getProductsData>; rel="self"
-
-    + Body
-
-{
-    "response": [
-        "Fixed mortgage 3 years",
-        "Fixed mortgage 5 years"
-    ]
-}
-
-# Group getMortgageConfiguration
-
-Get configuration object of mortgage
 
 ## getMortgageConfiguration [/financing/getMortgageConfiguration/{mortgageId}]
 
@@ -875,9 +654,9 @@ Get configuration object of mortgage
 
 + Parameters
 
-    + mortgageId (required, string, `17146`) ... Mortgage identifier
+    + mortgageId (required,string, `17146`) ... Mortgage identifier
 
-Get configuration object of mortgage
+Return configuration object of mortgage
 
 + Response 200 (application/json; charset=UTF-8; profile=http://api.wcp.vps321.xiag.ch/schema/financing/getMortgageConfiguration)
 
@@ -929,11 +708,7 @@ Get configuration object of mortgage
     }
 }
 
-# Group setMortgageConfiguration
-
-Set configuration object of mortgage
-
-## setMortgageConfiguration [/financing/setMortgageConfiguration]
+## saveMortgageConfiguration [/financing/saveMortgageConfiguration]
 
 ### Get schema [OPTIONS]
 
@@ -941,7 +716,7 @@ Set configuration object of mortgage
 
     + Header
 
-            Link: <http://api.wcp.vps321.xiag.ch/schema/financing/setMortgageConfiguration>; rel="self"
+            Link: <http://api.wcp.vps321.xiag.ch/schema/financing/saveMortgageConfiguration>; rel="self"
 
     + Body
 
@@ -967,12 +742,12 @@ Set configuration object of mortgage
 
 + Parameters
 
-    + mortgageId (required, string, `17146`) ... Mortgage identifier
-    + configuration (required, object, {"test":123}) ... Mortgage configuration object
+    + mortgageId (required,string, `17146`) ... Mortgage identifier
+    + configuration (required) ... Mortgage configuration object
 
-Set configuration object of mortgage
+Save configuration object of mortgage
 
-+ Request (application/json; charset=UTF-8; profile=http://api.wcp.vps321.xiag.ch/input_schema/financing/setMortgageConfiguration)
++ Request (application/json; charset=UTF-8; profile=http://api.wcp.vps321.xiag.ch/input_schema/financing/saveMortgageConfiguration)
 
 {
     "mortgageId": "17146",
@@ -981,12 +756,12 @@ Set configuration object of mortgage
     }
 }
 
-+ Response 200 (application/json; charset=UTF-8; profile=http://api.wcp.vps321.xiag.ch/schema/financing/setMortgageConfiguration)
++ Response 200 (application/json; charset=UTF-8; profile=http://api.wcp.vps321.xiag.ch/schema/financing/saveMortgageConfiguration)
 
     + Header
 
             Content-Language: en
-            Link: <http://api.wcp.vps321.xiag.ch/financing/setMortgageConfiguration>; rel="self"
+            Link: <http://api.wcp.vps321.xiag.ch/financing/saveMortgageConfiguration>; rel="self"
 
     + Body
 
@@ -996,9 +771,235 @@ Set configuration object of mortgage
     }
 }
 
-# Group getCurrentYear
+# Group Offer
 
-Get current year
+Offer as a products collection for mortgage part extension
+
+## getProductsByOfferId [/financing/getProductsByOfferId/{offerId}]
+
+### Get schema [OPTIONS]
+
++ Response 200 (application/schema+json)
+
+    + Header
+
+            Link: <http://api.wcp.vps321.xiag.ch/schema/financing/getProductsByOfferId>; rel="self"
+
+    + Body
+
+{
+        "type": "object",
+        "properties": {
+                "Products": {
+                        "title": " products",
+                        "description": "Array of  products",
+                        "type": "array",
+                        "items": {
+                                "title": "Offer",
+                                "description": "Offer object",
+                                "type": "object",
+                                "properties": {
+                                        "id": {
+                                                "title": "Id",
+                                                "description": "Offer idintifier",
+                                                "type": [
+                                                        "string",
+                                                        "number"
+                                                ]
+                                        },
+                                        "duration": {
+                                                "title": "Duration",
+                                                "description": "Credit duration",
+                                                "type": "number"
+                                        },
+                                        "actualMargin": {
+                                                "title": "Actual margin",
+                                                "description": "Actual margin",
+                                                "type": "string"
+                                        },
+                                        "minimalAmount": {
+                                                "title": "Minimal amount",
+                                                "description": "Minimal amount",
+                                                "type": "number"
+                                        }
+                                },
+                                "required": [
+                                        "id",
+                                        "duration",
+                                        "actualMargin",
+                                        "minimalAmount"
+                                ],
+                                "additionalProperties": false
+                        }
+                }
+        },
+        "required": [],
+        "additionalProperties": false,
+        "$schema": "http://json-schema.org/draft-04/schema#"
+}
+
+### Call service [GET]
+
++ Parameters
+
+    + offerId (required,string, `21137`) ... Offer identifier for  products
+
+Return products by offer identifier
+
++ Response 200 (application/json; charset=UTF-8; profile=http://api.wcp.vps321.xiag.ch/schema/financing/getProductsByOfferId)
+
+    + Header
+
+            Content-Language: en
+            Link: <http://api.wcp.vps321.xiag.ch/financing/getProductsByOfferId>; rel="self"
+
+    + Body
+
+{
+    "response": {
+        "Products": [
+            {
+                "id": "9010390041",
+                "duration": 2,
+                "actualMargin": "3.9996",
+                "minimalAmount": 100000
+            },
+            {
+                "id": "9010390041",
+                "duration": 3,
+                "actualMargin": "3.8996",
+                "minimalAmount": 100000
+            },
+            {
+                "id": "9010390041",
+                "duration": 4,
+                "actualMargin": "3.7996",
+                "minimalAmount": 100000
+            },
+            {
+                "id": "9010390041",
+                "duration": 5,
+                "actualMargin": "3.6996",
+                "minimalAmount": 100000
+            },
+            {
+                "id": "9010390041",
+                "duration": 6,
+                "actualMargin": "3.5996",
+                "minimalAmount": 100000
+            },
+            {
+                "id": "9010390041",
+                "duration": 7,
+                "actualMargin": "3.4996",
+                "minimalAmount": 100000
+            },
+            {
+                "id": "9010390041",
+                "duration": 8,
+                "actualMargin": "3.3996",
+                "minimalAmount": 100000
+            },
+            {
+                "id": "9010390041",
+                "duration": 9,
+                "actualMargin": "3.2996",
+                "minimalAmount": 100000
+            },
+            {
+                "id": "9010390041",
+                "duration": 10,
+                "actualMargin": "3.1996",
+                "minimalAmount": 100000
+            }
+        ]
+    }
+}
+
+# Group Product
+
+Products info
+
+## getProductsData [/financing/getProductsData/{productsIds}]
+
+### Get schema [OPTIONS]
+
++ Response 200 (application/schema+json)
+
+    + Header
+
+            Link: <http://api.wcp.vps321.xiag.ch/schema/financing/getProductsData>; rel="self"
+
+    + Body
+
+{
+        "type": "array",
+        "items": {
+                "title": "Product title",
+                "description": "Product title object",
+                "type": "object",
+                "properties": {
+                        "id": {
+                                "title": "Id",
+                                "description": "Product identifier",
+                                "type": [
+                                        "string",
+                                        "number"
+                                ]
+                        },
+                        "name": {
+                                "title": "Name",
+                                "description": "Product name",
+                                "type": "string"
+                        },
+                        "type": {
+                                "title": "Type",
+                                "description": "Product type",
+                                "type": {
+                                        "enum": [
+                                                "fixed",
+                                                "variable",
+                                                "rollover"
+                                        ]
+                                }
+                        }
+                },
+                "required": [
+                        "id",
+                        "title"
+                ],
+                "additionalProperties": false
+        },
+        "$schema": "http://json-schema.org/draft-04/schema#"
+}
+
+### Call service [GET]
+
++ Parameters
+
+    + productsIds (required,array, `873421,123412`) ... Products ids separated by comma
+
+getProductsData
+
++ Response 200 (application/json; charset=UTF-8; profile=http://api.wcp.vps321.xiag.ch/schema/financing/getProductsData)
+
+    + Header
+
+            Content-Language: en
+            Link: <http://api.wcp.vps321.xiag.ch/financing/getProductsData>; rel="self"
+
+    + Body
+
+{
+    "response": [
+        "Fixed mortgage 3 years",
+        "Fixed mortgage 5 years"
+    ]
+}
+
+# Group Misc
+
+Not grouped services
 
 ## getCurrentYear [/financing/getCurrentYear]
 
@@ -1032,7 +1033,7 @@ Get current year
 
 ### Call service [GET]
 
-Get current year
+Return current year
 
 + Response 200 (application/json; charset=UTF-8; profile=http://api.wcp.vps321.xiag.ch/schema/financing/getCurrentYear)
 
