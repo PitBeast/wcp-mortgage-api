@@ -16,7 +16,7 @@ Customer Support Representatives
 
     + Header
 
-            Link: <http://api.wcp.vps321.xiag.ch/schema/financing/getCsrByPortfolioId>; rel="self"
+            Link: <http://api.wcp.vps321.xiag.ch/schema/financing/getCsrByPortfolioId/{portfolioId}>; rel="canonical", <http://api.wcp.vps321.xiag.ch/financing/getCsrByPortfolioId/34231>; rel="self"
 
     + Body
 
@@ -91,7 +91,7 @@ Return customer support representatives by porfolio identifier
     + Header
 
             Content-Language: en
-            Link: <http://api.wcp.vps321.xiag.ch/financing/getCsrByPortfolioId>; rel="self"
+            Link: <http://api.wcp.vps321.xiag.ch/financing/getCsrByPortfolioId/34231>; rel="self"
 
     + Body
 
@@ -116,7 +116,7 @@ Return customer support representatives by porfolio identifier
 
     + Header
 
-            Link: <http://api.wcp.vps321.xiag.ch/schema/financing/sendCsrRequest>; rel="self"
+            Link: <http://api.wcp.vps321.xiag.ch/schema/financing/sendCsrRequest>; rel="canonical", <http://api.wcp.vps321.xiag.ch/financing/sendCsrRequest?>; rel="self"
 
     + Body
 
@@ -143,7 +143,7 @@ Send request for customer support representatives
     + Header
 
             Content-Language: en
-            Link: <http://api.wcp.vps321.xiag.ch/financing/sendCsrRequest>; rel="self"
+            Link: <http://api.wcp.vps321.xiag.ch/financing/sendCsrRequest?>; rel="self"
 
     + Body
 
@@ -165,7 +165,7 @@ Portfolios collection
 
     + Header
 
-            Link: <http://api.wcp.vps321.xiag.ch/schema/financing/getPortfolio>; rel="self"
+            Link: <http://api.wcp.vps321.xiag.ch/schema/financing/getPortfolio>; rel="canonical", <http://api.wcp.vps321.xiag.ch/financing/getPortfolio?>; rel="self"
 
     + Body
 
@@ -256,7 +256,7 @@ Return portfolio of current customer
     + Header
 
             Content-Language: en
-            Link: <http://api.wcp.vps321.xiag.ch/financing/getPortfolio>; rel="self"
+            Link: <http://api.wcp.vps321.xiag.ch/financing/getPortfolio?>; rel="self"
 
     + Body
 
@@ -287,7 +287,7 @@ Managing **Mortgage** objects
 
     + Header
 
-            Link: <http://api.wcp.vps321.xiag.ch/schema/financing/getMortgages>; rel="self"
+            Link: <http://api.wcp.vps321.xiag.ch/schema/financing/getMortgages>; rel="canonical", <http://api.wcp.vps321.xiag.ch/financing/getMortgages?>; rel="self"
 
     + Body
 
@@ -474,7 +474,7 @@ Return an array of mortgages available to the customer
     + Header
 
             Content-Language: en
-            Link: <http://api.wcp.vps321.xiag.ch/financing/getMortgages>; rel="self"
+            Link: <http://api.wcp.vps321.xiag.ch/financing/getMortgages?>; rel="self"
 
     + Body
 
@@ -566,7 +566,7 @@ Return an array of mortgages available to the customer
 
     + Header
 
-            Link: <http://api.wcp.vps321.xiag.ch/schema/financing/getMortgageConfiguration>; rel="self"
+            Link: <http://api.wcp.vps321.xiag.ch/schema/financing/getMortgageConfiguration/{mortgageId}>; rel="canonical", <http://api.wcp.vps321.xiag.ch/financing/getMortgageConfiguration/17146>; rel="self"
 
     + Body
 
@@ -663,7 +663,7 @@ Return configuration object of mortgage
     + Header
 
             Content-Language: en
-            Link: <http://api.wcp.vps321.xiag.ch/financing/getMortgageConfiguration>; rel="self"
+            Link: <http://api.wcp.vps321.xiag.ch/financing/getMortgageConfiguration/17146>; rel="self"
 
     + Body
 
@@ -716,7 +716,7 @@ Return configuration object of mortgage
 
     + Header
 
-            Link: <http://api.wcp.vps321.xiag.ch/schema/financing/saveMortgageConfiguration>; rel="self"
+            Link: <http://api.wcp.vps321.xiag.ch/schema/financing/saveMortgageConfiguration>; rel="canonical", <http://api.wcp.vps321.xiag.ch/financing/saveMortgageConfiguration?mortgageId=17146&configuration=>; rel="self"
 
     + Body
 
@@ -747,7 +747,7 @@ Return configuration object of mortgage
 
 Save configuration object of mortgage
 
-+ Request (application/json; charset=UTF-8; profile=http://api.wcp.vps321.xiag.ch/input_schema/financing/saveMortgageConfiguration)
++ Request (application/json)
 
 {
     "mortgageId": "17146",
@@ -761,7 +761,7 @@ Save configuration object of mortgage
     + Header
 
             Content-Language: en
-            Link: <http://api.wcp.vps321.xiag.ch/financing/saveMortgageConfiguration>; rel="self"
+            Link: <http://api.wcp.vps321.xiag.ch/financing/saveMortgageConfiguration?mortgageId=17146&configuration=>; rel="self"
 
     + Body
 
@@ -783,7 +783,7 @@ Offer as a products collection for mortgage part extension
 
     + Header
 
-            Link: <http://api.wcp.vps321.xiag.ch/schema/financing/getProductsByOfferId>; rel="self"
+            Link: <http://api.wcp.vps321.xiag.ch/schema/financing/getProductsByOfferId/{offerId}>; rel="canonical", <http://api.wcp.vps321.xiag.ch/financing/getProductsByOfferId/21137>; rel="self"
 
     + Body
 
@@ -851,7 +851,7 @@ Return products by offer identifier
     + Header
 
             Content-Language: en
-            Link: <http://api.wcp.vps321.xiag.ch/financing/getProductsByOfferId>; rel="self"
+            Link: <http://api.wcp.vps321.xiag.ch/financing/getProductsByOfferId/21137>; rel="self"
 
     + Body
 
@@ -918,7 +918,7 @@ Return products by offer identifier
 
 # Group Product
 
-Products info
+Products description
 
 ## getProductsData [/financing/getProductsData/{productsIds}]
 
@@ -928,7 +928,7 @@ Products info
 
     + Header
 
-            Link: <http://api.wcp.vps321.xiag.ch/schema/financing/getProductsData>; rel="self"
+            Link: <http://api.wcp.vps321.xiag.ch/schema/financing/getProductsData/{productsIds}>; rel="canonical", <http://api.wcp.vps321.xiag.ch/financing/getProductsData/873421,123412>; rel="self"
 
     + Body
 
@@ -986,7 +986,7 @@ getProductsData
     + Header
 
             Content-Language: en
-            Link: <http://api.wcp.vps321.xiag.ch/financing/getProductsData>; rel="self"
+            Link: <http://api.wcp.vps321.xiag.ch/financing/getProductsData/873421,123412>; rel="self"
 
     + Body
 
@@ -1009,7 +1009,7 @@ Not grouped services
 
     + Header
 
-            Link: <http://api.wcp.vps321.xiag.ch/schema/financing/getCurrentYear>; rel="self"
+            Link: <http://api.wcp.vps321.xiag.ch/schema/financing/getCurrentYear>; rel="canonical", <http://api.wcp.vps321.xiag.ch/financing/getCurrentYear?>; rel="self"
 
     + Body
 
@@ -1040,7 +1040,7 @@ Return current year
     + Header
 
             Content-Language: en
-            Link: <http://api.wcp.vps321.xiag.ch/financing/getCurrentYear>; rel="self"
+            Link: <http://api.wcp.vps321.xiag.ch/financing/getCurrentYear?>; rel="self"
 
     + Body
 
