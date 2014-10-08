@@ -152,7 +152,9 @@ Return mortgage collection available for current customer
     + Body
 
 {
-    "error": "schema mismatch: Additional properties not allowed"
+    "response": {
+        "success": true
+    }
 }
 
 # Group getPortfolio
@@ -261,7 +263,18 @@ Return mortgage collection available for current customer
     + Body
 
 {
-    "error": "schema mismatch: Additional properties not allowed"
+    "response": {
+        "portfolio": {
+            "customerId": "1318410-27",
+            "creditAccount": "456373-3042",
+            "owner": "Grätzer-Inderbitzin M. und S.",
+            "productId": "100",
+            "rate": "multiple",
+            "currency": "CHF",
+            "limit": 746000,
+            "balance": -576000
+        }
+    }
 }
 
 # Group getMortgages
@@ -468,7 +481,83 @@ Return mortgage collection available for current customer
     + Body
 
 {
-    "error": "schema mismatch: Additional properties not allowed"
+    "response": {
+        "mortgages": [
+            {
+                "id": "17145",
+                "productId": "100",
+                "currency": "CHF",
+                "limit": 590000,
+                "balance": -590000,
+                "owner": {
+                    "id": "131841-3006",
+                    "name": "Hans Muster"
+                },
+                "object": {
+                    "name": "Haus 1",
+                    "additional": "Kurzstrasse 22 7770 St.Gallen"
+                },
+                "products": [
+                    {
+                        "id": "9010390041",
+                        "rate": "2.45",
+                        "amount": 590000,
+                        "valid": {
+                            "from": "2010-04-01",
+                            "to": "2015-03-31"
+                        },
+                        "offerId": "21137"
+                    }
+                ]
+            },
+            {
+                "id": "17146",
+                "productId": "100",
+                "currency": "CHF",
+                "limit": 990000,
+                "balance": -990000,
+                "owner": {
+                    "id": "131841-4982",
+                    "name": "Hans Muster"
+                },
+                "object": {
+                    "name": "Object 2",
+                    "additional": "Kurzstrasse 2 1770 St.Gallen"
+                },
+                "products": [
+                    {
+                        "id": "9010390041",
+                        "rate": "2.45",
+                        "amount": 390000,
+                        "valid": {
+                            "from": "2010-06-02",
+                            "to": "2014-01-01"
+                        },
+                        "offerId": "21973"
+                    },
+                    {
+                        "id": "9010390041",
+                        "rate": "2.05",
+                        "amount": 300000,
+                        "valid": {
+                            "from": "2011-07-01",
+                            "to": "2015-06-30"
+                        },
+                        "offerId": "21973"
+                    },
+                    {
+                        "id": "9010390041",
+                        "rate": "2.15",
+                        "amount": 300000,
+                        "valid": {
+                            "from": "2011-07-01",
+                            "to": "2037-06-30"
+                        }
+                    }
+                ]
+            }
+        ]
+    }
 }
 
 # Group getReplacementProductsByOfferId
@@ -556,7 +645,64 @@ Return mortgage collection available for current customer
     + Body
 
 {
-    "error": "offers not found"
+    "response": {
+        "replacementProducts": [
+            {
+                "id": "9010390041",
+                "duration": 2,
+                "actualMargin": "3.9996",
+                "minimalAmount": 100000
+            },
+            {
+                "id": "9010390041",
+                "duration": 3,
+                "actualMargin": "3.8996",
+                "minimalAmount": 100000
+            },
+            {
+                "id": "9010390041",
+                "duration": 4,
+                "actualMargin": "3.7996",
+                "minimalAmount": 100000
+            },
+            {
+                "id": "9010390041",
+                "duration": 5,
+                "actualMargin": "3.6996",
+                "minimalAmount": 100000
+            },
+            {
+                "id": "9010390041",
+                "duration": 6,
+                "actualMargin": "3.5996",
+                "minimalAmount": 100000
+            },
+            {
+                "id": "9010390041",
+                "duration": 7,
+                "actualMargin": "3.4996",
+                "minimalAmount": 100000
+            },
+            {
+                "id": "9010390041",
+                "duration": 8,
+                "actualMargin": "3.3996",
+                "minimalAmount": 100000
+            },
+            {
+                "id": "9010390041",
+                "duration": 9,
+                "actualMargin": "3.2996",
+                "minimalAmount": 100000
+            },
+            {
+                "id": "9010390041",
+                "duration": 10,
+                "actualMargin": "3.1996",
+                "minimalAmount": 100000
+            }
+        ]
+    }
 }
 
 # Group getProductsData
@@ -740,7 +886,44 @@ Return mortgage collection available for current customer
     + Body
 
 {
-    "error": "mortgage not found"
+    "response": {
+        "mortgage": {
+            "initial": [
+                {
+                    "id": "9010390041",
+                    "rate": "2.45",
+                    "amount": 390000,
+                    "valid": {
+                        "from": "2010-06-02",
+                        "to": "2014-01-01"
+                    },
+                    "offerId": "21973"
+                },
+                {
+                    "id": "9010390041",
+                    "rate": "2.05",
+                    "amount": 300000,
+                    "valid": {
+                        "from": "2011-07-01",
+                        "to": "2015-06-30"
+                    },
+                    "offerId": "21973"
+                },
+                {
+                    "id": "9010390041",
+                    "rate": "2.15",
+                    "amount": 300000,
+                    "valid": {
+                        "from": "2011-07-01",
+                        "to": "2037-06-30"
+                    }
+                }
+            ],
+            "configured": {
+                "test": 123
+            }
+        }
+    }
 }
 
 # Group setMortgageConfiguration
@@ -849,5 +1032,7 @@ Return mortgage collection available for current customer
     + Body
 
 {
-    "error": "schema mismatch: Additional properties not allowed"
+    "response": {
+        "year": 2014
+    }
 }
