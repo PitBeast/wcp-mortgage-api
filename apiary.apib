@@ -74,14 +74,15 @@ getCsrByPortfolioID
                 }
         },
         "required": [],
-        "additionalProperties": false
+        "additionalProperties": false,
+        "$schema": "http://json-schema.org/draft-04/schema#"
 }
 
 ### Call service [GET]
 
 + Parameters
 
-    + portfolioId (optional, string, "34231") ... Portfolio identifier
+    + portfolioId (optional, string, `34231`) ... Portfolio identifier
 
 Return mortgage collection available for current customer
 
@@ -133,7 +134,8 @@ sendCsrRequest
                 }
         },
         "required": [],
-        "additionalProperties": false
+        "additionalProperties": false,
+        "$schema": "http://json-schema.org/draft-04/schema#"
 }
 
 ### Call service [GET]
@@ -243,7 +245,8 @@ getPortfolio
                 }
         },
         "required": [],
-        "additionalProperties": false
+        "additionalProperties": false,
+        "$schema": "http://json-schema.org/draft-04/schema#"
 }
 
 ### Call service [GET]
@@ -460,7 +463,8 @@ getMortgages
                 }
         },
         "required": [],
-        "additionalProperties": false
+        "additionalProperties": false,
+        "$schema": "http://json-schema.org/draft-04/schema#"
 }
 
 ### Call service [GET]
@@ -619,14 +623,15 @@ getReplacementProductsByOfferId
                 }
         },
         "required": [],
-        "additionalProperties": false
+        "additionalProperties": false,
+        "$schema": "http://json-schema.org/draft-04/schema#"
 }
 
 ### Call service [GET]
 
 + Parameters
 
-    + offerId (required, string, undefined) ... 
+    + offerId (required, string, `undefined`) ... 
 
 Return mortgage collection available for current customer
 
@@ -685,14 +690,15 @@ getProductsData
                         "title"
                 ],
                 "additionalProperties": false
-        }
+        },
+        "$schema": "http://json-schema.org/draft-04/schema#"
 }
 
 ### Call service [GET]
 
 + Parameters
 
-    + productIds (required, array, undefined) ... Products ids
+    + productIds (required, array, `undefined`) ... Products ids
 
 Return mortgage collection available for current customer
 
@@ -801,14 +807,15 @@ getMortgageConfiguration
                                 "initial"
                         ]
                 }
-        }
+        },
+        "$schema": "http://json-schema.org/draft-04/schema#"
 }
 
 ### Call service [GET]
 
 + Parameters
 
-    + mortgageId (required, string, "17146") ... Mortgage identifier
+    + mortgageId (required, string, `17146`) ... Mortgage identifier
 
 Return mortgage collection available for current customer
 
@@ -855,14 +862,15 @@ setMortgageConfiguration
         "required": [
                 "success"
         ],
-        "additionalProperties": false
+        "additionalProperties": false,
+        "$schema": "http://json-schema.org/draft-04/schema#"
 }
 
 ### Call service [POST]
 
 + Parameters
 
-    + mortgageId (required, string, "17146") ... Mortgage
+    + mortgageId (required, string, `17146`) ... Mortgage
     + configuration (required, object, {"test":123}) ... 
 
 Return mortgage collection available for current customer
@@ -908,7 +916,8 @@ getCurrentYear
         "required": [
                 "year"
         ],
-        "additionalProperties": false
+        "additionalProperties": false,
+        "$schema": "http://json-schema.org/draft-04/schema#"
 }
 
 ### Call service [GET]
