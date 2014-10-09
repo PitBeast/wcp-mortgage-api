@@ -912,7 +912,7 @@ Products collection
 
     + Header
 
-            Link: <http://api.wcp.vps321.xiag.ch/schema/financing/product/{productsIds}>; rel="canonical", <http://api.wcp.vps321.xiag.ch/financing/product/undefined>; rel="self"
+            Link: <http://api.wcp.vps321.xiag.ch/schema/financing/product/{productsIds}>; rel="canonical", <http://api.wcp.vps321.xiag.ch/financing/product/100,333333,444444>; rel="self"
 
     + Body
 
@@ -967,7 +967,7 @@ Products collection
 
 + Parameters
 
-    + productsIds (optional,array, `undefined`) ... Products ids separated by comma
+    + productsIds (optional,array, `100,333333,444444`) ... Products ids separated by comma
 
 Return array of products data
 
@@ -976,13 +976,29 @@ Return array of products data
     + Header
 
             Content-Language: en
-            Link: <http://api.wcp.vps321.xiag.ch/financing/product/undefined>; rel="self"
+            Link: <http://api.wcp.vps321.xiag.ch/financing/product/100,333333,444444>; rel="self"
 
     + Body
 
 {
     "response": {
-        "products": []
+        "products": [
+            {
+                "id": "100",
+                "name": "Darlehen Fest",
+                "type": "fixed"
+            },
+            {
+                "id": "333333",
+                "name": "Variable Hypothek",
+                "type": "variable"
+            },
+            {
+                "id": "444444",
+                "name": "Rollover Hypothek",
+                "type": "rollover"
+            }
+        ]
     }
 }
 
