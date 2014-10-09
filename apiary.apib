@@ -93,7 +93,7 @@ Customer Support Representatives
         }
 }
 
-### getCsrByPortfolioId [GET]
+### Get CSR [GET]
 
 + Parameters
 
@@ -123,7 +123,7 @@ Return customer support representatives by porfolio identifier
     }
 }
 
-### sendCsrRequest [POST]
+### Send CSR request [POST]
 
 Send request for customer support representatives
 
@@ -238,7 +238,7 @@ Portfolios collection
         }
 }
 
-### getPortfolio [GET]
+### Get portfolio [GET]
 
 Return portfolio of current customer
 
@@ -458,7 +458,7 @@ Managing **Mortgage** objects
         }
 }
 
-### Get mortgage object [GET]
+### Get mortgages [GET]
 
 Return an array of mortgages available to the customer
 
@@ -662,7 +662,7 @@ Return an array of mortgages available to the customer
         }
 }
 
-### getMortgageConfiguration [GET]
+### Get mortgage configuration [GET]
 
 + Parameters
 
@@ -720,14 +720,14 @@ Return configuration object of mortgage
     }
 }
 
-### saveMortgageConfiguration [POST]
+### Save mortgage configuration [POST]
 
 + Parameters
 
     + mortgageId (required,string, `17146`) ... Mortgage identifier
     + configuration (required) ... Mortgage configuration object
 
-Save configuration object of mortgage
+Save configuration object of mortgage. Return status of success
 
 + Request (application/json)
 
@@ -775,7 +775,7 @@ Offer as a products collection for mortgage part extension
                 "properties": {
                         "products": {
                                 "title": " products",
-                                "description": "Array of  products",
+                                "description": "Array of products",
                                 "type": "array",
                                 "items": {
                                         "title": "Offer",
@@ -822,13 +822,13 @@ Offer as a products collection for mortgage part extension
         }
 }
 
-### getProductsByOfferId [GET]
+### Get offer products [GET]
 
 + Parameters
 
     + offerId (required,string, `21137`) ... Offer identifier for  products
 
-Return products by offer identifier
+Return array of products by offer identifier
 
 + Response 200 (application/json; charset=UTF-8; profile=http://api.wcp.vps321.xiag.ch/schema/financing/offer)
 
@@ -963,13 +963,13 @@ Products collection
         }
 }
 
-### getProductsData [GET]
+### Get products data [GET]
 
 + Parameters
 
     + productsIds (optional,array, `undefined`) ... Products ids separated by comma
 
-getProductsData
+Return array of products data
 
 + Response 200 (application/json; charset=UTF-8; profile=http://api.wcp.vps321.xiag.ch/schema/financing/product)
 
