@@ -8,7 +8,7 @@ API documentation for **Swisscom WCP Mortgage** application.
 
 Customer Support Representatives
 
-## csr [/financing/csr]
+## csr [/financing/csr/{portfolioId}]
 
 ### Get schema [OPTIONS]
 
@@ -16,7 +16,7 @@ Customer Support Representatives
 
     + Header
 
-            Link: <http://api.wcp.vps321.xiag.ch/schema/financing/csr>; rel="canonical", <http://api.wcp.vps321.xiag.ch/financing/csr/34231>; rel="self"
+            Link: <http://api.wcp.vps321.xiag.ch/schema/financing/csr/{portfolioId}>; rel="canonical", <http://api.wcp.vps321.xiag.ch/financing/csr/34231>; rel="self"
 
     + Body
 
@@ -75,7 +75,8 @@ Customer Support Representatives
                         }
                 },
                 "required": [],
-                "additionalProperties": false
+                "additionalProperties": false,
+                "$schema": "http://json-schema.org/draft-04/schema#"
         },
         "POST": {
                 "type": "object",
@@ -87,9 +88,9 @@ Customer Support Representatives
                         }
                 },
                 "required": [],
-                "additionalProperties": false
-        },
-        "$schema": "http://json-schema.org/draft-04/schema#"
+                "additionalProperties": false,
+                "$schema": "http://json-schema.org/draft-04/schema#"
+        }
 }
 
 ### getCsrByPortfolioId [GET]
@@ -232,9 +233,9 @@ Portfolios collection
                         }
                 },
                 "required": [],
-                "additionalProperties": false
-        },
-        "$schema": "http://json-schema.org/draft-04/schema#"
+                "additionalProperties": false,
+                "$schema": "http://json-schema.org/draft-04/schema#"
+        }
 }
 
 ### getPortfolio [GET]
@@ -452,9 +453,9 @@ Managing **Mortgage** objects
                         }
                 },
                 "required": [],
-                "additionalProperties": false
-        },
-        "$schema": "http://json-schema.org/draft-04/schema#"
+                "additionalProperties": false,
+                "$schema": "http://json-schema.org/draft-04/schema#"
+        }
 }
 
 ### Get mortgage object [GET]
@@ -550,7 +551,7 @@ Return an array of mortgages available to the customer
     }
 }
 
-## mortgage_configuration [/financing/mortgage_configuration]
+## mortgage_configuration [/financing/mortgage_configuration/{mortgageId}]
 
 ### Get schema [OPTIONS]
 
@@ -558,7 +559,7 @@ Return an array of mortgages available to the customer
 
     + Header
 
-            Link: <http://api.wcp.vps321.xiag.ch/schema/financing/mortgage_configuration>; rel="canonical", <http://api.wcp.vps321.xiag.ch/financing/mortgage_configuration/17146>; rel="self"
+            Link: <http://api.wcp.vps321.xiag.ch/schema/financing/mortgage_configuration/{mortgageId}>; rel="canonical", <http://api.wcp.vps321.xiag.ch/financing/mortgage_configuration/17146>; rel="self"
 
     + Body
 
@@ -639,7 +640,8 @@ Return an array of mortgages available to the customer
                                         "initial"
                                 ]
                         }
-                }
+                },
+                "$schema": "http://json-schema.org/draft-04/schema#"
         },
         "POST": {
                 "type": "object",
@@ -655,9 +657,9 @@ Return an array of mortgages available to the customer
                 "required": [
                         "success"
                 ],
-                "additionalProperties": false
-        },
-        "$schema": "http://json-schema.org/draft-04/schema#"
+                "additionalProperties": false,
+                "$schema": "http://json-schema.org/draft-04/schema#"
+        }
 }
 
 ### getMortgageConfiguration [GET]
@@ -755,7 +757,7 @@ Save configuration object of mortgage
 
 Offer as a products collection for mortgage part extension
 
-## offer [/financing/offer]
+## offer [/financing/offer/{offerId}]
 
 ### Get schema [OPTIONS]
 
@@ -763,7 +765,7 @@ Offer as a products collection for mortgage part extension
 
     + Header
 
-            Link: <http://api.wcp.vps321.xiag.ch/schema/financing/offer>; rel="canonical", <http://api.wcp.vps321.xiag.ch/financing/offer/21137>; rel="self"
+            Link: <http://api.wcp.vps321.xiag.ch/schema/financing/offer/{offerId}>; rel="canonical", <http://api.wcp.vps321.xiag.ch/financing/offer/21137>; rel="self"
 
     + Body
 
@@ -815,9 +817,9 @@ Offer as a products collection for mortgage part extension
                         }
                 },
                 "required": [],
-                "additionalProperties": false
-        },
-        "$schema": "http://json-schema.org/draft-04/schema#"
+                "additionalProperties": false,
+                "$schema": "http://json-schema.org/draft-04/schema#"
+        }
 }
 
 ### getProductsByOfferId [GET]
@@ -902,7 +904,7 @@ Return products by offer identifier
 
 Products collection
 
-## product [/financing/product]
+## product [/financing/product/{productsIds}]
 
 ### Get schema [OPTIONS]
 
@@ -910,7 +912,7 @@ Products collection
 
     + Header
 
-            Link: <http://api.wcp.vps321.xiag.ch/schema/financing/product>; rel="canonical", <http://api.wcp.vps321.xiag.ch/financing/product/undefined>; rel="self"
+            Link: <http://api.wcp.vps321.xiag.ch/schema/financing/product/{productsIds}>; rel="canonical", <http://api.wcp.vps321.xiag.ch/financing/product/undefined>; rel="self"
 
     + Body
 
@@ -956,9 +958,9 @@ Products collection
                         }
                 },
                 "required": [],
-                "additionalProperties": false
-        },
-        "$schema": "http://json-schema.org/draft-04/schema#"
+                "additionalProperties": false,
+                "$schema": "http://json-schema.org/draft-04/schema#"
+        }
 }
 
 ### getProductsData [GET]
@@ -1015,9 +1017,9 @@ Not grouped services
                 "required": [
                         "year"
                 ],
-                "additionalProperties": false
-        },
-        "$schema": "http://json-schema.org/draft-04/schema#"
+                "additionalProperties": false,
+                "$schema": "http://json-schema.org/draft-04/schema#"
+        }
 }
 
 ### getCurrentYear [GET]
