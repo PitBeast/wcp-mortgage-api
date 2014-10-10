@@ -1080,3 +1080,69 @@ Return current year on server
                     "year": 2014
                 }
             }
+
+## mail [/financing/mail]
+
+### Get schema [OPTIONS]
+
++ Response 200 (application/schema+json)
+
+    + Header
+
+            Link: <http://api.wcp.vps321.xiag.ch/schema/financing/mail>; rel="canonical", <http://api.wcp.vps321.xiag.ch/financing/mail?recipient=iprokopchuk%40xiag.ch&subject=Test&text=Hello!>; rel="self"
+
+    + Body
+
+            {
+                    "POST": {
+                            "type": "object",
+                            "properties": {
+                                    "success": {
+                                            "title": "Success",
+                                            "description": "Success sent flag",
+                                            "type": "boolean"
+                                    }
+                            },
+                            "required": [
+                                    "success"
+                            ],
+                            "additionalProperties": false,
+                            "$schema": "http://json-schema.org/draft-04/schema#"
+                    }
+            }
+
+### Send e-mail [POST]
+
+Send e-mail and return status of success
+
++ Parameters
+
+    + recipient (required,string, `iprokopchuk@xiag.ch`) ... Recipient e-mail
+    + subject (optional,string, `Test`) ... Subject of message
+    + text (optional,string, `Hello!`) ... Message in text format
+    + html (optional,string, `undefined`) ... Message source in html format
+
++ Request (application/json)
+
+            {
+                "recipient": "iprokopchuk@xiag.ch",
+                "subject": "Test",
+                "text": "Hello!"
+            }
+
++ Response 200 (application/json; charset=UTF-8; profile=http://api.wcp.vps321.xiag.ch/schema/financing/mail)
+
+    + Header
+
+            Content-Language: en
+            Link: <http://api.wcp.vps321.xiag.ch/financing/mail?recipient=iprokopchuk%40xiag.ch&subject=Test&text=Hello!>; rel="self"
+
+    + Body
+
+            {
+                "error": {
+                    "code": "EAUTH",
+                    "response": "503 5.5.1 Error: authentication not enabled",
+                    "responseCode": 503
+                }
+            }
