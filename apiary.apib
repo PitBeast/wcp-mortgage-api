@@ -95,11 +95,11 @@ Customer Support Representatives
 
 ### Get CSR [GET]
 
+Return customer support representatives by porfolio identifier
+
 + Parameters
 
     + portfolioId (optional,string, `34231`) ... Portfolio identifier
-
-Return customer support representatives by porfolio identifier
 
 + Response 200 (application/json; charset=UTF-8; profile=http://api.wcp.vps321.xiag.ch/schema/financing/csr)
 
@@ -664,11 +664,11 @@ Return an array of mortgages available to the customer
 
 ### Get mortgage configuration [GET]
 
+Return configuration object of mortgage
+
 + Parameters
 
     + mortgageId (required,string, `17146`) ... Mortgage identifier
-
-Return configuration object of mortgage
 
 + Response 200 (application/json; charset=UTF-8; profile=http://api.wcp.vps321.xiag.ch/schema/financing/mortgage_configuration)
 
@@ -722,12 +722,12 @@ Return configuration object of mortgage
 
 ### Save mortgage configuration [POST]
 
+Save configuration object of mortgage and return status of success
+
 + Parameters
 
     + mortgageId (required,string, `17146`) ... Mortgage identifier
     + configuration (required) ... Mortgage configuration object
-
-Save configuration object of mortgage and return status of success
 
 + Request (application/json)
 
@@ -824,11 +824,11 @@ Offer as a products collection for mortgage part extension
 
 ### Get offer products [GET]
 
+Return array of products by offer identifier
+
 + Parameters
 
     + offerId (required,string, `21137`) ... Offer identifier for  products
-
-Return array of products by offer identifier
 
 + Response 200 (application/json; charset=UTF-8; profile=http://api.wcp.vps321.xiag.ch/schema/financing/offer)
 
@@ -965,11 +965,11 @@ Products collection
 
 ### Get products data [GET]
 
+Return array of products data
+
 + Parameters
 
     + productsIds (optional,array, `100,333333,444444`) ... Products ids separated by comma
-
-Return array of products data
 
 + Response 200 (application/json; charset=UTF-8; profile=http://api.wcp.vps321.xiag.ch/schema/financing/product)
 
