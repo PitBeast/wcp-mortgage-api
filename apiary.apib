@@ -336,6 +336,30 @@ Managing **Mortgage** objects
                                                                     "description": "Object name",
                                                                     "type": "string"
                                                             },
+                                                            "address": {
+                                                                    "title": "Address",
+                                                                    "description": "Object address",
+                                                                    "type": "object",
+                                                                    "properties": {
+                                                                            "street": {
+                                                                                    "title": "Street",
+                                                                                    "description": "Street",
+                                                                                    "type": "string"
+                                                                            },
+                                                                            "zip": {
+                                                                                    "title": "Zip",
+                                                                                    "description": "Zip",
+                                                                                    "type": "string"
+                                                                            },
+                                                                            "city": {
+                                                                                    "title": "City",
+                                                                                    "description": "City",
+                                                                                    "type": "string"
+                                                                            }
+                                                                    },
+                                                                    "required": [],
+                                                                    "additionalProperties": false
+                                                            },
                                                             "additional": {
                                                                     "title": "Additional",
                                                                     "description": "Additional info",
@@ -372,6 +396,11 @@ Managing **Mortgage** objects
                                                                     "amount": {
                                                                             "title": "Amount",
                                                                             "description": "Credit amount",
+                                                                            "type": "number"
+                                                                    },
+                                                                    "duration": {
+                                                                            "title": "Duration",
+                                                                            "description": "Duration of product",
                                                                             "type": "number"
                                                                     },
                                                                     "valid": {
@@ -448,24 +477,46 @@ Return an array of mortgages available to the customer
                     "id": "17145",
                     "productId": "100",
                     "currency": "CHF",
-                    "limit": 590000,
-                    "balance": -590000,
+                    "limit": 800000,
+                    "balance": -800000,
                     "owner": {
                         "id": "131841-3006",
                         "name": "Hans Muster"
                     },
                     "object": {
-                        "name": "Haus 1",
-                        "additional": "Kurzstrasse 22 7770 St.Gallen"
+                        "name": "Darlehen 928342-2342",
+                        "address": {
+                            "street": "Kurzstrasse 22",
+                            "zip": "7770",
+                            "city": "St.Gallen"
+                        }
                     },
                     "products": [
                         {
+                            "id": "333333",
+                            "rate": "3.01",
+                            "amount": 100000,
+                            "duration": 25,
+                            "valid": {
+                                "from": "2010-04-01"
+                            }
+                        },
+                        {
+                            "id": "444444",
+                            "rate": "3.11",
+                            "amount": 110000,
+                            "duration": 25,
+                            "valid": {
+                                "from": "2010-04-01"
+                            }
+                        },
+                        {
                             "id": "9010390041",
                             "rate": "2.45",
-                            "amount": 590000,
+                            "amount": 99590654.5,
+                            "duration": 5,
                             "valid": {
-                                "from": "2010-04-01",
-                                "to": "2015-03-31"
+                                "from": "2010-04-01"
                             },
                             "offerId": "21137"
                         }
@@ -475,24 +526,46 @@ Return an array of mortgages available to the customer
                     "id": "17146",
                     "productId": "100",
                     "currency": "CHF",
-                    "limit": 990000,
-                    "balance": -990000,
+                    "limit": 1200000,
+                    "balance": -1200000,
                     "owner": {
                         "id": "131841-4982",
                         "name": "Hans Muster"
                     },
                     "object": {
-                        "name": "Object 2",
-                        "additional": "Kurzstrasse 2 1770 St.Gallen"
+                        "name": "Darlehen 922231-0092",
+                        "address": {
+                            "street": "Kurzstrasse 2",
+                            "zip": "7770",
+                            "city": "St.Gallen"
+                        }
                     },
                     "products": [
+                        {
+                            "id": "333333",
+                            "rate": "3.01",
+                            "amount": 100000,
+                            "duration": 25,
+                            "valid": {
+                                "from": "2010-04-01"
+                            }
+                        },
+                        {
+                            "id": "444444",
+                            "rate": "3.11",
+                            "amount": 110000,
+                            "duration": 20,
+                            "valid": {
+                                "from": "2010-04-01"
+                            }
+                        },
                         {
                             "id": "9010390041",
                             "rate": "2.45",
                             "amount": 390000,
+                            "duration": 4,
                             "valid": {
-                                "from": "2010-06-02",
-                                "to": "2014-01-01"
+                                "from": "2010-12-02"
                             },
                             "offerId": "21973"
                         },
@@ -500,9 +573,9 @@ Return an array of mortgages available to the customer
                             "id": "9010390041",
                             "rate": "2.05",
                             "amount": 300000,
+                            "duration": 4,
                             "valid": {
-                                "from": "2011-07-01",
-                                "to": "2015-06-30"
+                                "from": "2011-07-01"
                             },
                             "offerId": "21973"
                         },
@@ -510,16 +583,16 @@ Return an array of mortgages available to the customer
                             "id": "9010390041",
                             "rate": "2.15",
                             "amount": 300000,
+                            "duration": 28,
                             "valid": {
-                                "from": "2011-07-01",
-                                "to": "2037-06-30"
+                                "from": "2011-07-01"
                             }
                         }
                     ]
                 }
             ]
 
-## mortgage_configuration [/financing/mortgage_configuration/{mortgageId}]
+## configuration [/financing/configuration/{mortgageId}]
 
 ### Get schema [OPTIONS]
 
@@ -527,7 +600,7 @@ Return an array of mortgages available to the customer
 
     + Header
 
-            Link: <http://api.wcp.vps321.xiag.ch/schema/financing/mortgage_configuration/{mortgageId}>; rel="canonical", <http://api.wcp.vps321.xiag.ch/financing/mortgage_configuration/17146>; rel="self"
+            Link: <http://api.wcp.vps321.xiag.ch/schema/financing/configuration/{mortgageId}>; rel="canonical", <http://api.wcp.vps321.xiag.ch/financing/configuration/17146>; rel="self"
 
     + Body
 
@@ -562,6 +635,11 @@ Return an array of mortgages available to the customer
                                                             "amount": {
                                                                     "title": "Amount",
                                                                     "description": "Credit amount",
+                                                                    "type": "number"
+                                                            },
+                                                            "duration": {
+                                                                    "title": "Duration",
+                                                                    "description": "Duration of product",
                                                                     "type": "number"
                                                             },
                                                             "valid": {
@@ -633,12 +711,12 @@ Return configuration object of mortgage
 
     + mortgageId (required,string, `17146`) ... Mortgage identifier
 
-+ Response 200 (application/json; charset=UTF-8; profile=http://api.wcp.vps321.xiag.ch/schema/financing/mortgage_configuration)
++ Response 200 (application/json; charset=UTF-8; profile=http://api.wcp.vps321.xiag.ch/schema/financing/configuration)
 
     + Header
 
             Content-Language: en
-            Link: <http://api.wcp.vps321.xiag.ch/financing/mortgage_configuration/17146>; rel="self"
+            Link: <http://api.wcp.vps321.xiag.ch/financing/configuration/17146>; rel="self"
 
     + Body
 
@@ -675,7 +753,11 @@ Return configuration object of mortgage
                     }
                 ],
                 "configured": {
-                    "test": 123
+                    "products": [
+                        {
+                            "test": 123
+                        }
+                    ]
                 }
             }
 
@@ -697,12 +779,12 @@ Save configuration object of mortgage and return status of success
                 }
             }
 
-+ Response 200 (application/json; charset=UTF-8; profile=http://api.wcp.vps321.xiag.ch/schema/financing/mortgage_configuration)
++ Response 200 (application/json; charset=UTF-8; profile=http://api.wcp.vps321.xiag.ch/schema/financing/configuration)
 
     + Header
 
             Content-Language: en
-            Link: <http://api.wcp.vps321.xiag.ch/financing/mortgage_configuration/17146>; rel="self"
+            Link: <http://api.wcp.vps321.xiag.ch/financing/configuration/17146>; rel="self"
 
     + Body
 
