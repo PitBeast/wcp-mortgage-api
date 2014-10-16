@@ -77,12 +77,10 @@ Customer Support Representatives
                                     "faxNumber",
                                     "imageURI"
                             ],
-                            "additionalProperties": false,
                             "$schema": "http://json-schema.org/draft-04/schema#"
                     },
                     "POST": {
                             "type": "object",
-                            "additionalProperties": false,
                             "$schema": "http://json-schema.org/draft-04/schema#"
                     }
             }
@@ -215,7 +213,6 @@ Portfolios collection
                                     "limit",
                                     "balance"
                             ],
-                            "additionalProperties": false,
                             "$schema": "http://json-schema.org/draft-04/schema#"
                     }
             }
@@ -356,8 +353,7 @@ Managing **Mortgage** objects
                                                                                     "type": "string"
                                                                             }
                                                                     },
-                                                                    "required": [],
-                                                                    "additionalProperties": false
+                                                                    "required": []
                                                             },
                                                             "additional": {
                                                                     "title": "Additional",
@@ -367,8 +363,7 @@ Managing **Mortgage** objects
                                                     },
                                                     "required": [
                                                             "name"
-                                                    ],
-                                                    "additionalProperties": false
+                                                    ]
                                             },
                                             "products": {
                                                     "title": "Products",
@@ -412,24 +407,75 @@ Managing **Mortgage** objects
                                                                                             "description": "Credit period start",
                                                                                             "type": "string",
                                                                                             "format": "date-time"
-                                                                                    },
-                                                                                    "to": {
-                                                                                            "title": "To",
-                                                                                            "description": "Credit period end",
-                                                                                            "type": "string",
-                                                                                            "format": "date-time"
                                                                                     }
                                                                             },
                                                                             "required": [
                                                                                     "from"
-                                                                            ],
-                                                                            "additionalProperties": false
+                                                                            ]
                                                                     },
                                                                     "offerId": {
                                                                             "type": [
                                                                                     "string",
                                                                                     "number"
                                                                             ]
+                                                                    },
+                                                                    "parts": {
+                                                                            "title": "New product configuration",
+                                                                            "description": "Reconfigured products",
+                                                                            "type": "array",
+                                                                            "items": {
+                                                                                    "title": "Configuration part",
+                                                                                    "description": "New configuration part",
+                                                                                    "type": "object",
+                                                                                    "properties": {
+                                                                                            "amount": {
+                                                                                                    "title": "Amount",
+                                                                                                    "description": "Credit amount",
+                                                                                                    "type": "number"
+                                                                                            },
+                                                                                            "offer": {
+                                                                                                    "title": "Offer",
+                                                                                                    "description": "Offer object",
+                                                                                                    "type": "object",
+                                                                                                    "properties": {
+                                                                                                            "id": {
+                                                                                                                    "title": "Id",
+                                                                                                                    "description": "Offer idintifier",
+                                                                                                                    "type": [
+                                                                                                                            "string",
+                                                                                                                            "number"
+                                                                                                                    ]
+                                                                                                            },
+                                                                                                            "duration": {
+                                                                                                                    "title": "Duration",
+                                                                                                                    "description": "Offered product duration in years",
+                                                                                                                    "type": "number",
+                                                                                                                    "minimum": 2,
+                                                                                                                    "maximum": 10
+                                                                                                            },
+                                                                                                            "actualMargin": {
+                                                                                                                    "title": "Rate",
+                                                                                                                    "description": "Actual product rate",
+                                                                                                                    "type": "string",
+                                                                                                                    "minLength": 1
+                                                                                                            },
+                                                                                                            "minimalAmount": {
+                                                                                                                    "title": "Minimal amount",
+                                                                                                                    "description": "Minimal amount",
+                                                                                                                    "type": "number",
+                                                                                                                    "minimum": 0,
+                                                                                                                    "exclusiveMinimum": true
+                                                                                                            }
+                                                                                                    },
+                                                                                                    "required": [
+                                                                                                            "id",
+                                                                                                            "duration",
+                                                                                                            "actualMargin",
+                                                                                                            "minimalAmount"
+                                                                                                    ]
+                                                                                            }
+                                                                                    }
+                                                                            }
                                                                     }
                                                             },
                                                             "required": [
@@ -437,8 +483,7 @@ Managing **Mortgage** objects
                                                                     "rate",
                                                                     "amount",
                                                                     "valid"
-                                                            ],
-                                                            "additionalProperties": false
+                                                            ]
                                                     }
                                             }
                                     },
@@ -451,8 +496,7 @@ Managing **Mortgage** objects
                                             "owner",
                                             "object",
                                             "products"
-                                    ],
-                                    "additionalProperties": false
+                                    ]
                             },
                             "$schema": "http://json-schema.org/draft-04/schema#"
                     }
@@ -651,24 +695,75 @@ Return an array of mortgages available to the customer
                                                                                     "description": "Credit period start",
                                                                                     "type": "string",
                                                                                     "format": "date-time"
-                                                                            },
-                                                                            "to": {
-                                                                                    "title": "To",
-                                                                                    "description": "Credit period end",
-                                                                                    "type": "string",
-                                                                                    "format": "date-time"
                                                                             }
                                                                     },
                                                                     "required": [
                                                                             "from"
-                                                                    ],
-                                                                    "additionalProperties": false
+                                                                    ]
                                                             },
                                                             "offerId": {
                                                                     "type": [
                                                                             "string",
                                                                             "number"
                                                                     ]
+                                                            },
+                                                            "parts": {
+                                                                    "title": "New product configuration",
+                                                                    "description": "Reconfigured products",
+                                                                    "type": "array",
+                                                                    "items": {
+                                                                            "title": "Configuration part",
+                                                                            "description": "New configuration part",
+                                                                            "type": "object",
+                                                                            "properties": {
+                                                                                    "amount": {
+                                                                                            "title": "Amount",
+                                                                                            "description": "Credit amount",
+                                                                                            "type": "number"
+                                                                                    },
+                                                                                    "offer": {
+                                                                                            "title": "Offer",
+                                                                                            "description": "Offer object",
+                                                                                            "type": "object",
+                                                                                            "properties": {
+                                                                                                    "id": {
+                                                                                                            "title": "Id",
+                                                                                                            "description": "Offer idintifier",
+                                                                                                            "type": [
+                                                                                                                    "string",
+                                                                                                                    "number"
+                                                                                                            ]
+                                                                                                    },
+                                                                                                    "duration": {
+                                                                                                            "title": "Duration",
+                                                                                                            "description": "Offered product duration in years",
+                                                                                                            "type": "number",
+                                                                                                            "minimum": 2,
+                                                                                                            "maximum": 10
+                                                                                                    },
+                                                                                                    "actualMargin": {
+                                                                                                            "title": "Rate",
+                                                                                                            "description": "Actual product rate",
+                                                                                                            "type": "string",
+                                                                                                            "minLength": 1
+                                                                                                    },
+                                                                                                    "minimalAmount": {
+                                                                                                            "title": "Minimal amount",
+                                                                                                            "description": "Minimal amount",
+                                                                                                            "type": "number",
+                                                                                                            "minimum": 0,
+                                                                                                            "exclusiveMinimum": true
+                                                                                                    }
+                                                                                            },
+                                                                                            "required": [
+                                                                                                    "id",
+                                                                                                    "duration",
+                                                                                                    "actualMargin",
+                                                                                                    "minimalAmount"
+                                                                                            ]
+                                                                                    }
+                                                                            }
+                                                                    }
                                                             }
                                                     },
                                                     "required": [
@@ -676,8 +771,7 @@ Return an array of mortgages available to the customer
                                                             "rate",
                                                             "amount",
                                                             "valid"
-                                                    ],
-                                                    "additionalProperties": false
+                                                    ]
                                             }
                                     },
                                     "configured": {
@@ -727,24 +821,75 @@ Return an array of mortgages available to the customer
                                                                                                     "description": "Credit period start",
                                                                                                     "type": "string",
                                                                                                     "format": "date-time"
-                                                                                            },
-                                                                                            "to": {
-                                                                                                    "title": "To",
-                                                                                                    "description": "Credit period end",
-                                                                                                    "type": "string",
-                                                                                                    "format": "date-time"
                                                                                             }
                                                                                     },
                                                                                     "required": [
                                                                                             "from"
-                                                                                    ],
-                                                                                    "additionalProperties": false
+                                                                                    ]
                                                                             },
                                                                             "offerId": {
                                                                                     "type": [
                                                                                             "string",
                                                                                             "number"
                                                                                     ]
+                                                                            },
+                                                                            "parts": {
+                                                                                    "title": "New product configuration",
+                                                                                    "description": "Reconfigured products",
+                                                                                    "type": "array",
+                                                                                    "items": {
+                                                                                            "title": "Configuration part",
+                                                                                            "description": "New configuration part",
+                                                                                            "type": "object",
+                                                                                            "properties": {
+                                                                                                    "amount": {
+                                                                                                            "title": "Amount",
+                                                                                                            "description": "Credit amount",
+                                                                                                            "type": "number"
+                                                                                                    },
+                                                                                                    "offer": {
+                                                                                                            "title": "Offer",
+                                                                                                            "description": "Offer object",
+                                                                                                            "type": "object",
+                                                                                                            "properties": {
+                                                                                                                    "id": {
+                                                                                                                            "title": "Id",
+                                                                                                                            "description": "Offer idintifier",
+                                                                                                                            "type": [
+                                                                                                                                    "string",
+                                                                                                                                    "number"
+                                                                                                                            ]
+                                                                                                                    },
+                                                                                                                    "duration": {
+                                                                                                                            "title": "Duration",
+                                                                                                                            "description": "Offered product duration in years",
+                                                                                                                            "type": "number",
+                                                                                                                            "minimum": 2,
+                                                                                                                            "maximum": 10
+                                                                                                                    },
+                                                                                                                    "actualMargin": {
+                                                                                                                            "title": "Rate",
+                                                                                                                            "description": "Actual product rate",
+                                                                                                                            "type": "string",
+                                                                                                                            "minLength": 1
+                                                                                                                    },
+                                                                                                                    "minimalAmount": {
+                                                                                                                            "title": "Minimal amount",
+                                                                                                                            "description": "Minimal amount",
+                                                                                                                            "type": "number",
+                                                                                                                            "minimum": 0,
+                                                                                                                            "exclusiveMinimum": true
+                                                                                                                    }
+                                                                                                            },
+                                                                                                            "required": [
+                                                                                                                    "id",
+                                                                                                                    "duration",
+                                                                                                                    "actualMargin",
+                                                                                                                    "minimalAmount"
+                                                                                                            ]
+                                                                                                    }
+                                                                                            }
+                                                                                    }
                                                                             }
                                                                     },
                                                                     "required": [
@@ -752,8 +897,7 @@ Return an array of mortgages available to the customer
                                                                             "rate",
                                                                             "amount",
                                                                             "valid"
-                                                                    ],
-                                                                    "additionalProperties": false
+                                                                    ]
                                                             }
                                                     },
                                                     "step": {
@@ -764,14 +908,12 @@ Return an array of mortgages available to the customer
                                             },
                                             "required": [
                                                     "products"
-                                            ],
-                                            "additionalProperties": false
+                                            ]
                                     }
                             },
                             "required": [
                                     "initial"
                             ],
-                            "additionalProperties": false,
                             "$schema": "http://json-schema.org/draft-04/schema#"
                     },
                     "POST": {
@@ -832,24 +974,75 @@ Return an array of mortgages available to the customer
                                                                                                     "description": "Credit period start",
                                                                                                     "type": "string",
                                                                                                     "format": "date-time"
-                                                                                            },
-                                                                                            "to": {
-                                                                                                    "title": "To",
-                                                                                                    "description": "Credit period end",
-                                                                                                    "type": "string",
-                                                                                                    "format": "date-time"
                                                                                             }
                                                                                     },
                                                                                     "required": [
                                                                                             "from"
-                                                                                    ],
-                                                                                    "additionalProperties": false
+                                                                                    ]
                                                                             },
                                                                             "offerId": {
                                                                                     "type": [
                                                                                             "string",
                                                                                             "number"
                                                                                     ]
+                                                                            },
+                                                                            "parts": {
+                                                                                    "title": "New product configuration",
+                                                                                    "description": "Reconfigured products",
+                                                                                    "type": "array",
+                                                                                    "items": {
+                                                                                            "title": "Configuration part",
+                                                                                            "description": "New configuration part",
+                                                                                            "type": "object",
+                                                                                            "properties": {
+                                                                                                    "amount": {
+                                                                                                            "title": "Amount",
+                                                                                                            "description": "Credit amount",
+                                                                                                            "type": "number"
+                                                                                                    },
+                                                                                                    "offer": {
+                                                                                                            "title": "Offer",
+                                                                                                            "description": "Offer object",
+                                                                                                            "type": "object",
+                                                                                                            "properties": {
+                                                                                                                    "id": {
+                                                                                                                            "title": "Id",
+                                                                                                                            "description": "Offer idintifier",
+                                                                                                                            "type": [
+                                                                                                                                    "string",
+                                                                                                                                    "number"
+                                                                                                                            ]
+                                                                                                                    },
+                                                                                                                    "duration": {
+                                                                                                                            "title": "Duration",
+                                                                                                                            "description": "Offered product duration in years",
+                                                                                                                            "type": "number",
+                                                                                                                            "minimum": 2,
+                                                                                                                            "maximum": 10
+                                                                                                                    },
+                                                                                                                    "actualMargin": {
+                                                                                                                            "title": "Rate",
+                                                                                                                            "description": "Actual product rate",
+                                                                                                                            "type": "string",
+                                                                                                                            "minLength": 1
+                                                                                                                    },
+                                                                                                                    "minimalAmount": {
+                                                                                                                            "title": "Minimal amount",
+                                                                                                                            "description": "Minimal amount",
+                                                                                                                            "type": "number",
+                                                                                                                            "minimum": 0,
+                                                                                                                            "exclusiveMinimum": true
+                                                                                                                    }
+                                                                                                            },
+                                                                                                            "required": [
+                                                                                                                    "id",
+                                                                                                                    "duration",
+                                                                                                                    "actualMargin",
+                                                                                                                    "minimalAmount"
+                                                                                                            ]
+                                                                                                    }
+                                                                                            }
+                                                                                    }
                                                                             }
                                                                     },
                                                                     "required": [
@@ -857,8 +1050,7 @@ Return an array of mortgages available to the customer
                                                                             "rate",
                                                                             "amount",
                                                                             "valid"
-                                                                    ],
-                                                                    "additionalProperties": false
+                                                                    ]
                                                             }
                                                     },
                                                     "step": {
@@ -869,8 +1061,7 @@ Return an array of mortgages available to the customer
                                             },
                                             "required": [
                                                     "products"
-                                            ],
-                                            "additionalProperties": false
+                                            ]
                                     },
                                     "userId": {
                                             "title": "User id",
@@ -885,7 +1076,6 @@ Return an array of mortgages available to the customer
                                     "mortgageId",
                                     "configured"
                             ],
-                            "additionalProperties": false,
                             "$schema": "http://json-schema.org/draft-04/schema#"
                     }
             }
@@ -910,12 +1100,30 @@ Return configuration object of mortgage
             {
                 "initial": [
                     {
+                        "id": "333333",
+                        "rate": "3.01",
+                        "amount": 100000,
+                        "duration": 25,
+                        "valid": {
+                            "from": "2010-04-01"
+                        }
+                    },
+                    {
+                        "id": "444444",
+                        "rate": "3.11",
+                        "amount": 110000,
+                        "duration": 20,
+                        "valid": {
+                            "from": "2010-04-01"
+                        }
+                    },
+                    {
                         "id": "9010390041",
                         "rate": "2.45",
                         "amount": 390000,
+                        "duration": 4,
                         "valid": {
-                            "from": "2010-06-02",
-                            "to": "2014-01-01"
+                            "from": "2010-12-02"
                         },
                         "offerId": "21973"
                     },
@@ -923,9 +1131,9 @@ Return configuration object of mortgage
                         "id": "9010390041",
                         "rate": "2.05",
                         "amount": 300000,
+                        "duration": 4,
                         "valid": {
-                            "from": "2011-07-01",
-                            "to": "2015-06-30"
+                            "from": "2011-07-01"
                         },
                         "offerId": "21973"
                     },
@@ -933,9 +1141,9 @@ Return configuration object of mortgage
                         "id": "9010390041",
                         "rate": "2.15",
                         "amount": 300000,
+                        "duration": 28,
                         "valid": {
-                            "from": "2011-07-01",
-                            "to": "2037-06-30"
+                            "from": "2011-07-01"
                         }
                     }
                 ],
@@ -974,8 +1182,7 @@ Save configuration object of mortgage and return status of success
                             "rate": "2.45",
                             "amount": 390000,
                             "valid": {
-                                "from": "2010-06-02",
-                                "to": "2014-01-01"
+                                "from": "2010-06-02"
                             }
                         }
                     ]
@@ -1053,8 +1260,7 @@ Offer as a products collection for mortgage part extension
                                             "duration",
                                             "actualMargin",
                                             "minimalAmount"
-                                    ],
-                                    "additionalProperties": false
+                                    ]
                             },
                             "$schema": "http://json-schema.org/draft-04/schema#"
                     }
@@ -1188,8 +1394,7 @@ Products collection
                                             "id",
                                             "name",
                                             "type"
-                                    ],
-                                    "additionalProperties": false
+                                    ]
                             },
                             "$schema": "http://json-schema.org/draft-04/schema#"
                     }
@@ -1319,7 +1524,6 @@ Return current year on server
                             "required": [
                                     "recipient"
                             ],
-                            "additionalProperties": false,
                             "$schema": "http://json-schema.org/draft-04/schema#"
                     }
             }
