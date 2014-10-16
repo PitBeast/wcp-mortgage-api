@@ -22,76 +22,68 @@ Customer Support Representatives
 
             {
                     "GET": {
+                            "title": "CSR",
+                            "description": "Customer Support Representative object",
                             "type": "object",
                             "properties": {
-                                    "csr": {
-                                            "title": "CSR",
-                                            "description": "Customer Support Representative object",
-                                            "type": "object",
-                                            "properties": {
-                                                    "id": {
-                                                            "title": "Id",
-                                                            "description": "CSR identifier",
-                                                            "type": [
-                                                                    "string",
-                                                                    "number"
-                                                            ]
-                                                    },
-                                                    "firstName": {
-                                                            "title": "First name",
-                                                            "description": "Customer first name",
-                                                            "type": "string"
-                                                    },
-                                                    "lastName": {
-                                                            "title": "Last name",
-                                                            "description": "Customer last name",
-                                                            "type": "string"
-                                                    },
-                                                    "phoneNumber": {
-                                                            "title": "Phone number",
-                                                            "description": "Customer phone number",
-                                                            "type": "string",
-                                                            "format": "phone"
-                                                    },
-                                                    "faxNumber": {
-                                                            "title": "Fax number",
-                                                            "description": "Customer fax number",
-                                                            "type": "string",
-                                                            "format": "phone"
-                                                    },
-                                                    "imageURI": {
-                                                            "title": "Image URI",
-                                                            "description": "Customer photo",
-                                                            "type": "string",
-                                                            "format": "uri"
-                                                    }
-                                            },
-                                            "required": [
-                                                    "id",
-                                                    "firstName",
-                                                    "lastName",
-                                                    "phoneNumber",
-                                                    "faxNumber",
-                                                    "imageURI"
-                                            ],
-                                            "additionalProperties": false
+                                    "id": {
+                                            "title": "Id",
+                                            "description": "CSR identifier",
+                                            "type": [
+                                                    "string",
+                                                    "number"
+                                            ]
+                                    },
+                                    "firstName": {
+                                            "title": "First name",
+                                            "description": "Customer first name",
+                                            "type": "string"
+                                    },
+                                    "lastName": {
+                                            "title": "Last name",
+                                            "description": "Customer last name",
+                                            "type": "string"
+                                    },
+                                    "phoneNumber": {
+                                            "title": "Phone number",
+                                            "description": "Customer phone number",
+                                            "type": "string",
+                                            "format": "phone"
+                                    },
+                                    "faxNumber": {
+                                            "title": "Fax number",
+                                            "description": "Customer fax number",
+                                            "type": "string",
+                                            "format": "phone"
+                                    },
+                                    "email": {
+                                            "title": "E-mail",
+                                            "description": "Customer e-mail",
+                                            "type": "string",
+                                            "format": "email"
+                                    },
+                                    "imageURI": {
+                                            "title": "Image URI",
+                                            "description": "Customer photo",
+                                            "type": "string",
+                                            "format": "uri"
                                     }
                             },
-                            "required": [],
+                            "required": [
+                                    "id",
+                                    "firstName",
+                                    "lastName",
+                                    "phoneNumber",
+                                    "faxNumber",
+                                    "imageURI"
+                            ],
                             "additionalProperties": false,
                             "$schema": "http://json-schema.org/draft-04/schema#"
                     },
                     "POST": {
-                            "type": "object",
-                            "properties": {
-                                    "success": {
-                                            "title": "Success",
-                                            "description": "",
-                                            "type": "boolean"
-                                    }
-                            },
-                            "required": [],
-                            "additionalProperties": false,
+                            "title": "Success",
+                            "description": "",
+                            "type": "boolean",
                             "$schema": "http://json-schema.org/draft-04/schema#"
                     }
             }
@@ -114,16 +106,13 @@ Return customer support representatives by porfolio identifier
     + Body
 
             {
-                "response": {
-                    "csr": {
-                        "id": "1",
-                        "firstName": "Thomas",
-                        "lastName": "Schibler",
-                        "phoneNumber": "058 800 67 02",
-                        "faxNumber": "058 800 67 01",
-                        "imageURI": "//www.szkb.ch/images/default-source/mitarbeiterfotos/48864678216909.jpg"
-                    }
-                }
+                "id": "1",
+                "firstName": "Jacqueline",
+                "lastName": "Bamert",
+                "phoneNumber": "+41 58 800 24 14",
+                "faxNumber": "058 800 67 01",
+                "email": "jacqueline.bamert@szkb.ch",
+                "imageURI": "//www.szkb.ch/images/default-source/mitarbeiterfotos/192613.jpg"
             }
 
 ### Send CSR request [POST]
@@ -139,11 +128,7 @@ Send request for customer support representatives and return status of success
 
     + Body
 
-            {
-                "response": {
-                    "success": true
-                }
-            }
+            true
 
 # Group Portfolio
 
@@ -163,81 +148,74 @@ Portfolios collection
 
             {
                     "GET": {
+                            "title": "Portfolio",
+                            "description": "Portfolio object",
                             "type": "object",
                             "properties": {
-                                    "portfolio": {
-                                            "title": "Portfolio",
-                                            "description": "Portfolio object",
-                                            "type": "object",
-                                            "properties": {
-                                                    "customerId": {
-                                                            "title": "Customer id",
-                                                            "description": "Customer identifier",
-                                                            "type": [
-                                                                    "string",
-                                                                    "number"
-                                                            ]
-                                                    },
-                                                    "creditAccount": {
-                                                            "title": "Credit account",
-                                                            "description": "Credit account",
-                                                            "type": "string"
-                                                    },
-                                                    "owner": {
-                                                            "title": "Owner",
-                                                            "description": "Owner name",
-                                                            "type": "string"
-                                                    },
-                                                    "productId": {
-                                                            "title": "Product id",
-                                                            "description": "Product identifier",
-                                                            "type": [
-                                                                    "string",
-                                                                    "number"
-                                                            ]
-                                                    },
-                                                    "rate": {
-                                                            "title": "Rate",
-                                                            "description": "Portfolio rate",
-                                                            "type": [
-                                                                    "string",
-                                                                    "number"
-                                                            ]
-                                                    },
-                                                    "currency": {
-                                                            "title": "Currency",
-                                                            "description": "ISO 4217 Currency Code",
-                                                            "type": "string",
-                                                            "format": "iso4217",
-                                                            "pattern": "^[A-Z]{3}$"
-                                                    },
-                                                    "limit": {
-                                                            "title": "Limit",
-                                                            "description": "Credit limit",
-                                                            "type": "number",
-                                                            "minimum": 0,
-                                                            "exclusiveMinimum": true
-                                                    },
-                                                    "balance": {
-                                                            "title": "Balance",
-                                                            "description": "Current balance",
-                                                            "type": "number"
-                                                    }
-                                            },
-                                            "required": [
-                                                    "customerId",
-                                                    "creditAccount",
-                                                    "owner",
-                                                    "productId",
-                                                    "rate",
-                                                    "currency",
-                                                    "limit",
-                                                    "balance"
-                                            ],
-                                            "additionalProperties": false
+                                    "customerId": {
+                                            "title": "Customer id",
+                                            "description": "Customer identifier",
+                                            "type": [
+                                                    "string",
+                                                    "number"
+                                            ]
+                                    },
+                                    "creditAccount": {
+                                            "title": "Credit account",
+                                            "description": "Credit account",
+                                            "type": "string"
+                                    },
+                                    "owner": {
+                                            "title": "Owner",
+                                            "description": "Owner name",
+                                            "type": "string"
+                                    },
+                                    "productId": {
+                                            "title": "Product id",
+                                            "description": "Product identifier",
+                                            "type": [
+                                                    "string",
+                                                    "number"
+                                            ]
+                                    },
+                                    "rate": {
+                                            "title": "Rate",
+                                            "description": "Portfolio rate",
+                                            "type": [
+                                                    "string",
+                                                    "number"
+                                            ]
+                                    },
+                                    "currency": {
+                                            "title": "Currency",
+                                            "description": "ISO 4217 Currency Code",
+                                            "type": "string",
+                                            "format": "iso4217",
+                                            "pattern": "^[A-Z]{3}$"
+                                    },
+                                    "limit": {
+                                            "title": "Limit",
+                                            "description": "Credit limit",
+                                            "type": "number",
+                                            "minimum": 0,
+                                            "exclusiveMinimum": true
+                                    },
+                                    "balance": {
+                                            "title": "Balance",
+                                            "description": "Current balance",
+                                            "type": "number"
                                     }
                             },
-                            "required": [],
+                            "required": [
+                                    "customerId",
+                                    "creditAccount",
+                                    "owner",
+                                    "productId",
+                                    "rate",
+                                    "currency",
+                                    "limit",
+                                    "balance"
+                            ],
                             "additionalProperties": false,
                             "$schema": "http://json-schema.org/draft-04/schema#"
                     }
@@ -257,18 +235,14 @@ Return portfolio of current customer
     + Body
 
             {
-                "response": {
-                    "portfolio": {
-                        "customerId": "1318410-27",
-                        "creditAccount": "456373-3042",
-                        "owner": "Grätzer-Inderbitzin M. und S.",
-                        "productId": "100",
-                        "rate": "multiple",
-                        "currency": "CHF",
-                        "limit": 746000,
-                        "balance": -576000
-                    }
-                }
+                "customerId": "1153623-11",
+                "creditAccount": "456373-3042",
+                "owner": "Grätzer-Inderbitzin M. und S.",
+                "productId": "100",
+                "rate": "multiple",
+                "currency": "CHF",
+                "limit": 746000,
+                "balance": -576000
             }
 
 # Group Mortgage
@@ -289,177 +263,169 @@ Managing **Mortgage** objects
 
             {
                     "GET": {
-                            "type": "object",
-                            "properties": {
-                                    "mortgages": {
-                                            "title": "Mortgages",
-                                            "description": "Array of mortgages",
-                                            "type": "array",
-                                            "items": {
-                                                    "title": "Mortgage",
-                                                    "description": "Mortgage object available for customer",
+                            "title": "Mortgages",
+                            "description": "Array of mortgages",
+                            "type": "array",
+                            "items": {
+                                    "title": "Mortgage",
+                                    "description": "Mortgage object available for customer",
+                                    "type": "object",
+                                    "properties": {
+                                            "id": {
+                                                    "title": "Id",
+                                                    "description": "Mortgage identifier",
+                                                    "type": [
+                                                            "string",
+                                                            "number"
+                                                    ]
+                                            },
+                                            "productId": {
+                                                    "title": "Product id",
+                                                    "description": "Product identifier",
+                                                    "type": [
+                                                            "string",
+                                                            "number"
+                                                    ]
+                                            },
+                                            "currency": {
+                                                    "title": "Currency",
+                                                    "description": "ISO 4217 Currency Code",
+                                                    "type": "string",
+                                                    "format": "iso4217",
+                                                    "pattern": "^[A-Z]{3}$"
+                                            },
+                                            "limit": {
+                                                    "title": "Limit",
+                                                    "description": "Total limit",
+                                                    "type": "number",
+                                                    "minimum": 0
+                                            },
+                                            "balance": {
+                                                    "title": "Balance",
+                                                    "description": "Current balance",
+                                                    "type": "number"
+                                            },
+                                            "owner": {
+                                                    "title": "Owner",
+                                                    "description": "Owner info",
                                                     "type": "object",
                                                     "properties": {
                                                             "id": {
                                                                     "title": "Id",
-                                                                    "description": "Mortgage identifier",
-                                                                    "type": [
-                                                                            "string",
-                                                                            "number"
-                                                                    ]
+                                                                    "description": "Owner id",
+                                                                    "type": "string"
                                                             },
-                                                            "productId": {
-                                                                    "title": "Product id",
-                                                                    "description": "Product identifier",
-                                                                    "type": [
-                                                                            "string",
-                                                                            "number"
-                                                                    ]
-                                                            },
-                                                            "currency": {
-                                                                    "title": "Currency",
-                                                                    "description": "ISO 4217 Currency Code",
-                                                                    "type": "string",
-                                                                    "format": "iso4217",
-                                                                    "pattern": "^[A-Z]{3}$"
-                                                            },
-                                                            "limit": {
-                                                                    "title": "Limit",
-                                                                    "description": "Total limit",
-                                                                    "type": "number",
-                                                                    "minimum": 0
-                                                            },
-                                                            "balance": {
-                                                                    "title": "Balance",
-                                                                    "description": "Current balance",
-                                                                    "type": "number"
-                                                            },
-                                                            "owner": {
-                                                                    "title": "Owner",
-                                                                    "description": "Owner info",
-                                                                    "type": "object",
-                                                                    "properties": {
-                                                                            "id": {
-                                                                                    "title": "Id",
-                                                                                    "description": "Owner id",
-                                                                                    "type": "string"
-                                                                            },
-                                                                            "name": {
-                                                                                    "title": "Name",
-                                                                                    "description": "Owner name",
-                                                                                    "type": "string"
-                                                                            }
-                                                                    },
-                                                                    "required": [
-                                                                            "id",
-                                                                            "name"
-                                                                    ]
-                                                            },
-                                                            "object": {
-                                                                    "title": "Object",
-                                                                    "description": "Object info",
-                                                                    "type": "object",
-                                                                    "properties": {
-                                                                            "name": {
-                                                                                    "title": "Name",
-                                                                                    "description": "Object name",
-                                                                                    "type": "string"
-                                                                            },
-                                                                            "additional": {
-                                                                                    "title": "Additional",
-                                                                                    "description": "Additional info",
-                                                                                    "type": "string"
-                                                                            }
-                                                                    },
-                                                                    "required": [
-                                                                            "name"
-                                                                    ],
-                                                                    "additionalProperties": false
-                                                            },
-                                                            "products": {
-                                                                    "title": "Products",
-                                                                    "description": "Products array",
-                                                                    "type": "array",
-                                                                    "items": {
-                                                                            "title": "Product",
-                                                                            "description": "",
-                                                                            "type": "object",
-                                                                            "properties": {
-                                                                                    "id": {
-                                                                                            "title": "Id",
-                                                                                            "description": "Product identifier",
-                                                                                            "type": [
-                                                                                                    "string",
-                                                                                                    "number"
-                                                                                            ]
-                                                                                    },
-                                                                                    "rate": {
-                                                                                            "title": "Rate",
-                                                                                            "description": "Product rate",
-                                                                                            "type": "string"
-                                                                                    },
-                                                                                    "amount": {
-                                                                                            "title": "Amount",
-                                                                                            "description": "Credit amount",
-                                                                                            "type": "number"
-                                                                                    },
-                                                                                    "valid": {
-                                                                                            "title": "Valid",
-                                                                                            "description": "Credit period",
-                                                                                            "type": "object",
-                                                                                            "properties": {
-                                                                                                    "from": {
-                                                                                                            "title": "From",
-                                                                                                            "description": "Credit period start",
-                                                                                                            "type": "string",
-                                                                                                            "format": "date-time"
-                                                                                                    },
-                                                                                                    "to": {
-                                                                                                            "title": "To",
-                                                                                                            "description": "Credit period end",
-                                                                                                            "type": "string",
-                                                                                                            "format": "date-time"
-                                                                                                    }
-                                                                                            },
-                                                                                            "required": [
-                                                                                                    "from",
-                                                                                                    "to"
-                                                                                            ],
-                                                                                            "additionalProperties": false
-                                                                                    },
-                                                                                    "offerId": {
-                                                                                            "type": [
-                                                                                                    "string",
-                                                                                                    "number"
-                                                                                            ]
-                                                                                    }
-                                                                            },
-                                                                            "required": [
-                                                                                    "id",
-                                                                                    "rate",
-                                                                                    "amount",
-                                                                                    "valid"
-                                                                            ],
-                                                                            "additionalProperties": false
-                                                                    }
+                                                            "name": {
+                                                                    "title": "Name",
+                                                                    "description": "Owner name",
+                                                                    "type": "string"
                                                             }
                                                     },
                                                     "required": [
                                                             "id",
-                                                            "productId",
-                                                            "currency",
-                                                            "limit",
-                                                            "balance",
-                                                            "owner",
-                                                            "object",
-                                                            "products"
+                                                            "name"
+                                                    ]
+                                            },
+                                            "object": {
+                                                    "title": "Object",
+                                                    "description": "Object info",
+                                                    "type": "object",
+                                                    "properties": {
+                                                            "name": {
+                                                                    "title": "Name",
+                                                                    "description": "Object name",
+                                                                    "type": "string"
+                                                            },
+                                                            "additional": {
+                                                                    "title": "Additional",
+                                                                    "description": "Additional info",
+                                                                    "type": "string"
+                                                            }
+                                                    },
+                                                    "required": [
+                                                            "name"
                                                     ],
                                                     "additionalProperties": false
+                                            },
+                                            "products": {
+                                                    "title": "Products",
+                                                    "description": "Products array",
+                                                    "type": "array",
+                                                    "items": {
+                                                            "title": "Product",
+                                                            "description": "",
+                                                            "type": "object",
+                                                            "properties": {
+                                                                    "id": {
+                                                                            "title": "Id",
+                                                                            "description": "Product identifier",
+                                                                            "type": [
+                                                                                    "string",
+                                                                                    "number"
+                                                                            ]
+                                                                    },
+                                                                    "rate": {
+                                                                            "title": "Rate",
+                                                                            "description": "Product rate",
+                                                                            "type": "string"
+                                                                    },
+                                                                    "amount": {
+                                                                            "title": "Amount",
+                                                                            "description": "Credit amount",
+                                                                            "type": "number"
+                                                                    },
+                                                                    "valid": {
+                                                                            "title": "Valid",
+                                                                            "description": "Credit period",
+                                                                            "type": "object",
+                                                                            "properties": {
+                                                                                    "from": {
+                                                                                            "title": "From",
+                                                                                            "description": "Credit period start",
+                                                                                            "type": "string",
+                                                                                            "format": "date-time"
+                                                                                    },
+                                                                                    "to": {
+                                                                                            "title": "To",
+                                                                                            "description": "Credit period end",
+                                                                                            "type": "string",
+                                                                                            "format": "date-time"
+                                                                                    }
+                                                                            },
+                                                                            "required": [
+                                                                                    "from"
+                                                                            ],
+                                                                            "additionalProperties": false
+                                                                    },
+                                                                    "offerId": {
+                                                                            "type": [
+                                                                                    "string",
+                                                                                    "number"
+                                                                            ]
+                                                                    }
+                                                            },
+                                                            "required": [
+                                                                    "id",
+                                                                    "rate",
+                                                                    "amount",
+                                                                    "valid"
+                                                            ],
+                                                            "additionalProperties": false
+                                                    }
                                             }
-                                    }
+                                    },
+                                    "required": [
+                                            "id",
+                                            "productId",
+                                            "currency",
+                                            "limit",
+                                            "balance",
+                                            "owner",
+                                            "object",
+                                            "products"
+                                    ],
+                                    "additionalProperties": false
                             },
-                            "required": [],
-                            "additionalProperties": false,
                             "$schema": "http://json-schema.org/draft-04/schema#"
                     }
             }
@@ -477,85 +443,81 @@ Return an array of mortgages available to the customer
 
     + Body
 
-            {
-                "response": {
-                    "mortgages": [
+            [
+                {
+                    "id": "17145",
+                    "productId": "100",
+                    "currency": "CHF",
+                    "limit": 590000,
+                    "balance": -590000,
+                    "owner": {
+                        "id": "131841-3006",
+                        "name": "Hans Muster"
+                    },
+                    "object": {
+                        "name": "Haus 1",
+                        "additional": "Kurzstrasse 22 7770 St.Gallen"
+                    },
+                    "products": [
                         {
-                            "id": "17145",
-                            "productId": "100",
-                            "currency": "CHF",
-                            "limit": 590000,
-                            "balance": -590000,
-                            "owner": {
-                                "id": "131841-3006",
-                                "name": "Hans Muster"
+                            "id": "9010390041",
+                            "rate": "2.45",
+                            "amount": 590000,
+                            "valid": {
+                                "from": "2010-04-01",
+                                "to": "2015-03-31"
                             },
-                            "object": {
-                                "name": "Haus 1",
-                                "additional": "Kurzstrasse 22 7770 St.Gallen"
+                            "offerId": "21137"
+                        }
+                    ]
+                },
+                {
+                    "id": "17146",
+                    "productId": "100",
+                    "currency": "CHF",
+                    "limit": 990000,
+                    "balance": -990000,
+                    "owner": {
+                        "id": "131841-4982",
+                        "name": "Hans Muster"
+                    },
+                    "object": {
+                        "name": "Object 2",
+                        "additional": "Kurzstrasse 2 1770 St.Gallen"
+                    },
+                    "products": [
+                        {
+                            "id": "9010390041",
+                            "rate": "2.45",
+                            "amount": 390000,
+                            "valid": {
+                                "from": "2010-06-02",
+                                "to": "2014-01-01"
                             },
-                            "products": [
-                                {
-                                    "id": "9010390041",
-                                    "rate": "2.45",
-                                    "amount": 590000,
-                                    "valid": {
-                                        "from": "2010-04-01",
-                                        "to": "2015-03-31"
-                                    },
-                                    "offerId": "21137"
-                                }
-                            ]
+                            "offerId": "21973"
                         },
                         {
-                            "id": "17146",
-                            "productId": "100",
-                            "currency": "CHF",
-                            "limit": 990000,
-                            "balance": -990000,
-                            "owner": {
-                                "id": "131841-4982",
-                                "name": "Hans Muster"
+                            "id": "9010390041",
+                            "rate": "2.05",
+                            "amount": 300000,
+                            "valid": {
+                                "from": "2011-07-01",
+                                "to": "2015-06-30"
                             },
-                            "object": {
-                                "name": "Object 2",
-                                "additional": "Kurzstrasse 2 1770 St.Gallen"
-                            },
-                            "products": [
-                                {
-                                    "id": "9010390041",
-                                    "rate": "2.45",
-                                    "amount": 390000,
-                                    "valid": {
-                                        "from": "2010-06-02",
-                                        "to": "2014-01-01"
-                                    },
-                                    "offerId": "21973"
-                                },
-                                {
-                                    "id": "9010390041",
-                                    "rate": "2.05",
-                                    "amount": 300000,
-                                    "valid": {
-                                        "from": "2011-07-01",
-                                        "to": "2015-06-30"
-                                    },
-                                    "offerId": "21973"
-                                },
-                                {
-                                    "id": "9010390041",
-                                    "rate": "2.15",
-                                    "amount": 300000,
-                                    "valid": {
-                                        "from": "2011-07-01",
-                                        "to": "2037-06-30"
-                                    }
-                                }
-                            ]
+                            "offerId": "21973"
+                        },
+                        {
+                            "id": "9010390041",
+                            "rate": "2.15",
+                            "amount": 300000,
+                            "valid": {
+                                "from": "2011-07-01",
+                                "to": "2037-06-30"
+                            }
                         }
                     ]
                 }
-            }
+            ]
 
 ## mortgage_configuration [/financing/mortgage_configuration/{mortgageId}]
 
@@ -571,101 +533,94 @@ Return an array of mortgages available to the customer
 
             {
                     "GET": {
+                            "title": "Mortgage configuration object",
+                            "description": "Mortgage configuration object",
                             "type": "object",
                             "properties": {
-                                    "mortgage": {
-                                            "type": "object",
-                                            "properties": {
-                                                    "initial": {
-                                                            "title": "Initial",
-                                                            "description": "Initial configuration array",
-                                                            "type": "array",
-                                                            "items": {
-                                                                    "title": "Product",
-                                                                    "description": "",
+                                    "initial": {
+                                            "title": "Initial",
+                                            "description": "Initial configuration array",
+                                            "type": "array",
+                                            "items": {
+                                                    "title": "Product",
+                                                    "description": "",
+                                                    "type": "object",
+                                                    "properties": {
+                                                            "id": {
+                                                                    "title": "Id",
+                                                                    "description": "Product identifier",
+                                                                    "type": [
+                                                                            "string",
+                                                                            "number"
+                                                                    ]
+                                                            },
+                                                            "rate": {
+                                                                    "title": "Rate",
+                                                                    "description": "Product rate",
+                                                                    "type": "string"
+                                                            },
+                                                            "amount": {
+                                                                    "title": "Amount",
+                                                                    "description": "Credit amount",
+                                                                    "type": "number"
+                                                            },
+                                                            "valid": {
+                                                                    "title": "Valid",
+                                                                    "description": "Credit period",
                                                                     "type": "object",
                                                                     "properties": {
-                                                                            "id": {
-                                                                                    "title": "Id",
-                                                                                    "description": "Product identifier",
-                                                                                    "type": [
-                                                                                            "string",
-                                                                                            "number"
-                                                                                    ]
+                                                                            "from": {
+                                                                                    "title": "From",
+                                                                                    "description": "Credit period start",
+                                                                                    "type": "string",
+                                                                                    "format": "date-time"
                                                                             },
-                                                                            "rate": {
-                                                                                    "title": "Rate",
-                                                                                    "description": "Product rate",
-                                                                                    "type": "string"
-                                                                            },
-                                                                            "amount": {
-                                                                                    "title": "Amount",
-                                                                                    "description": "Credit amount",
-                                                                                    "type": "number"
-                                                                            },
-                                                                            "valid": {
-                                                                                    "title": "Valid",
-                                                                                    "description": "Credit period",
-                                                                                    "type": "object",
-                                                                                    "properties": {
-                                                                                            "from": {
-                                                                                                    "title": "From",
-                                                                                                    "description": "Credit period start",
-                                                                                                    "type": "string",
-                                                                                                    "format": "date-time"
-                                                                                            },
-                                                                                            "to": {
-                                                                                                    "title": "To",
-                                                                                                    "description": "Credit period end",
-                                                                                                    "type": "string",
-                                                                                                    "format": "date-time"
-                                                                                            }
-                                                                                    },
-                                                                                    "required": [
-                                                                                            "from",
-                                                                                            "to"
-                                                                                    ],
-                                                                                    "additionalProperties": false
-                                                                            },
-                                                                            "offerId": {
-                                                                                    "type": [
-                                                                                            "string",
-                                                                                            "number"
-                                                                                    ]
+                                                                            "to": {
+                                                                                    "title": "To",
+                                                                                    "description": "Credit period end",
+                                                                                    "type": "string",
+                                                                                    "format": "date-time"
                                                                             }
                                                                     },
                                                                     "required": [
-                                                                            "id",
-                                                                            "rate",
-                                                                            "amount",
-                                                                            "valid"
+                                                                            "from"
                                                                     ],
                                                                     "additionalProperties": false
+                                                            },
+                                                            "offerId": {
+                                                                    "type": [
+                                                                            "string",
+                                                                            "number"
+                                                                    ]
                                                             }
-                                                    }
-                                            },
-                                            "required": [
-                                                    "initial"
-                                            ]
-                                    }
-                            },
-                            "$schema": "http://json-schema.org/draft-04/schema#"
-                    },
-                    "POST": {
-                            "type": "object",
-                            "properties": {
-                                    "success": {
-                                            "title": "Success",
-                                            "description": "Success save flag",
-                                            "type": [
-                                                    "boolean"
-                                            ]
+                                                    },
+                                                    "required": [
+                                                            "id",
+                                                            "rate",
+                                                            "amount",
+                                                            "valid"
+                                                    ],
+                                                    "additionalProperties": false
+                                            }
+                                    },
+                                    "configured": {
+                                            "title": "Configuration",
+                                            "description": "Configuration of mortgage",
+                                            "type": "object"
                                     }
                             },
                             "required": [
-                                    "success"
+                                    "initial"
                             ],
                             "additionalProperties": false,
+                            "$schema": "http://json-schema.org/draft-04/schema#"
+                    },
+                    "POST": {
+                            "title": "Success",
+                            "description": "Success save flag",
+                            "type": [
+                                    "boolean"
+                            ],
                             "$schema": "http://json-schema.org/draft-04/schema#"
                     }
             }
@@ -688,43 +643,39 @@ Return configuration object of mortgage
     + Body
 
             {
-                "response": {
-                    "mortgage": {
-                        "initial": [
-                            {
-                                "id": "9010390041",
-                                "rate": "2.45",
-                                "amount": 390000,
-                                "valid": {
-                                    "from": "2010-06-02",
-                                    "to": "2014-01-01"
-                                },
-                                "offerId": "21973"
-                            },
-                            {
-                                "id": "9010390041",
-                                "rate": "2.05",
-                                "amount": 300000,
-                                "valid": {
-                                    "from": "2011-07-01",
-                                    "to": "2015-06-30"
-                                },
-                                "offerId": "21973"
-                            },
-                            {
-                                "id": "9010390041",
-                                "rate": "2.15",
-                                "amount": 300000,
-                                "valid": {
-                                    "from": "2011-07-01",
-                                    "to": "2037-06-30"
-                                }
-                            }
-                        ],
-                        "configured": {
-                            "test": 123
+                "initial": [
+                    {
+                        "id": "9010390041",
+                        "rate": "2.45",
+                        "amount": 390000,
+                        "valid": {
+                            "from": "2010-06-02",
+                            "to": "2014-01-01"
+                        },
+                        "offerId": "21973"
+                    },
+                    {
+                        "id": "9010390041",
+                        "rate": "2.05",
+                        "amount": 300000,
+                        "valid": {
+                            "from": "2011-07-01",
+                            "to": "2015-06-30"
+                        },
+                        "offerId": "21973"
+                    },
+                    {
+                        "id": "9010390041",
+                        "rate": "2.15",
+                        "amount": 300000,
+                        "valid": {
+                            "from": "2011-07-01",
+                            "to": "2037-06-30"
                         }
                     }
+                ],
+                "configured": {
+                    "test": 123
                 }
             }
 
@@ -755,11 +706,7 @@ Save configuration object of mortgage and return status of success
 
     + Body
 
-            {
-                "response": {
-                    "success": true
-                }
-            }
+            true
 
 # Group Offer
 
@@ -779,58 +726,51 @@ Offer as a products collection for mortgage part extension
 
             {
                     "GET": {
-                            "type": "object",
-                            "properties": {
-                                    "products": {
-                                            "title": " products",
-                                            "description": "Array of products",
-                                            "type": "array",
-                                            "items": {
-                                                    "title": "Offer",
-                                                    "description": "Offer object",
-                                                    "type": "object",
-                                                    "properties": {
-                                                            "id": {
-                                                                    "title": "Id",
-                                                                    "description": "Offer idintifier",
-                                                                    "type": [
-                                                                            "string",
-                                                                            "number"
-                                                                    ]
-                                                            },
-                                                            "duration": {
-                                                                    "title": "Duration",
-                                                                    "description": "Offered product duration in years",
-                                                                    "type": "number",
-                                                                    "minimum": 2,
-                                                                    "maximum": 10
-                                                            },
-                                                            "actualMargin": {
-                                                                    "title": "Rate",
-                                                                    "description": "Actual product rate",
-                                                                    "type": "string",
-                                                                    "minLength": 1
-                                                            },
-                                                            "minimalAmount": {
-                                                                    "title": "Minimal amount",
-                                                                    "description": "Minimal amount",
-                                                                    "type": "number",
-                                                                    "minimum": 0,
-                                                                    "exclusiveMinimum": true
-                                                            }
-                                                    },
-                                                    "required": [
-                                                            "id",
-                                                            "duration",
-                                                            "actualMargin",
-                                                            "minimalAmount"
-                                                    ],
-                                                    "additionalProperties": false
+                            "title": " products",
+                            "description": "Array of products",
+                            "type": "array",
+                            "items": {
+                                    "title": "Offer",
+                                    "description": "Offer object",
+                                    "type": "object",
+                                    "properties": {
+                                            "id": {
+                                                    "title": "Id",
+                                                    "description": "Offer idintifier",
+                                                    "type": [
+                                                            "string",
+                                                            "number"
+                                                    ]
+                                            },
+                                            "duration": {
+                                                    "title": "Duration",
+                                                    "description": "Offered product duration in years",
+                                                    "type": "number",
+                                                    "minimum": 2,
+                                                    "maximum": 10
+                                            },
+                                            "actualMargin": {
+                                                    "title": "Rate",
+                                                    "description": "Actual product rate",
+                                                    "type": "string",
+                                                    "minLength": 1
+                                            },
+                                            "minimalAmount": {
+                                                    "title": "Minimal amount",
+                                                    "description": "Minimal amount",
+                                                    "type": "number",
+                                                    "minimum": 0,
+                                                    "exclusiveMinimum": true
                                             }
-                                    }
+                                    },
+                                    "required": [
+                                            "id",
+                                            "duration",
+                                            "actualMargin",
+                                            "minimalAmount"
+                                    ],
+                                    "additionalProperties": false
                             },
-                            "required": [],
-                            "additionalProperties": false,
                             "$schema": "http://json-schema.org/draft-04/schema#"
                     }
             }
@@ -852,66 +792,62 @@ Return array of products by offer identifier
 
     + Body
 
-            {
-                "response": {
-                    "products": [
-                        {
-                            "id": "9010390041",
-                            "duration": 2,
-                            "actualMargin": "3.9996",
-                            "minimalAmount": 100000
-                        },
-                        {
-                            "id": "9010390041",
-                            "duration": 3,
-                            "actualMargin": "3.8996",
-                            "minimalAmount": 100000
-                        },
-                        {
-                            "id": "9010390041",
-                            "duration": 4,
-                            "actualMargin": "3.7996",
-                            "minimalAmount": 100000
-                        },
-                        {
-                            "id": "9010390041",
-                            "duration": 5,
-                            "actualMargin": "3.6996",
-                            "minimalAmount": 100000
-                        },
-                        {
-                            "id": "9010390041",
-                            "duration": 6,
-                            "actualMargin": "3.5996",
-                            "minimalAmount": 100000
-                        },
-                        {
-                            "id": "9010390041",
-                            "duration": 7,
-                            "actualMargin": "3.4996",
-                            "minimalAmount": 100000
-                        },
-                        {
-                            "id": "9010390041",
-                            "duration": 8,
-                            "actualMargin": "3.3996",
-                            "minimalAmount": 100000
-                        },
-                        {
-                            "id": "9010390041",
-                            "duration": 9,
-                            "actualMargin": "3.2996",
-                            "minimalAmount": 100000
-                        },
-                        {
-                            "id": "9010390041",
-                            "duration": 10,
-                            "actualMargin": "3.1996",
-                            "minimalAmount": 100000
-                        }
-                    ]
+            [
+                {
+                    "id": "9010390041",
+                    "duration": 2,
+                    "actualMargin": "1.50",
+                    "minimalAmount": 100000
+                },
+                {
+                    "id": "9010390041",
+                    "duration": 3,
+                    "actualMargin": "2.00",
+                    "minimalAmount": 100000
+                },
+                {
+                    "id": "9010390041",
+                    "duration": 4,
+                    "actualMargin": "2.25",
+                    "minimalAmount": 100000
+                },
+                {
+                    "id": "9010390041",
+                    "duration": 5,
+                    "actualMargin": "2.50",
+                    "minimalAmount": 100000
+                },
+                {
+                    "id": "9010390041",
+                    "duration": 6,
+                    "actualMargin": "2.75",
+                    "minimalAmount": 100000
+                },
+                {
+                    "id": "9010390041",
+                    "duration": 7,
+                    "actualMargin": "3.00",
+                    "minimalAmount": 100000
+                },
+                {
+                    "id": "9010390041",
+                    "duration": 8,
+                    "actualMargin": "3.25",
+                    "minimalAmount": 100000
+                },
+                {
+                    "id": "9010390041",
+                    "duration": 9,
+                    "actualMargin": "3.50",
+                    "minimalAmount": 100000
+                },
+                {
+                    "id": "9010390041",
+                    "duration": 10,
+                    "actualMargin": "3.75",
+                    "minimalAmount": 100000
                 }
-            }
+            ]
 
 # Group Product
 
@@ -931,52 +867,45 @@ Products collection
 
             {
                     "GET": {
-                            "type": "object",
-                            "properties": {
-                                    "products": {
-                                            "title": " Products data",
-                                            "description": "Array of products data",
-                                            "type": "array",
-                                            "items": {
-                                                    "title": "Product title",
-                                                    "description": "Product title object",
-                                                    "type": "object",
-                                                    "properties": {
-                                                            "id": {
-                                                                    "title": "Id",
-                                                                    "description": "Product identifier",
-                                                                    "type": [
-                                                                            "string",
-                                                                            "number"
-                                                                    ]
-                                                            },
-                                                            "name": {
-                                                                    "title": "Name",
-                                                                    "description": "Product name",
-                                                                    "type": "string"
-                                                            },
-                                                            "type": {
-                                                                    "title": "Type",
-                                                                    "description": "Product type",
-                                                                    "type": "string",
-                                                                    "enum": [
-                                                                            "fixed",
-                                                                            "rollover",
-                                                                            "variable"
-                                                                    ]
-                                                            }
-                                                    },
-                                                    "required": [
-                                                            "id",
-                                                            "name",
-                                                            "type"
-                                                    ],
-                                                    "additionalProperties": false
+                            "title": " Products data",
+                            "description": "Array of products data",
+                            "type": "array",
+                            "items": {
+                                    "title": "Product title",
+                                    "description": "Product title object",
+                                    "type": "object",
+                                    "properties": {
+                                            "id": {
+                                                    "title": "Id",
+                                                    "description": "Product identifier",
+                                                    "type": [
+                                                            "string",
+                                                            "number"
+                                                    ]
+                                            },
+                                            "name": {
+                                                    "title": "Name",
+                                                    "description": "Product name",
+                                                    "type": "string"
+                                            },
+                                            "type": {
+                                                    "title": "Type",
+                                                    "description": "Product type",
+                                                    "type": "string",
+                                                    "enum": [
+                                                            "fixed",
+                                                            "rollover",
+                                                            "variable"
+                                                    ]
                                             }
-                                    }
+                                    },
+                                    "required": [
+                                            "id",
+                                            "name",
+                                            "type"
+                                    ],
+                                    "additionalProperties": false
                             },
-                            "required": [],
-                            "additionalProperties": false,
                             "$schema": "http://json-schema.org/draft-04/schema#"
                     }
             }
@@ -994,37 +923,33 @@ Return array of products data
 
     + Body
 
-            {
-                "response": {
-                    "products": [
-                        {
-                            "id": "100",
-                            "name": "Darlehen Fest",
-                            "type": "fixed"
-                        },
-                        {
-                            "id": "923341",
-                            "name": "Festhypothek",
-                            "type": "fixed"
-                        },
-                        {
-                            "id": "333333",
-                            "name": "Variable Hypothek",
-                            "type": "variable"
-                        },
-                        {
-                            "id": "444444",
-                            "name": "Rollover Hypothek",
-                            "type": "rollover"
-                        },
-                        {
-                            "id": "9010390041",
-                            "name": "Festhypothek",
-                            "type": "fixed"
-                        }
-                    ]
+            [
+                {
+                    "id": "100",
+                    "name": "Darlehen Fest",
+                    "type": "fixed"
+                },
+                {
+                    "id": "923341",
+                    "name": "Festhypothek",
+                    "type": "fixed"
+                },
+                {
+                    "id": "333333",
+                    "name": "Variable Hypothek",
+                    "type": "variable"
+                },
+                {
+                    "id": "444444",
+                    "name": "Rollover Hypothek",
+                    "type": "rollover"
+                },
+                {
+                    "id": "9010390041",
+                    "name": "Festhypothek",
+                    "type": "fixed"
                 }
-            }
+            ]
 
 # Group Misc
 
@@ -1044,20 +969,11 @@ Not grouped services
 
             {
                     "GET": {
-                            "type": "object",
-                            "properties": {
-                                    "year": {
-                                            "title": "Year",
-                                            "description": "Current year",
-                                            "type": [
-                                                    "number"
-                                            ]
-                                    }
-                            },
-                            "required": [
-                                    "year"
+                            "title": "Year",
+                            "description": "Current year",
+                            "type": [
+                                    "number"
                             ],
-                            "additionalProperties": false,
                             "$schema": "http://json-schema.org/draft-04/schema#"
                     }
             }
@@ -1075,11 +991,7 @@ Return current year on server
 
     + Body
 
-            {
-                "response": {
-                    "year": 2014
-                }
-            }
+            2014
 
 ## mail [/financing/mail]
 
@@ -1095,18 +1007,9 @@ Return current year on server
 
             {
                     "POST": {
-                            "type": "object",
-                            "properties": {
-                                    "success": {
-                                            "title": "Success",
-                                            "description": "Success sent flag",
-                                            "type": "boolean"
-                                    }
-                            },
-                            "required": [
-                                    "success"
-                            ],
-                            "additionalProperties": false,
+                            "title": "Success",
+                            "description": "Success sent flag",
+                            "type": "boolean",
                             "$schema": "http://json-schema.org/draft-04/schema#"
                     }
             }
@@ -1139,8 +1042,4 @@ Send e-mail and return status of success
 
     + Body
 
-            {
-                "response": {
-                    "success": true
-                }
-            }
+            true
