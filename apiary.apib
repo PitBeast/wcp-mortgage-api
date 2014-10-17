@@ -36,35 +36,40 @@ Customer Support Representatives
                                     },
                                     "firstName": {
                                             "title": "First name",
-                                            "description": "Customer first name",
+                                            "description": "Agent first name",
                                             "type": "string"
                                     },
                                     "lastName": {
                                             "title": "Last name",
-                                            "description": "Customer last name",
+                                            "description": "Agent last name",
+                                            "type": "string"
+                                    },
+                                    "role": {
+                                            "title": "Role",
+                                            "description": "Agent role",
                                             "type": "string"
                                     },
                                     "phoneNumber": {
                                             "title": "Phone number",
-                                            "description": "Customer phone number",
+                                            "description": "Agent phone number",
                                             "type": "string",
                                             "format": "phone"
                                     },
                                     "faxNumber": {
                                             "title": "Fax number",
-                                            "description": "Customer fax number",
+                                            "description": "Agent fax number",
                                             "type": "string",
                                             "format": "phone"
                                     },
                                     "email": {
                                             "title": "E-mail",
-                                            "description": "Customer e-mail",
+                                            "description": "Agent e-mail",
                                             "type": "string",
                                             "format": "email"
                                     },
                                     "imageURI": {
                                             "title": "Image URI",
-                                            "description": "Customer photo",
+                                            "description": "Agent photo",
                                             "type": "string",
                                             "format": "uri"
                                     }
@@ -73,6 +78,7 @@ Customer Support Representatives
                                     "id",
                                     "firstName",
                                     "lastName",
+                                    "role",
                                     "phoneNumber",
                                     "faxNumber",
                                     "imageURI"
@@ -106,6 +112,7 @@ Return customer support representatives by porfolio identifier
                 "id": "1",
                 "firstName": "Jacqueline",
                 "lastName": "Bamert",
+                "role": "Kundenberaterin",
                 "phoneNumber": "+41 58 800 24 14",
                 "faxNumber": "058 800 67 01",
                 "email": "jacqueline.bamert@szkb.ch",
