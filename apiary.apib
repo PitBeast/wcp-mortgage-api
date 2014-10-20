@@ -1165,12 +1165,48 @@ Return configuration object of mortgage
                 "configured": {
                     "products": [
                         {
+                            "id": "333333",
+                            "rate": "3.01",
+                            "amount": 100000,
+                            "duration": 25,
+                            "valid": {
+                                "from": "2010-04-01"
+                            }
+                        },
+                        {
+                            "id": "444444",
+                            "rate": "3.11",
+                            "amount": 110000,
+                            "duration": 20,
+                            "valid": {
+                                "from": "2010-04-01"
+                            }
+                        },
+                        {
                             "id": "9010390041",
                             "rate": "2.45",
                             "amount": 390000,
+                            "duration": 6,
                             "valid": {
-                                "from": "2010-06-02",
-                                "to": "2014-01-01"
+                                "from": "2010-12-02"
+                            }
+                        },
+                        {
+                            "id": "9010390041",
+                            "rate": "2.05",
+                            "amount": 300000,
+                            "duration": 7,
+                            "valid": {
+                                "from": "2011-07-01"
+                            }
+                        },
+                        {
+                            "id": "9010390041",
+                            "rate": "2.15",
+                            "amount": 300000,
+                            "duration": 10,
+                            "valid": {
+                                "from": "2011-07-01"
                             }
                         }
                     ]
@@ -1610,9 +1646,9 @@ Return log file
 
             {}
 
-### Save log file [POST]
+### Add log [POST]
 
-Save log file and return status of success
+Add log and return status of success
 
 + Parameters
 
