@@ -397,7 +397,10 @@ Managing **Mortgage** objects
                                                                     "amount": {
                                                                             "title": "Amount",
                                                                             "description": "Credit amount",
-                                                                            "type": "number"
+                                                                            "type": [
+                                                                                    "string",
+                                                                                    "number"
+                                                                            ]
                                                                     },
                                                                     "duration": {
                                                                             "title": "Duration",
@@ -563,7 +566,7 @@ Return an array of mortgages available to the customer
                         {
                             "id": "9010390041",
                             "rate": "2.45",
-                            "amount": 99590654.5,
+                            "amount": 590000,
                             "duration": 5,
                             "valid": {
                                 "from": "2010-04-01"
@@ -613,27 +616,25 @@ Return an array of mortgages available to the customer
                             "id": "9010390041",
                             "rate": "2.45",
                             "amount": 390000,
-                            "duration": 4,
+                            "duration": 6,
                             "valid": {
                                 "from": "2010-12-02"
-                            },
-                            "offerId": "21973"
+                            }
                         },
                         {
                             "id": "9010390041",
                             "rate": "2.05",
                             "amount": 300000,
-                            "duration": 4,
+                            "duration": 7,
                             "valid": {
                                 "from": "2011-07-01"
-                            },
-                            "offerId": "21973"
+                            }
                         },
                         {
                             "id": "9010390041",
                             "rate": "2.15",
                             "amount": 300000,
-                            "duration": 28,
+                            "duration": 10,
                             "valid": {
                                 "from": "2011-07-01"
                             }
@@ -685,7 +686,10 @@ Return an array of mortgages available to the customer
                                                             "amount": {
                                                                     "title": "Amount",
                                                                     "description": "Credit amount",
-                                                                    "type": "number"
+                                                                    "type": [
+                                                                            "string",
+                                                                            "number"
+                                                                    ]
                                                             },
                                                             "duration": {
                                                                     "title": "Duration",
@@ -811,7 +815,10 @@ Return an array of mortgages available to the customer
                                                                             "amount": {
                                                                                     "title": "Amount",
                                                                                     "description": "Credit amount",
-                                                                                    "type": "number"
+                                                                                    "type": [
+                                                                                            "string",
+                                                                                            "number"
+                                                                                    ]
                                                                             },
                                                                             "duration": {
                                                                                     "title": "Duration",
@@ -964,7 +971,10 @@ Return an array of mortgages available to the customer
                                                                             "amount": {
                                                                                     "title": "Amount",
                                                                                     "description": "Credit amount",
-                                                                                    "type": "number"
+                                                                                    "type": [
+                                                                                            "string",
+                                                                                            "number"
+                                                                                    ]
                                                                             },
                                                                             "duration": {
                                                                                     "title": "Duration",
@@ -1072,7 +1082,7 @@ Return an array of mortgages available to the customer
                                     },
                                     "userId": {
                                             "title": "User id",
-                                            "description": "Mortgage identifier",
+                                            "description": "User identifier",
                                             "type": [
                                                     "string",
                                                     "number"
@@ -1128,27 +1138,25 @@ Return configuration object of mortgage
                         "id": "9010390041",
                         "rate": "2.45",
                         "amount": 390000,
-                        "duration": 4,
+                        "duration": 6,
                         "valid": {
                             "from": "2010-12-02"
-                        },
-                        "offerId": "21973"
+                        }
                     },
                     {
                         "id": "9010390041",
                         "rate": "2.05",
                         "amount": 300000,
-                        "duration": 4,
+                        "duration": 7,
                         "valid": {
                             "from": "2011-07-01"
-                        },
-                        "offerId": "21973"
+                        }
                     },
                     {
                         "id": "9010390041",
                         "rate": "2.15",
                         "amount": 300000,
-                        "duration": 28,
+                        "duration": 10,
                         "valid": {
                             "from": "2011-07-01"
                         }
@@ -1185,11 +1193,48 @@ Save configuration object of mortgage and return status of success
                 "configured": {
                     "products": [
                         {
+                            "id": "333333",
+                            "rate": "3.01",
+                            "amount": 100000,
+                            "duration": 25,
+                            "valid": {
+                                "from": "2010-04-01"
+                            }
+                        },
+                        {
+                            "id": "444444",
+                            "rate": "3.11",
+                            "amount": 110000,
+                            "duration": 20,
+                            "valid": {
+                                "from": "2010-04-01"
+                            }
+                        },
+                        {
                             "id": "9010390041",
                             "rate": "2.45",
                             "amount": 390000,
+                            "duration": 6,
                             "valid": {
-                                "from": "2010-06-02"
+                                "from": "2010-12-02"
+                            }
+                        },
+                        {
+                            "id": "9010390041",
+                            "rate": "2.05",
+                            "amount": 300000,
+                            "duration": 7,
+                            "valid": {
+                                "from": "2011-07-01"
+                            }
+                        },
+                        {
+                            "id": "9010390041",
+                            "rate": "2.15",
+                            "amount": 300000,
+                            "duration": 10,
+                            "valid": {
+                                "from": "2011-07-01"
                             }
                         }
                     ]
@@ -1489,3 +1534,107 @@ Return current year on server
     + Body
 
             2014
+
+## log [/financing/log]
+
+### Get schema [OPTIONS]
+
++ Response 200 (application/schema+json)
+
+    + Header
+
+            Link: <http://api.wcp.vps321.xiag.ch/schema/financing/log>; rel="canonical", <http://api.wcp.vps321.xiag.ch/financing/log>; rel="self"
+
+    + Body
+
+            {
+                    "GET": {
+                            "title": "Log",
+                            "description": "Log file",
+                            "type": [
+                                    "string"
+                            ],
+                            "$schema": "http://json-schema.org/draft-04/schema#"
+                    },
+                    "POST": {
+                            "type": "object",
+                            "properties": {
+                                    "category": {
+                                            "title": "Category",
+                                            "description": "Category",
+                                            "type": "string"
+                                    },
+                                    "event": {
+                                            "title": "Event",
+                                            "description": "Event",
+                                            "type": "string"
+                                    },
+                                    "label": {
+                                            "title": "Label",
+                                            "description": "Label",
+                                            "type": "string"
+                                    },
+                                    "userId": {
+                                            "title": "User id",
+                                            "description": "User identifier",
+                                            "type": [
+                                                    "string",
+                                                    "number"
+                                            ]
+                                    }
+                            },
+                            "required": [
+                                    "category",
+                                    "event",
+                                    "label"
+                            ],
+                            "$schema": "http://json-schema.org/draft-04/schema#"
+                    }
+            }
+
+### Get log file [GET]
+
+Return log file
+
++ Parameters
+
+
++ Response 200 (application/json; charset=UTF-8; profile=http://api.wcp.vps321.xiag.ch/schema/financing/log)
+
+    + Header
+
+            Content-Language: en
+            Link: <http://api.wcp.vps321.xiag.ch/financing/log>; rel="self"
+
+    + Body
+
+            {}
+
+### Save log file [POST]
+
+Save log file and return status of success
+
++ Parameters
+
+    + category (required,string, `testCategory`) ... Category
+    + event (required,string, `testEvent`) ... Event
+    + label (required,string, `testLabel`) ... Label
+
++ Request (application/json)
+
+            {
+                "category": "testCategory",
+                "event": "testEvent",
+                "label": "testLabel"
+            }
+
++ Response 200 (application/json; charset=UTF-8; profile=http://api.wcp.vps321.xiag.ch/schema/financing/log)
+
+    + Header
+
+            Content-Language: en
+            Link: <http://api.wcp.vps321.xiag.ch/financing/log?category=testCategory&event=testEvent&label=testLabel>; rel="self"
+
+    + Body
+
+            true
