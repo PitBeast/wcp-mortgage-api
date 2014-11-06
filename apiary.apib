@@ -6,11 +6,11 @@ API documentation for **Swisscom WCP Mortgage** application.
 
 # Group CSR
 
-Customer Support Representatives
+Customer Support Representative
 
 ## csr [/csr/{csrId}]
 
-### Get schema [OPTIONS]
+### Schema [OPTIONS]
 
 + Response 200 (application/schema+json)
 
@@ -86,9 +86,9 @@ Customer Support Representatives
                     "$schema": "http://json-schema.org/draft-04/schema#"
             }
 
-### Get CSR [GET]
+### CSR [GET]
 
-Return customer support representatives by CSR identifier
+Return customer support representative by CSR identifier
 
 + Parameters
 
@@ -116,7 +116,7 @@ Return customer support representatives by CSR identifier
 
 ### Send CSR request [POST]
 
-Send request for customer support representatives and return status
+Send request for customer support representative and return status
 
 + Response 200 (application/json; charset=UTF-8; profile=http://api.wcp.vps321.xiag.ch/schema/csr)
 
@@ -135,7 +135,7 @@ Portfolios collection
 
 ## portfolio [/portfolio]
 
-### Get schema [OPTIONS]
+### Schema [OPTIONS]
 
 + Response 200 (application/schema+json)
 
@@ -209,7 +209,7 @@ Portfolios collection
                     "$schema": "http://json-schema.org/draft-04/schema#"
             }
 
-### Get portfolio [GET]
+### Portfolio [GET]
 
 Return portfolio of current customer
 
@@ -237,9 +237,13 @@ Return portfolio of current customer
 
 Managing **Financing** objects
 
-## financing [/financing]
+## Financing collection [/financing?page={page}]
 
-### Get schema [OPTIONS]
++ Parameters
+
+    + page = `1` (optional, integer) ... Numeric `page` of the collection to return.
+    
+### Schema [OPTIONS]
 
 + Response 200 (application/schema+json)
 
@@ -389,7 +393,7 @@ Managing **Financing** objects
                     "$schema": "http://json-schema.org/draft-04/schema#"
             }
 
-### Get financing [GET]
+### Financing collection [GET]
 
 Return an array of financing available for the customer
 
@@ -398,7 +402,7 @@ Return an array of financing available for the customer
     + Header
 
             Content-Language: en
-            Link: <http://api.wcp.vps321.xiag.ch/financing>; rel="self"
+            Link: <http://api.wcp.vps321.xiag.ch/financing?page=1>; rel="self", <http://api.wcp.vps321.xiag.ch/financing?page=1>; rel="last" 
 
     + Body
 
@@ -445,9 +449,13 @@ Return an array of financing available for the customer
                 }
             ]
 
-## configuration [/financing/configuration/{financingId}/{type}]
+## configuration [/financing/configuration/{financingId}/{type}?page={page}]
 
-### Get schema [OPTIONS]
++ Parameters
+
+    + page = `1` (optional, integer) ... Numeric `page` of the collection to return.
+    
+### Schema [OPTIONS]
 
 + Response 200 (application/schema+json)
 
@@ -636,7 +644,7 @@ Return an array of financing available for the customer
                     "$schema": "http://json-schema.org/draft-04/schema#"
             }
 
-### Get financing configuration [GET]
+### Financing configuration collection [GET]
 
 Return financing configuration
 
@@ -650,7 +658,7 @@ Return financing configuration
     + Header
 
             Content-Language: en
-            Link: <http://api.wcp.vps321.xiag.ch/financing/configuration/17146/initial>; rel="self"
+            Link: <http://api.wcp.vps321.xiag.ch/financing/configuration/17146/initial?page=1>; rel="self", <http://api.wcp.vps321.xiag.ch/financing/configuration/17146/initial?page=1>; rel="last"
 
     + Body
 
@@ -704,9 +712,13 @@ Return financing configuration
                 }
             ]
 
-## offer [/financing/offer/{offerId}]
+## offer [/financing/offer/{offerId}?page={page}]
 
-### Get schema [OPTIONS]
++ Parameters
+
+    + page = `1` (optional, integer) ... Numeric `page` of the collection to return.
+    
+### Schema [OPTIONS]
 
 + Response 200 (application/schema+json)
 
@@ -765,7 +777,7 @@ Return financing configuration
                     "$schema": "http://json-schema.org/draft-04/schema#"
             }
 
-### Get offer products [GET]
+### Offer products collection [GET]
 
 Return array of products by offer identifier
 
@@ -778,7 +790,7 @@ Return array of products by offer identifier
     + Header
 
             Content-Language: en
-            Link: <http://api.wcp.vps321.xiag.ch/financing/offer/21137>; rel="self"
+            Link: <http://api.wcp.vps321.xiag.ch/financing/offer/21137?page=1>; rel="self", <http://api.wcp.vps321.xiag.ch/financing/offer/21137?page=1>; rel="last" 
 
     + Body
 
@@ -843,9 +855,13 @@ Return array of products by offer identifier
 
 Not grouped services
 
-## product [/misc/product]
+## product [/misc/product?page={page}]
 
-### Get schema [OPTIONS]
++ Parameters
+
+    + page = `1` (optional, integer) ... Numeric `page` of the collection to return.
+    
+### Schema [OPTIONS]
 
 + Response 200 (application/schema+json)
 
@@ -897,7 +913,7 @@ Not grouped services
                     "$schema": "http://json-schema.org/draft-04/schema#"
             }
 
-### Get products data [GET]
+### Products data collection [GET]
 
 Return product collection
 
@@ -906,7 +922,7 @@ Return product collection
     + Header
 
             Content-Language: en
-            Link: <http://api.wcp.vps321.xiag.ch/misc/product>; rel="self"
+            Link: <http://api.wcp.vps321.xiag.ch/misc/product?page=1>; rel="self", <http://api.wcp.vps321.xiag.ch/misc/product?page=1>; rel="last"
 
     + Body
 
@@ -940,7 +956,7 @@ Return product collection
 
 ## year [/misc/year]
 
-### Get schema [OPTIONS]
+### Schema [OPTIONS]
 
 + Response 200 (application/schema+json)
 
@@ -959,7 +975,7 @@ Return product collection
                     "$schema": "http://json-schema.org/draft-04/schema#"
             }
 
-### Get current year [GET]
+### Current year value [GET]
 
 Return current year on server
 
